@@ -2,8 +2,11 @@ package com.example.peethr.wsbtest.Models.connection;
 
 import android.net.ConnectivityManager;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.peethr.wsbtest.Models.weather.CurrentWeather;
+import com.example.peethr.wsbtest.Models.weather.GetCurrentDetails;
+import com.example.peethr.wsbtest.Presenters.ParentActivity;
 
 import org.json.JSONException;
 
@@ -18,11 +21,10 @@ import okhttp3.Response;
 public class HttpConnection {
 
     private CurrentWeather currentWeather;
-    private String weatherData;
     private CheckInternetConnection checkInternetConnection = new CheckInternetConnection();
 
 
-    public String darkSkyConnection(String forecastUrl, ConnectivityManager manager)
+    public CurrentWeather darkSkyConnection(String forecastUrl, ConnectivityManager manager)
     {
         if(checkInternetConnection.isNetworkAvailable(manager)) {
 
@@ -43,13 +45,20 @@ public class HttpConnection {
                         String weatherData = response.body().string();
                         Log.v("HttpConnection", weatherData);
                         if (response.isSuccessful()) {
-                            // currentWeather = getCurrentDetails(weatherData);
+                            GetCurrentDetails getCurrentDetails = new GetCurrentDetails();
+                           currentWeather = getCurrentDetails.getCurrentDetails(weatherData);
+
+                           Log.d("Elo", String.valueOf(currentWeather.getTemperature()));
 
                         } else {
-                            // alertUserAboutError();
+
                         }
                     }
                     catch (IOException e) {
+                        Log.e("HttpConnectionError", "Exception caught: ", e);
+                    }
+                    catch (JSONException e)
+                    {
                         Log.e("HttpConnectionError", "Exception caught: ", e);
                     }
                 }
@@ -57,6 +66,6 @@ public class HttpConnection {
         } else {
             // alertUserAboutConnectionProblem();
         }
-        return weatherData;
+        return currentWeather;
     }
 }

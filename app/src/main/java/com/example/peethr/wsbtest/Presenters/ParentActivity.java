@@ -12,11 +12,13 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.peethr.wsbtest.Models.alerts.NoInternetDialogFragment;
 import com.example.peethr.wsbtest.Models.connection.CheckInternetConnection;
 import com.example.peethr.wsbtest.Models.connection.HttpConnection;
+import com.example.peethr.wsbtest.Models.weather.CurrentWeather;
 import com.example.peethr.wsbtest.R;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 
@@ -24,6 +26,7 @@ public class ParentActivity extends AppCompatActivity {
 
     // variables
     private boolean ifExpanded = false;
+    CurrentWeather currentWeather = new CurrentWeather();
 
     // views
     private SeekBar seekbar;
@@ -38,6 +41,9 @@ public class ParentActivity extends AppCompatActivity {
     private ImageView arrowAlert;
 
     private Button alertButton;
+    private Button weatherButton;
+
+    public TextView degrees;
 
     protected ExpandableRelativeLayout expandableRelativeLayout;
     private ConstraintLayout dashboard;
@@ -64,12 +70,15 @@ public class ParentActivity extends AppCompatActivity {
                 ConnectivityManager manager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
                 HttpConnection darkSky = new HttpConnection();
-                Toast.makeText(ParentActivity.this, darkSky.darkSkyConnection(
-                        "https://api.darksky.net/forecast/9fc1bdd31c9dec7120cde99ff7e37614/54.3889,18.5843", manager)
-                        , Toast.LENGTH_LONG).show();
+                currentWeather =  darkSky.darkSkyConnection(
+                        "https://api.darksky.net/forecast/9fc1bdd31c9dec7120cde99ff7e37614/54.3889,18.5843",
+                        manager);
 
             }
         });
+
+
+
 
     }
 
@@ -171,6 +180,9 @@ public class ParentActivity extends AppCompatActivity {
         backgroundSelectionInfo = findViewById(R.id.backgroundSelectionInfo);
 
         alertButton = findViewById(R.id.newAlertButton);
+        weatherButton = findViewById(R.id.weatherButton);
+
+        degrees = findViewById(R.id.degrees);
 
         arrowAlert = findViewById(R.id.arrowAlert);
 

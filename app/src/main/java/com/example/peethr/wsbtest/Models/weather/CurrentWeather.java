@@ -4,15 +4,15 @@ package com.example.peethr.wsbtest.Models.weather;
 
 public class CurrentWeather {
 
-    private String temperature;
+    public double temperature;
     private String summary;
-    private String precipChance;
+    private double precipChance;
 
-    public String getTemperature() {
+    public double getTemperature() {
         return temperature;
     }
 
-    public void setTemperature(String temperature) {
+    public void setTemperature(double temperature) {
         this.temperature = temperature;
     }
 
@@ -24,11 +24,11 @@ public class CurrentWeather {
         this.summary = summary;
     }
 
-    public String getPrecipChance() {
+    public double getPrecipChance() {
         return precipChance;
     }
 
-    public void setPrecipChance(String precipChance) {
+    public void setPrecipChance(double precipChance) {
         this.precipChance = precipChance;
     }
 }
