@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.peethr.wsbtest.Models.alerts.NoInternetDialogFragment;
 import com.example.peethr.wsbtest.Models.connection.CheckInternetConnection;
+import com.example.peethr.wsbtest.Models.connection.HttpConnection;
 import com.example.peethr.wsbtest.R;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 
@@ -60,12 +61,19 @@ public class ParentActivity extends AppCompatActivity {
                 // Animation of arrow and expanding button in dash
                 getArrowAnimation();
 
+                ConnectivityManager manager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+                HttpConnection darkSky = new HttpConnection();
+                Toast.makeText(ParentActivity.this, darkSky.darkSkyConnection(
+                        "https://api.darksky.net/forecast/9fc1bdd31c9dec7120cde99ff7e37614/54.3889,18.5843", manager)
+                        , Toast.LENGTH_LONG).show();
+
             }
         });
 
     }
 
-    // Check if there is internet connection, if not show fragment
+    // Check if there is internet connection, if not show NoInternetDialogFragment
     private void checkInternetConnection() {
 
         // Can't use getSystemService in class without activity so we need to pass it

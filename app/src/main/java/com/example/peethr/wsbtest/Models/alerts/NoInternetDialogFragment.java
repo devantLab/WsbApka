@@ -14,7 +14,7 @@ public class NoInternetDialogFragment extends DialogFragment {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context)
                 .setTitle("Problem z połączeniem")
-                .setMessage("Wykryto brak połączenie z internetem. Upewnij się, że internet jest włączony")
+                .setMessage("Wykryto brak połączenia z internetem. Upewnij się, że internet jest włączony")
                 .setPositiveButton("OK", null);
 
         AlertDialog dialog = builder.create();
