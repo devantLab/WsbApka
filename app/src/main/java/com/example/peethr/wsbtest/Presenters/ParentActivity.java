@@ -1,6 +1,8 @@
 package com.example.peethr.wsbtest.Presenters;
 
 import android.animation.ObjectAnimator;
+import android.content.Context;
+import android.net.ConnectivityManager;
 import android.os.CountDownTimer;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -10,7 +12,10 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SeekBar;
+import android.widget.Toast;
 
+import com.example.peethr.wsbtest.Models.alerts.NoInternetDialogFragment;
+import com.example.peethr.wsbtest.Models.connection.CheckInternetConnection;
 import com.example.peethr.wsbtest.R;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 
@@ -44,6 +49,8 @@ public class ParentActivity extends AppCompatActivity {
 
         findViews();
 
+        checkInternetConnection();
+
         topIconListeners();
 
         alertButton.setOnClickListener(new View.OnClickListener() {
@@ -51,29 +58,49 @@ public class ParentActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 // Animation of arrow and expanding button in dash
-                if(!ifExpanded)
-                {
-                    animateArrow(90f, 270f);
-                    expandableRelativeLayout.toggle();
-                    alertButton.setBackgroundResource(R.drawable.dashboard_alert_button_clicked);
-                }
-                else {
-                    animateArrow(270f,90f);
-                    expandableRelativeLayout.toggle();
+                getArrowAnimation();
 
-                    // Counter to change radius of button after expanding
-                    new CountDownTimer(420, 50) {
-                        public void onTick(long millisUntilFinished) {
-                        }
-
-                        public void onFinish() {
-                            alertButton.setBackgroundResource(R.drawable.dashboard_alert_button_unclicked);
-                        }
-                    }.start();
-                }
             }
         });
 
+    }
+
+    // Check if there is internet connection, if not show fragment
+    private void checkInternetConnection() {
+
+        // Can't use getSystemService in class without activity so we need to pass it
+        ConnectivityManager manager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        CheckInternetConnection connection = new CheckInternetConnection();
+
+        if(!connection.isNetworkAvailable(manager)){
+            NoInternetDialogFragment dialog = new NoInternetDialogFragment();
+            dialog.show(getFragmentManager(), "NoInternetDialogFragment");
+        }
+
+    }
+
+    // Starts animation
+    private void getArrowAnimation() {
+        if(!ifExpanded)
+        {
+            animateArrow(90f, 270f);
+            expandableRelativeLayout.toggle();
+            alertButton.setBackgroundResource(R.drawable.dashboard_alert_button_clicked);
+        }
+        else {
+            animateArrow(270f,90f);
+            expandableRelativeLayout.toggle();
+
+            // Counter to change radius of button after expanding
+            new CountDownTimer(420, 50) {
+                public void onTick(long millisUntilFinished) {
+                }
+
+                public void onFinish() {
+                    alertButton.setBackgroundResource(R.drawable.dashboard_alert_button_unclicked);
+                }
+            }.start();
+        }
     }
 
     // Listeners for icons in Top Menu
