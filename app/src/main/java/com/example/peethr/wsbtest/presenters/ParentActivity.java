@@ -23,6 +23,7 @@ import com.example.peethr.wsbtest.models.connection.HttpConnection;
 import com.example.peethr.wsbtest.models.weather.CurrentWeather;
 import com.example.peethr.wsbtest.models.weather.Globals;
 import com.example.peethr.wsbtest.R;
+import com.github.aakira.expandablelayout.ExpandableLayoutListener;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 
 import static java.lang.Math.floor;
@@ -109,23 +110,54 @@ public class ParentActivity extends AppCompatActivity {
     private void getArrowAnimation() {
         if(!ifExpanded)
         {
-            animateArrow(90f, 270f);
+
+            expandableRelativeLayout.setListener(new ExpandableLayoutListener() {
+                @Override
+                public void onAnimationStart() {
+                    if (!expandableRelativeLayout.isExpanded())
+                    {
+                        alertButton.setBackgroundResource(R.drawable.dashboard_alert_button_clicked);
+                        //animateArrow(270f,90f);
+                        animateArrow(90f, 270f);
+                    } else
+                    {
+                        animateArrow(270f,90f);
+                    }
+                }
+
+                @Override
+                public void onAnimationEnd() {
+
+                    if (!expandableRelativeLayout.isExpanded())
+                    {
+                        alertButton.setBackgroundResource(R.drawable.dashboard_alert_button_unclicked);
+                    }
+                }
+
+                // You can get notification that your expandable layout is going to open or close.
+                // So, you can set the animation synchronized with expanding animation.
+                @Override
+                public void onPreOpen() {
+                }
+
+                @Override
+                public void onPreClose() {
+                }
+
+                @Override
+                public void onOpened() {
+                }
+
+                @Override
+                public void onClosed() {
+                }
+            });
+
             expandableRelativeLayout.toggle();
-            alertButton.setBackgroundResource(R.drawable.dashboard_alert_button_clicked);
+
         }
         else {
-            animateArrow(270f,90f);
             expandableRelativeLayout.toggle();
-
-            // Counter to change radius of button after expanding
-            new CountDownTimer(420, 50) {
-                public void onTick(long millisUntilFinished) {
-                }
-
-                public void onFinish() {
-                    alertButton.setBackgroundResource(R.drawable.dashboard_alert_button_unclicked);
-                }
-            }.start();
         }
     }
 
