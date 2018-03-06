@@ -33,7 +33,6 @@ public class ParentActivity extends AppCompatActivity {
 
 
     // variables
-    private boolean ifExpanded = false;
     CurrentWeather currentWeather = new CurrentWeather();
 
     // views
@@ -69,7 +68,11 @@ public class ParentActivity extends AppCompatActivity {
 
         checkInternetConnection();
 
+        // Expand layout on first run - it got collapsed
+        expandableRelativeLayout.toggle();
+
         topIconListeners();
+
 
         alertButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,16 +111,14 @@ public class ParentActivity extends AppCompatActivity {
 
     // Starts animation
     private void getArrowAnimation() {
-        if(!ifExpanded)
+        if(!expandableRelativeLayout.isExpanded())
         {
-
             expandableRelativeLayout.setListener(new ExpandableLayoutListener() {
                 @Override
                 public void onAnimationStart() {
                     if (!expandableRelativeLayout.isExpanded())
                     {
                         alertButton.setBackgroundResource(R.drawable.dashboard_alert_button_clicked);
-                        //animateArrow(270f,90f);
                         animateArrow(90f, 270f);
                     } else
                     {
@@ -152,9 +153,7 @@ public class ParentActivity extends AppCompatActivity {
                 public void onClosed() {
                 }
             });
-
             expandableRelativeLayout.toggle();
-
         }
         else {
             expandableRelativeLayout.toggle();
@@ -256,6 +255,5 @@ public class ParentActivity extends AppCompatActivity {
         animation.setDuration(500); // 0.5 second
         animation.setInterpolator(new DecelerateInterpolator());
         animation.start();
-        ifExpanded = !ifExpanded;
     }
 }
