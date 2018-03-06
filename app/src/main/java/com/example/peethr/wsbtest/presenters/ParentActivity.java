@@ -68,7 +68,7 @@ public class ParentActivity extends AppCompatActivity {
 
         checkInternetConnection();
 
-        // Expand layout on first run - it got collapsed
+        // Expand layout on first run - it got collapsed in first run of getArrowAnimation
         expandableRelativeLayout.toggle();
 
         topIconListeners();
@@ -113,6 +113,7 @@ public class ParentActivity extends AppCompatActivity {
     private void getArrowAnimation() {
         if(!expandableRelativeLayout.isExpanded())
         {
+            // When animation starts / finishes we change radius of AlertButton
             expandableRelativeLayout.setListener(new ExpandableLayoutListener() {
                 @Override
                 public void onAnimationStart() {
@@ -135,8 +136,6 @@ public class ParentActivity extends AppCompatActivity {
                     }
                 }
 
-                // You can get notification that your expandable layout is going to open or close.
-                // So, you can set the animation synchronized with expanding animation.
                 @Override
                 public void onPreOpen() {
                 }
