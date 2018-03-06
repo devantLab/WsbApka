@@ -9,8 +9,6 @@ public class GetCurrentDetails {
 
     public CurrentWeather getCurrentDetails(String jsonData) throws JSONException {
         JSONObject forecast = new JSONObject(jsonData);
-        String timezone = forecast.getString("timezone");
-        Log.i("GetCurrentDetails ", "From JSON: " + timezone);
 
         JSONObject currently = forecast.getJSONObject("currently");
         CurrentWeather currentWeather = new CurrentWeather();

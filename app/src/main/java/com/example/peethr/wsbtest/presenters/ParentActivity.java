@@ -33,7 +33,6 @@ public class ParentActivity extends AppCompatActivity {
 
 
     // variables
-    private boolean ifExpanded = false;
     CurrentWeather currentWeather = new CurrentWeather();
 
     // views
@@ -69,7 +68,11 @@ public class ParentActivity extends AppCompatActivity {
 
         checkInternetConnection();
 
+        // Expand layout on first run - it got collapsed in first run of getArrowAnimation
+        expandableRelativeLayout.toggle();
+
         topIconListeners();
+
 
         alertButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,16 +111,15 @@ public class ParentActivity extends AppCompatActivity {
 
     // Starts animation
     private void getArrowAnimation() {
-        if(!ifExpanded)
+        if(!expandableRelativeLayout.isExpanded())
         {
-
+            // When animation starts / finishes we change radius of AlertButton
             expandableRelativeLayout.setListener(new ExpandableLayoutListener() {
                 @Override
                 public void onAnimationStart() {
                     if (!expandableRelativeLayout.isExpanded())
                     {
                         alertButton.setBackgroundResource(R.drawable.dashboard_alert_button_clicked);
-                        //animateArrow(270f,90f);
                         animateArrow(90f, 270f);
                     } else
                     {
@@ -134,8 +136,6 @@ public class ParentActivity extends AppCompatActivity {
                     }
                 }
 
-                // You can get notification that your expandable layout is going to open or close.
-                // So, you can set the animation synchronized with expanding animation.
                 @Override
                 public void onPreOpen() {
                 }
@@ -152,9 +152,7 @@ public class ParentActivity extends AppCompatActivity {
                 public void onClosed() {
                 }
             });
-
             expandableRelativeLayout.toggle();
-
         }
         else {
             expandableRelativeLayout.toggle();
@@ -256,6 +254,5 @@ public class ParentActivity extends AppCompatActivity {
         animation.setDuration(500); // 0.5 second
         animation.setInterpolator(new DecelerateInterpolator());
         animation.start();
-        ifExpanded = !ifExpanded;
     }
 }

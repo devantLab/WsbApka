@@ -27,6 +27,7 @@ public class HttpConnection {
     private CurrentWeather currentWeather;
     private CheckInternetConnection checkInternetConnection = new CheckInternetConnection();
 
+    // Connect with darkSky weather API
     public CurrentWeather darkSkyConnection(String forecastUrl, ConnectivityManager manager)
     {
         if(checkInternetConnection.isNetworkAvailable(manager)) {
@@ -38,6 +39,7 @@ public class HttpConnection {
 
             Call call = client.newCall(request);
             call.enqueue(new Callback() {
+
                 @Override
                 public void onFailure(Call call, IOException e) {
 
@@ -45,13 +47,14 @@ public class HttpConnection {
                 @Override
                 public void onResponse(Call call, Response response) throws IOException {
                     try {
+                        // Parse json objects from API to string
                         String weatherData = response.body().string();
-                        Log.v("HttpConnection", weatherData);
+
                         if (response.isSuccessful()) {
+                            // Get only needed elements
                             GetCurrentDetails getCurrentDetails = new GetCurrentDetails();
                             currentWeather = getCurrentDetails.getCurrentDetails(weatherData);
-
-                            Log.d("Elo", String.valueOf(currentWeather.getTemperature()));
+                            // Put data in Singletone so we can access them form ParentActivity
                             Globals g = Globals.getInstance();
                             g.setTemperature((int)floor(currentWeather.getTemperature()));
                             g.setSummary(currentWeather.getSummary());
@@ -74,8 +77,5 @@ public class HttpConnection {
         }
         return currentWeather;
     }
-
-
-
 
 }

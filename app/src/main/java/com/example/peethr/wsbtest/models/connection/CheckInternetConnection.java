@@ -6,6 +6,7 @@ import android.net.NetworkInfo;
 
 public class CheckInternetConnection {
 
+    // Check if there is internet connection
     public boolean isNetworkAvailable(ConnectivityManager manager) {
         NetworkInfo networkInfo = manager.getActiveNetworkInfo();
         boolean isAvailable = false;
