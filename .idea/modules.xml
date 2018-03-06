@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Wsb-peethr.iml" filepath="$PROJECT_DIR$/Wsb-peethr.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/WsbApka.iml" filepath="$PROJECT_DIR$/.idea/WsbApka.iml" />
-      <module fileurl="file://$PROJECT_DIR$/WsbTest.iml" filepath="$PROJECT_DIR$/WsbTest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/WsbApkaa.iml" filepath="$PROJECT_DIR$/WsbApkaa.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

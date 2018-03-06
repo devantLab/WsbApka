@@ -1,4 +1,4 @@
-package com.example.peethr.wsbtest;
+package com.example.peethr.wsbtest.models.notification;
 
 import android.app.Service;
 import android.content.Context;

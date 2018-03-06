@@ -1,17 +1,17 @@
-package com.example.peethr.wsbtest.Presenters;
+package com.example.peethr.wsbtest.presenters;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
+import com.example.peethr.wsbtest.models.notification.AlertService;
 import com.example.peethr.wsbtest.R;
 
 public class SplashScreen extends AppCompatActivity {
 
     private ProgressBar progressBar;
-    private TextView progressText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

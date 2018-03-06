@@ -1,4 +1,4 @@
-package com.example.peethr.wsbtest.Models.connection;
+package com.example.peethr.wsbtest.models.connection;
 
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;

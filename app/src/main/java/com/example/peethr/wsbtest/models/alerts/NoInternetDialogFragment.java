@@ -1,4 +1,4 @@
-package com.example.peethr.wsbtest.Models.alerts;
+package com.example.peethr.wsbtest.models.alerts;
 
 import android.app.AlertDialog;
 import android.app.Dialog;

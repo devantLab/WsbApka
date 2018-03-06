@@ -1,12 +1,10 @@
-package com.example.peethr.wsbtest.Models.connection;
+package com.example.peethr.wsbtest.models.connection;
 
 import android.net.ConnectivityManager;
 import android.util.Log;
-import android.widget.Toast;
 
-import com.example.peethr.wsbtest.Models.weather.CurrentWeather;
-import com.example.peethr.wsbtest.Models.weather.GetCurrentDetails;
-import com.example.peethr.wsbtest.Presenters.ParentActivity;
+import com.example.peethr.wsbtest.models.weather.CurrentWeather;
+import com.example.peethr.wsbtest.models.weather.GetCurrentDetails;
 
 import org.json.JSONException;
 

@@ -1,4 +1,4 @@
-package com.example.peethr.wsbtest.Models;
+package com.example.peethr.wsbtest.models.notification;
 
 import android.app.Notification;
 import android.app.NotificationManager;

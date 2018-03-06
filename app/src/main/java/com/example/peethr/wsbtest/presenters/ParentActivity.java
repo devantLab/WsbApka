@@ -1,4 +1,4 @@
-package com.example.peethr.wsbtest.Presenters;
+package com.example.peethr.wsbtest.presenters;
 
 import android.animation.ObjectAnimator;
 import android.content.Context;
@@ -13,12 +13,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.peethr.wsbtest.Models.alerts.NoInternetDialogFragment;
-import com.example.peethr.wsbtest.Models.connection.CheckInternetConnection;
-import com.example.peethr.wsbtest.Models.connection.HttpConnection;
-import com.example.peethr.wsbtest.Models.weather.CurrentWeather;
+import com.example.peethr.wsbtest.models.alerts.NoInternetDialogFragment;
+import com.example.peethr.wsbtest.models.connection.CheckInternetConnection;
+import com.example.peethr.wsbtest.models.connection.HttpConnection;
+import com.example.peethr.wsbtest.models.weather.CurrentWeather;
 import com.example.peethr.wsbtest.R;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 
