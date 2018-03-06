@@ -1,9 +1,11 @@
 package com.example.peethr.wsbtest.presenters;
 
+
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,15 +15,21 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.peethr.wsbtest.models.alerts.NoInternetDialogFragment;
 import com.example.peethr.wsbtest.models.connection.CheckInternetConnection;
 import com.example.peethr.wsbtest.models.connection.HttpConnection;
 import com.example.peethr.wsbtest.models.weather.CurrentWeather;
+import com.example.peethr.wsbtest.models.weather.Globals;
 import com.example.peethr.wsbtest.R;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 
+import static java.lang.Math.floor;
+
 public class ParentActivity extends AppCompatActivity {
+
+
 
     // variables
     private boolean ifExpanded = false;
@@ -43,6 +51,7 @@ public class ParentActivity extends AppCompatActivity {
     private Button weatherButton;
 
     public TextView degrees;
+    public TextView weatherMessage;
 
     protected ExpandableRelativeLayout expandableRelativeLayout;
     private ConstraintLayout dashboard;
@@ -55,6 +64,8 @@ public class ParentActivity extends AppCompatActivity {
 
         findViews();
 
+        updateWeather();
+
         checkInternetConnection();
 
         topIconListeners();
@@ -66,19 +77,18 @@ public class ParentActivity extends AppCompatActivity {
                 // Animation of arrow and expanding button in dash
                 getArrowAnimation();
 
-                ConnectivityManager manager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-
-                HttpConnection darkSky = new HttpConnection();
-                currentWeather =  darkSky.darkSkyConnection(
-                        "https://api.darksky.net/forecast/9fc1bdd31c9dec7120cde99ff7e37614/54.3889,18.5843",
-                        manager);
-
             }
         });
 
 
+    }
 
-
+    // Update view with variables loaded in splashScreen
+    private void updateWeather() {
+        Globals g = Globals.getInstance();
+        int temp =(int) floor((g.getTemperature()-32)*5/9);
+        degrees.setText(String.valueOf(temp)+ "°");
+        weatherMessage.setText(g.getSummary());
     }
 
     // Check if there is internet connection, if not show NoInternetDialogFragment
@@ -182,6 +192,7 @@ public class ParentActivity extends AppCompatActivity {
         weatherButton = findViewById(R.id.weatherButton);
 
         degrees = findViewById(R.id.degrees);
+        weatherMessage = findViewById(R.id.weatherMessage);
 
         arrowAlert = findViewById(R.id.arrowAlert);
 

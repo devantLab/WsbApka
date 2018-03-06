@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">WsbTest</string>
+    <string name="temperature">WsbTest</string>
 </resources>
