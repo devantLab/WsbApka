@@ -1,15 +1,23 @@
-package com.example.peethr.wsbtest.models.notification;
+package com.example.peethr.wsbtest.services;
 
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.peethr.wsbtest.R;
+import com.example.peethr.wsbtest.models.notification.NotificationCreator;
+import com.example.peethr.wsbtest.models.weather.Globals;
+import com.example.peethr.wsbtest.presenters.ParentActivity;
+
 import java.util.Timer;
 import java.util.TimerTask;
+
+import static java.lang.Math.floor;
 
 /**
  * Created by thomas on 05.03.18.
@@ -35,7 +43,7 @@ public class AlertService extends Service {
         writeToLogs("Called onStartCommand() methond");
         clearTimerSchedule();
         initTask();
-        timer.scheduleAtFixedRate(timerTask, 4 * 10000, 4 * 10000);
+        timer.scheduleAtFixedRate(timerTask, 1000, 360000);
         showToast("Your service has been started");
         return super.onStartCommand(intent, flags, startId);
     }
@@ -56,25 +64,20 @@ public class AlertService extends Service {
     private Timer timer;
     private TimerTask timerTask;
     private Context context = this;
+    private Globals weather = Globals.getInstance();
     private class MyTimerTask extends TimerTask {
         @Override
         public void run() {
-//           NotificationCreator notificationCreator = new NotificationCreator(context, MainActivity.class);
+           NotificationCreator notificationCreator = new NotificationCreator(context, ParentActivity.class);
            //create(String title, String text, String ticker, int smallIcon, Bitmap largeIcon)
-//           notificationCreator.create(
-//                   "Powiadomienie",
-//                   "Prosze o doniesienie dokumentow",
-//                   "Wiadomosc",
-//                   android.R.drawable.ic_dialog_info,
-//                   BitmapFactory.decodeResource(context.getResources(), android.R.drawable.ic_dialog_info));
-//            NotificationCreator notificationCreator2 = new NotificationCreator(context, MainActivity.class);
-//            //create(String title, String text, String ticker, int smallIcon, Bitmap largeIcon)
-//            notificationCreator.create(
-//                    "TEST",
-//                    "HAHA",
-//                    "Wiadomosc",
-//                    android.R.drawable.ic_dialog_info,
-//                    BitmapFactory.decodeResource(context.getResources(), android.R.drawable.ic_dialog_info));
+            int temp = (weather.getTemperature() - 32) * 5/9;
+           notificationCreator.create(
+                   "Pogoda",
+                   "In Gdańsk  is "+ temp + "° and " + weather.getSummary(),
+                   "Info",
+                   android.R.drawable.ic_dialog_info,
+                   BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_cloud_queue_white_36dp));
+
         }
     }
 

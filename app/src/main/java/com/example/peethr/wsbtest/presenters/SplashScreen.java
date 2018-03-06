@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.widget.ProgressBar;
 
 import com.example.peethr.wsbtest.models.connection.HttpConnection;
-import com.example.peethr.wsbtest.models.notification.AlertService;
+import com.example.peethr.wsbtest.services.AlertService;
 import com.example.peethr.wsbtest.R;
 
 public class SplashScreen extends AppCompatActivity {
@@ -20,14 +20,13 @@ public class SplashScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
         progressBar = findViewById(R.id.progressBar);
-
         ConnectivityManager manager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         HttpConnection darkSky = new HttpConnection();
         darkSky.darkSkyConnection(
                 "https://api.darksky.net/forecast/9fc1bdd31c9dec7120cde99ff7e37614/54.3889,18.5843",
                 manager);
 
-        startMyService();
+
         Thread loadingDataThread = new Thread(){
             @Override
             public void run(){
@@ -37,8 +36,11 @@ public class SplashScreen extends AppCompatActivity {
 
                         sleep(10);
                     }
+                    startMyService();
                     startActivity(new Intent(SplashScreen.this, ParentActivity.class));
                     finish();
+
+
                 }catch(InterruptedException e){
                     e.printStackTrace();
                 }

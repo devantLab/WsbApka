@@ -22,6 +22,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".presenters.ParentActivity"></activity>
+        <service android:name=".services.AlertService"/>
     </application>
 
 </manifest>
