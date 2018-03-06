@@ -21,7 +21,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".presenters.ParentActivity"></activity>
+        <activity android:name=".presenters.ParentActivity"
+            android:screenOrientation="portrait">
+        </activity>
         <service android:name=".services.AlertService"/>
     </application>
 
