@@ -17,6 +17,7 @@ public class SplashScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
         progressBar = findViewById(R.id.progressBar);
+        startMyService();
         Thread loadingDataThread = new Thread(){
             @Override
             public void run(){
@@ -34,5 +35,9 @@ public class SplashScreen extends AppCompatActivity {
             }
         };
         loadingDataThread.start();
+    }
+    private void startMyService() {
+        Intent serviceIntent = new Intent(this, AlertService.class);
+        startService(serviceIntent);
     }
 }
