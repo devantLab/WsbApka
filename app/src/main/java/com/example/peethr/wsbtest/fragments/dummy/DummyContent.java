@@ -1,4 +1,4 @@
-package com.example.peethr.wsbtest.dummy;
+package com.example.peethr.wsbtest.fragments.dummy;
 
 import java.util.ArrayList;
 import java.util.HashMap;

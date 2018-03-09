@@ -25,8 +25,8 @@ public class Globals{
     }
 
     public static synchronized Globals getInstance(){
-        if(instance==null){
-            instance=new Globals();
+        if(instance == null){
+            instance = new Globals();
         }
         return instance;
     }

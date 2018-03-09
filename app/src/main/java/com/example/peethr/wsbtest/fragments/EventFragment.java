@@ -1,4 +1,4 @@
-package com.example.peethr.wsbtest;
+package com.example.peethr.wsbtest.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -10,10 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.peethr.wsbtest.dummy.DummyContent;
-import com.example.peethr.wsbtest.dummy.DummyContent.DummyItem;
-
-import java.util.List;
+import com.example.peethr.wsbtest.fragments.adapters.MyEventRecyclerViewAdapter;
+import com.example.peethr.wsbtest.R;
+import com.example.peethr.wsbtest.fragments.dummy.DummyContent;
+import com.example.peethr.wsbtest.fragments.dummy.DummyContent.DummyItem;
 
 /**
  * A fragment representing a list of Items.

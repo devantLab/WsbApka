@@ -1,4 +1,4 @@
-package com.example.peethr.wsbtest;
+package com.example.peethr.wsbtest.fragments.adapters;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -6,8 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.peethr.wsbtest.EventFragment.OnListFragmentInteractionListener;
-import com.example.peethr.wsbtest.dummy.DummyContent.DummyItem;
+import com.example.peethr.wsbtest.R;
+import com.example.peethr.wsbtest.fragments.EventFragment.OnListFragmentInteractionListener;
+import com.example.peethr.wsbtest.fragments.dummy.DummyContent.DummyItem;
 
 import java.util.List;
 

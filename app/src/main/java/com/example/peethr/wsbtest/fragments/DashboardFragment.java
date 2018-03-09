@@ -1,4 +1,4 @@
-package com.example.peethr.wsbtest;
+package com.example.peethr.wsbtest.fragments;
 
 import android.animation.ObjectAnimator;
 import android.content.Context;
@@ -15,19 +15,21 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.peethr.wsbtest.R;
+import com.example.peethr.wsbtest.models.weather.Globals;
 import com.github.aakira.expandablelayout.ExpandableLayoutListener;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
+
+import static java.lang.Math.floor;
 
 
 public class DashboardFragment extends Fragment {
 
     private ImageView arrowAlert;
     private Button alertButton;
-    private Button weatherButton;
     private TextView degrees;
     private TextView weatherMessage;
     private ExpandableRelativeLayout expandableRelativeLayout;
-
 
     private OnFragmentInteractionListener mListener;
 
@@ -35,16 +37,8 @@ public class DashboardFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment DashboardFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static DashboardFragment newInstance(String param1, String param2) {
+
         DashboardFragment fragment = new DashboardFragment();
         Bundle args = new Bundle();
 //        args.putString(ARG_PARAM1, param1);
@@ -55,6 +49,7 @@ public class DashboardFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
 //            mParam1 = getArguments().getString(ARG_PARAM1);
@@ -65,16 +60,11 @@ public class DashboardFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
-        alertButton = view.findViewById(R.id.newAlertButton);
-        weatherButton = view.findViewById(R.id.weatherButton);
 
-        degrees = view.findViewById(R.id.degrees);
-        weatherMessage = view.findViewById(R.id.weatherMessage);
-
-        arrowAlert = view.findViewById(R.id.arrowAlert);
-
-        expandableRelativeLayout = view.findViewById(R.id.expandableLayout1);
+        findViews(view);
+        updateWeather();
         expandableRelativeLayout.toggle();
         alertButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,6 +75,7 @@ public class DashboardFragment extends Fragment {
 
             }
         });
+
         // Inflate the layout for this fragment
 
         return view;
@@ -92,6 +83,7 @@ public class DashboardFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+
         super.onViewCreated(view, savedInstanceState);
 
 
@@ -99,6 +91,7 @@ public class DashboardFragment extends Fragment {
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
+
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
@@ -106,6 +99,7 @@ public class DashboardFragment extends Fragment {
 
     @Override
     public void onAttach(Context context) {
+
         super.onAttach(context);
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
@@ -117,6 +111,7 @@ public class DashboardFragment extends Fragment {
 
     @Override
     public void onDetach() {
+
         super.onDetach();
         mListener = null;
     }
@@ -138,6 +133,7 @@ public class DashboardFragment extends Fragment {
 
         // Starts animation
     private void getArrowAnimation() {
+
         if(!expandableRelativeLayout.isExpanded())
         {
             // When animation starts / finishes we change radius of AlertButton
@@ -197,14 +193,18 @@ public class DashboardFragment extends Fragment {
     private void findViews(View view){
 
         alertButton = view.findViewById(R.id.newAlertButton);
-        weatherButton = view.findViewById(R.id.weatherButton);
-
         degrees = view.findViewById(R.id.degrees);
-       weatherMessage = view.findViewById(R.id.weatherMessage);
-
-       arrowAlert = view.findViewById(R.id.arrowAlert);
-
+        weatherMessage = view.findViewById(R.id.weatherMessage);
+        arrowAlert = view.findViewById(R.id.arrowAlert);
         expandableRelativeLayout = view.findViewById(R.id.expandableLayout1);
     }
 
+    // Update view with variables loaded in splashScreen
+    private void updateWeather() {
+
+        Globals g = Globals.getInstance();
+        int temp =(int) floor((g.getTemperature()-32)*5/9);
+        degrees.setText(String.valueOf(temp)+ "°");
+        weatherMessage.setText(g.getSummary());
+    }
 }

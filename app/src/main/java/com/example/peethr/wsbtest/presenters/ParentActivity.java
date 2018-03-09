@@ -5,45 +5,26 @@ import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.Uri;
-import android.os.CountDownTimer;
-import android.os.Handler;
-import android.support.constraint.ConstraintLayout;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SeekBar;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.peethr.wsbtest.DashboardFragment;
-import com.example.peethr.wsbtest.EventFragment;
-import com.example.peethr.wsbtest.dummy.DummyContent;
+import com.example.peethr.wsbtest.fragments.factory.FragmentFacotry;
+import com.example.peethr.wsbtest.fragments.FragmentInteractionListener;
+import com.example.peethr.wsbtest.fragments.dummy.DummyContent;
 import com.example.peethr.wsbtest.models.alerts.NoInternetDialogFragment;
 import com.example.peethr.wsbtest.models.connection.CheckInternetConnection;
-import com.example.peethr.wsbtest.models.connection.HttpConnection;
-import com.example.peethr.wsbtest.models.weather.CurrentWeather;
-import com.example.peethr.wsbtest.models.weather.Globals;
 import com.example.peethr.wsbtest.R;
-import com.github.aakira.expandablelayout.ExpandableLayoutListener;
-import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 
-import static java.lang.Math.floor;
+public class ParentActivity extends AppCompatActivity implements FragmentInteractionListener
 
-public class ParentActivity extends AppCompatActivity
-        implements
-                    DashboardFragment.OnFragmentInteractionListener,
-                    EventFragment.OnListFragmentInteractionListener
 {
-
-
-
-    // variables
-    CurrentWeather currentWeather = new CurrentWeather();
 
     // views
     private SeekBar seekbar;
@@ -66,30 +47,12 @@ public class ParentActivity extends AppCompatActivity
 
         findViews();
 
-        //updateWeather();
-
         checkInternetConnection();
 
-        // Expand layout on first run - it got collapsed in first run of getArrowAnimation
-        //expandableRelativeLayout.toggle();
-
         topIconListeners();
-        fragmentManager = getSupportFragmentManager();
-        fragmentTransaction = fragmentManager.beginTransaction();
-        DashboardFragment dashboardFragment = new DashboardFragment();
-        fragmentTransaction.replace(R.id.fragmentContainer, dashboardFragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
+        chooseFragment("DashboardFragment");
 
     }
-
-//    // Update view with variables loaded in splashScreen
-//    private void updateWeather() {
-//        Globals g = Globals.getInstance();
-//        int temp =(int) floor((g.getTemperature()-32)*5/9);
-//        degrees.setText(String.valueOf(temp)+ "°");
-//        weatherMessage.setText(g.getSummary());
-//    }
 
     // Check if there is internet connection, if not show NoInternetDialogFragment
     private void checkInternetConnection() {
@@ -115,12 +78,7 @@ public class ParentActivity extends AppCompatActivity
                 startAnimationTopMenu(17);
                 clearBackgroundSelection();
                 backgroundSelectionDash.setVisibility(View.VISIBLE);
-                fragmentManager = getSupportFragmentManager();
-                fragmentTransaction = fragmentManager.beginTransaction();
-                DashboardFragment dashboardFragment = new DashboardFragment();
-                fragmentTransaction.replace(R.id.fragmentContainer, dashboardFragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+                chooseFragment("DashboardFragment");
 
             }
         });
@@ -131,12 +89,7 @@ public class ParentActivity extends AppCompatActivity
                 startAnimationTopMenu(39);
                 clearBackgroundSelection();
                 backgroundSelectionWsb.setVisibility(View.VISIBLE);
-                fragmentManager = getSupportFragmentManager();
-                fragmentTransaction = fragmentManager.beginTransaction();
-                EventFragment eventFragment = new EventFragment();
-                fragmentTransaction.replace(R.id.fragmentContainer, eventFragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+                chooseFragment("UniversityFragment");
 
 
             }
@@ -148,7 +101,7 @@ public class ParentActivity extends AppCompatActivity
                 startAnimationTopMenu(61);
                 clearBackgroundSelection();
                 backgroundSelectionEvent.setVisibility(View.VISIBLE);
-
+                chooseFragment("EventFragment");
             }
         });
 
@@ -158,7 +111,7 @@ public class ParentActivity extends AppCompatActivity
                 startAnimationTopMenu(83);
                 clearBackgroundSelection();
                 backgroundSelectionInfo.setVisibility(View.VISIBLE);
-
+                chooseFragment("InfoFragment");
             }
         });
     }
@@ -207,5 +160,14 @@ public class ParentActivity extends AppCompatActivity
     @Override
     public void onListFragmentInteraction(DummyContent.DummyItem item) {
 
+    }
+    private void chooseFragment(String fragmentName) {
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        FragmentFacotry fragmentFacotry = new FragmentFacotry();
+        Fragment fragment = fragmentFacotry.getFragment(fragmentName);
+        fragmentTransaction.replace(R.id.fragmentContainer, fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 }

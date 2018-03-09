@@ -1,4 +1,4 @@
-package com.example.peethr.wsbtest;
+package com.example.peethr.wsbtest.fragments.factory;
 
 
 import android.support.v4.app.Fragment;
