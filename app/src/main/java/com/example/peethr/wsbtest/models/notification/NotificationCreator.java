@@ -5,6 +5,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.os.Build;
 
 
 import static android.content.Context.NOTIFICATION_SERVICE;
@@ -26,17 +27,19 @@ public class NotificationCreator {
         pIntent = PendingIntent.getActivity(context, 0, intent, 0);
 
     }
-    public void create(String title, String text, String ticker, int smallIcon, Bitmap largeIcon){
-        alert = new NotificationAlert(context, "alert")
-                        .setContentTitle(title)
-                        .setContentText(text)
-                        .setTicker(ticker)
-                        .setSmallIcon(smallIcon)
-                        .setLargeIcon(largeIcon)
-                        .setAutoCancel(true)
-                        .setContentIntent(pIntent)
-                        .build();
-        notificationAlertManager = new NotificationAlertManager(context.getSystemService(NOTIFICATION_SERVICE), alert);
+    public void create(String title, String text, String ticker, int smallIcon, Bitmap largeIcon, NotificationType type){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            alert = new Notification.Builder(context, "alert")
+                            .setContentTitle(title)
+                            .setContentText(text)
+                            .setTicker(ticker)
+                            .setSmallIcon(smallIcon)
+                            .setLargeIcon(largeIcon)
+                            .setAutoCancel(true)
+                            .setContentIntent(pIntent)
+                            .build();
+        }
+        notificationAlertManager = new NotificationAlertManager(context.getSystemService(NOTIFICATION_SERVICE), alert, type);
 
     }
 

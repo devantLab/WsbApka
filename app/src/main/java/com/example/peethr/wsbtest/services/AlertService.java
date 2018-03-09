@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.peethr.wsbtest.R;
 import com.example.peethr.wsbtest.models.notification.NotificationCreator;
+import com.example.peethr.wsbtest.models.notification.NotificationType;
 import com.example.peethr.wsbtest.models.weather.Globals;
 import com.example.peethr.wsbtest.presenters.ParentActivity;
 
@@ -71,12 +72,13 @@ public class AlertService extends Service {
            NotificationCreator notificationCreator = new NotificationCreator(context, ParentActivity.class);
            //create(String title, String text, String ticker, int smallIcon, Bitmap largeIcon)
             int temp = (weather.getTemperature() - 32) * 5/9;
-           notificationCreator.create(
-                   "Pogoda",
-                   "In Gdańsk  is "+ temp + "° and " + weather.getSummary(),
-                   "Info",
-                   android.R.drawable.ic_dialog_info,
-                   BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_cloud_queue_white_36dp));
+//           notificationCreator.create(
+//                   "Pogoda",
+//                   "In Gdańsk  is "+ temp + "° and " + ,
+//                   "Info",
+//                   android.R.drawable.ic_dialog_info,
+//                   BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_cloud_queue_white_36dp),
+//                   NotificationType.ALERTS_ID);
 
         }
     }

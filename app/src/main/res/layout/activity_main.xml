@@ -6,79 +6,6 @@
     android:layout_height="match_parent"
     tools:context="com.example.peethr.wsbtest.presenters.ParentActivity">
 
-    <ScrollView
-        android:id="@+id/scrollView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/topLogoWsbWall">
-
-        <android.support.constraint.ConstraintLayout
-            android:id="@+id/dashboard"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <include
-                android:id="@+id/alertInclude"
-                layout="@layout/dashboard_expandable_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:visibility="visible"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:layout_conversion_absoluteHeight="118dp"
-                tools:layout_conversion_absoluteWidth="360dp" />
-
-            <include
-                android:id="@+id/weatherInclude"
-                layout="@layout/dashboard_weather_layout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:visibility="visible"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/alertInclude"
-                tools:layout_conversion_absoluteHeight="118dp"
-                tools:layout_conversion_absoluteWidth="360dp" />
-
-
-            <include
-                android:id="@+id/eventInclude"
-                layout="@layout/dashboard_event_layout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:visibility="visible"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/weatherInclude"
-                tools:layout_conversion_absoluteHeight="119dp"
-                tools:layout_conversion_absoluteWidth="360dp" />
-
-
-            <include
-                android:id="@+id/tipInclude"
-                layout="@layout/dashboard_info_layout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="50dp"
-                android:layout_marginTop="8dp"
-                android:visibility="visible"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/eventInclude"
-                tools:layout_conversion_absoluteHeight="118dp"
-                tools:layout_conversion_absoluteWidth="360dp" /></android.support.constraint.ConstraintLayout>
-
-    </ScrollView>
-
     <ImageView
         android:id="@+id/topLogoWsbWall"
         android:layout_width="wrap_content"
@@ -187,15 +114,14 @@
 
     <SeekBar
         android:id="@+id/seekBar"
-        android:clickable="false"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:clickable="false"
         android:elevation="17dp"
         android:max="100"
         android:progress="17"
         android:progressDrawable="@android:color/transparent"
         android:thumb="@drawable/progress"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dashTopIcon" />
@@ -275,6 +201,19 @@
         app:layout_constraintEnd_toEndOf="@+id/infoTopIcon"
         app:layout_constraintStart_toStartOf="@+id/infoTopIcon"
         app:srcCompat="@drawable/highlight" />
+
+    <FrameLayout
+        android:id="@+id/fragmentContainer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seekBar">
+
+    </FrameLayout>
 
 
 </android.support.constraint.ConstraintLayout>
