@@ -10,10 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.peethr.wsbtest.fragments.adapters.MyEventRecyclerViewAdapter;
 import com.example.peethr.wsbtest.R;
-import com.example.peethr.wsbtest.fragments.dummy.DummyContent;
-import com.example.peethr.wsbtest.fragments.dummy.DummyContent.DummyItem;
+import com.example.peethr.wsbtest.fragments.adapters.MyEventRecyclerViewAdapter;
+import com.example.peethr.wsbtest.fragments.events.EventContent;
+import com.example.peethr.wsbtest.fragments.events.EventItem;
 
 /**
  * A fragment representing a list of Items.
@@ -69,7 +69,7 @@ public class EventFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyEventRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+            recyclerView.setAdapter(new MyEventRecyclerViewAdapter(EventContent.ITEMS, mListener));
         }
         return view;
     }
@@ -104,6 +104,6 @@ public class EventFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(DummyItem item);
+        void onListFragmentInteraction(EventItem item);
     }
 }

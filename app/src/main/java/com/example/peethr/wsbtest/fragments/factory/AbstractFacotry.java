@@ -9,6 +9,6 @@ import android.support.v4.app.Fragment;
 
 public abstract class AbstractFacotry {
 
-    abstract Fragment getFragment(String fragment);
+    abstract Fragment getFragment(int position);
 
 }

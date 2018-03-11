@@ -16,7 +16,20 @@ public class FragmentFacotry extends AbstractFacotry {
      * implementation of the AbstractFactory pattern is used to create fragments
      */
     @Override
-    public Fragment getFragment(String fragment) {
+    public Fragment getFragment(int position) {
+        String fragment;
+        switch (position){
+            case 0: fragment = "DashboardFragment";
+                break;
+            case 1: fragment = "UniversityFragment";
+                break;
+            case 2: fragment = "EventFragment";
+                break;
+            case 3: fragment = "InfoFragment";
+                break;
+                default: fragment = null;
+        }
+
         if(fragment == null){
             return null;
         }

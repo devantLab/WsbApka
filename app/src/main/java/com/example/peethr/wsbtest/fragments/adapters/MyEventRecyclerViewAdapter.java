@@ -7,21 +7,21 @@ import android.view.ViewGroup;
 
 import com.example.peethr.wsbtest.R;
 import com.example.peethr.wsbtest.fragments.EventFragment.OnListFragmentInteractionListener;
-import com.example.peethr.wsbtest.fragments.dummy.DummyContent.DummyItem;
+import com.example.peethr.wsbtest.fragments.events.EventItem;
 
 import java.util.List;
 
 /**
- * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
+ * {@link RecyclerView.Adapter} that can display a {@link EventItem} and makes a call to the
  * specified {@link OnListFragmentInteractionListener}.
- * TODO: Replace the implementation with code for your data type.
+ *
  */
 public class MyEventRecyclerViewAdapter extends RecyclerView.Adapter<MyEventRecyclerViewAdapter.ViewHolder> {
 
-    private final List<DummyItem> mValues;
+    private final List<EventItem> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    public MyEventRecyclerViewAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
+    public MyEventRecyclerViewAdapter(List<EventItem> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -60,7 +60,7 @@ public class MyEventRecyclerViewAdapter extends RecyclerView.Adapter<MyEventRecy
         public final View mView;
 //        public final TextView mIdView;
 //        public final TextView mContentView;
-        public DummyItem mItem;
+        public EventItem mItem;
 
         public ViewHolder(View view) {
             super(view);

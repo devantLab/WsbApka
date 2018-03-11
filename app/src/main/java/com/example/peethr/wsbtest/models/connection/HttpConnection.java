@@ -54,7 +54,7 @@ public class HttpConnection {
                             // Get only needed elements
                             GetCurrentDetails getCurrentDetails = new GetCurrentDetails();
                             currentWeather = getCurrentDetails.getCurrentDetails(weatherData);
-                            // Put data in Singletone so we can access them form ParentActivity
+                            // Put data in Singletone so we can access them form DashboardFragment
                             Globals g = Globals.getInstance();
                             g.setTemperature((int)floor(currentWeather.getTemperature()));
                             g.setSummary(currentWeather.getSummary());
