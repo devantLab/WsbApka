@@ -13,7 +13,8 @@ import com.example.peethr.wsbtest.R;
 import com.example.peethr.wsbtest.models.notification.NotificationCreator;
 import com.example.peethr.wsbtest.models.notification.NotificationType;
 import com.example.peethr.wsbtest.models.weather.Globals;
-import com.example.peethr.wsbtest.presenters.ParentActivity;
+import com.example.peethr.wsbtest.presenters.MainActivity;
+
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -69,7 +70,7 @@ public class AlertService extends Service {
     private class MyTimerTask extends TimerTask {
         @Override
         public void run() {
-           NotificationCreator notificationCreator = new NotificationCreator(context, ParentActivity.class);
+           NotificationCreator notificationCreator = new NotificationCreator(context, MainActivity.class);
            //create(String title, String text, String ticker, int smallIcon, Bitmap largeIcon)
             int temp = (weather.getTemperature() - 32) * 5/9;
 //           notificationCreator.create(

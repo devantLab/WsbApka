@@ -37,7 +37,7 @@ public class SplashScreen extends AppCompatActivity {
                         sleep(10);
                     }
                     startMyService();
-                    startActivity(new Intent(SplashScreen.this, ParentActivity.class));
+                    startActivity(new Intent(SplashScreen.this, MainActivity.class));
                     finish();
 
 
