@@ -58,6 +58,7 @@ public class HttpConnection {
                             Globals g = Globals.getInstance();
                             g.setTemperature((int)floor(currentWeather.getTemperature()));
                             g.setSummary(currentWeather.getSummary());
+                            g.setIfWeatherUpdated(true);
 
                         } else {
 

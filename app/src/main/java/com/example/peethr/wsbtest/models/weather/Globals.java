@@ -6,6 +6,19 @@ public class Globals{
     // Global variable
     private int temperature;
     private String summary;
+    private boolean ifWeatherUpdated = false;
+
+    public static void setInstance(Globals instance) {
+        Globals.instance = instance;
+    }
+
+    public boolean getIfWeatherUpdated() {
+        return ifWeatherUpdated;
+    }
+
+    public void setIfWeatherUpdated(boolean ifWeatherUpdated) {
+        this.ifWeatherUpdated = ifWeatherUpdated;
+    }
 
     // Restrict the constructor from being instantiated
     private Globals(){}

@@ -8,11 +8,13 @@ import android.os.Bundle;
 import android.widget.ProgressBar;
 
 import com.example.peethr.wsbtest.models.connection.HttpConnection;
+import com.example.peethr.wsbtest.models.weather.Globals;
 import com.example.peethr.wsbtest.services.AlertService;
 import com.example.peethr.wsbtest.R;
 
 public class SplashScreen extends AppCompatActivity {
 
+    Globals g = Globals.getInstance();
     private ProgressBar progressBar;
 
     @Override
@@ -30,20 +32,24 @@ public class SplashScreen extends AppCompatActivity {
         Thread loadingDataThread = new Thread(){
             @Override
             public void run(){
-                try{
-                    for(int i = 0; i <= 100; i++){
-                        progressBar.setProgress(i);
 
-                        sleep(10);
+                do {
+                    try{
+                        for(int i = 0; i <= 100; i++){
+                            progressBar.setProgress(i);
+
+                            sleep(10);
+                        }
+                        startMyService();
+                        startActivity(new Intent(SplashScreen.this, MainActivity.class));
+                        finish();
+
+
+                    }catch(InterruptedException e){
+                        e.printStackTrace();
                     }
-                    startMyService();
-                    startActivity(new Intent(SplashScreen.this, MainActivity.class));
-                    finish();
+                } while (!g.getIfWeatherUpdated());
 
-
-                }catch(InterruptedException e){
-                    e.printStackTrace();
-                }
             }
         };
         loadingDataThread.start();
