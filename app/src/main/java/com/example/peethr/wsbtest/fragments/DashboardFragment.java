@@ -16,7 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.peethr.wsbtest.R;
-import com.example.peethr.wsbtest.models.weather.Globals;
+import com.example.peethr.wsbtest.models.data.weather.Globals;
 import com.github.aakira.expandablelayout.ExpandableLayoutListener;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 

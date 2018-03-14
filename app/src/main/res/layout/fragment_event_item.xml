@@ -31,10 +31,11 @@
                 android:text="Protokultura - Klub Sztuki Alternatywnej"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/eventTerm" />
+                app:layout_constraintTop_toBottomOf="@+id/eventTerm"
+                android:layout_marginLeft="16dp" />
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/eventImage"
                 android:layout_width="wrap_content"
                 android:layout_height="205dp"
                 android:layout_alignParentLeft="true"
@@ -58,7 +59,8 @@
                 android:textColor="#3C3959"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView" />
+                app:layout_constraintTop_toBottomOf="@+id/eventImage"
+                android:layout_marginLeft="16dp" />
 
             <TextView
                 android:id="@+id/eventTerm"
@@ -68,7 +70,8 @@
                 android:layout_marginTop="8dp"
                 android:text="30 marca w godzinach 20:00 -23:30"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/eventTitle" />
+                app:layout_constraintTop_toBottomOf="@+id/eventTitle"
+                android:layout_marginLeft="16dp" />
 
             <ImageView
                 android:id="@+id/imageView2"
@@ -79,7 +82,8 @@
                 android:alpha="0.5"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:srcCompat="@drawable/event_heart" />
+                app:srcCompat="@drawable/event_heart"
+                android:layout_marginRight="16dp" />
 
         </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.CardView>

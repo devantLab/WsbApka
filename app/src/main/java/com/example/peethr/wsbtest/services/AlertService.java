@@ -3,23 +3,18 @@ package com.example.peethr.wsbtest.services;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.example.peethr.wsbtest.R;
 import com.example.peethr.wsbtest.models.notification.NotificationCreator;
-import com.example.peethr.wsbtest.models.notification.NotificationType;
-import com.example.peethr.wsbtest.models.weather.Globals;
+import com.example.peethr.wsbtest.models.data.weather.Globals;
 import com.example.peethr.wsbtest.presenters.MainActivity;
 
 
 import java.util.Timer;
 import java.util.TimerTask;
-
-import static java.lang.Math.floor;
 
 /**
  * Created by thomas on 05.03.18.

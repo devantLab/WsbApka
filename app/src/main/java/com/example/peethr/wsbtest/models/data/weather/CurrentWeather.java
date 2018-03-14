@@ -1,4 +1,4 @@
-package com.example.peethr.wsbtest.models.weather;
+package com.example.peethr.wsbtest.models.data.weather;
 
 
 
