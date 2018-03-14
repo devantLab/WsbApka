@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.widget.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/funLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/funButton"
+            android:layout_width="0dp"
+            android:layout_height="62dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/info_button"
+            android:elevation="16dp"
+            android:maxLines="1"
+            android:minWidth="1dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/funTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:elevation="17dp"
+            android:text="Ciekawostki"
+            android:textColor="@android:color/white"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/funIcon"
+            app:layout_constraintTop_toTopOf="@+id/funButton" />
+
+        <ImageView
+            android:id="@+id/funIcon"
+            android:layout_width="60dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:elevation="17dp"
+            android:scaleX="0.6"
+            android:scaleY="0.6"
+            app:layout_constraintBottom_toBottomOf="@+id/funButton"
+            app:layout_constraintStart_toStartOf="@+id/funButton"
+            app:layout_constraintTop_toTopOf="@+id/funButton"
+            app:srcCompat="@drawable/ic_lightbulb_outline_white_48dp" />
+
+        <ImageView
+            android:id="@+id/arrowBank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:elevation="17dp"
+            android:scaleX="0.7"
+            android:scaleY="0.7"
+            app:layout_constraintBottom_toBottomOf="@+id/funButton"
+            app:layout_constraintEnd_toEndOf="@+id/funButton"
+            app:layout_constraintTop_toTopOf="@+id/funButton"
+            app:srcCompat="@drawable/ic_navigate_next_white_36dp" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.widget.RelativeLayout>
