@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -140,10 +141,16 @@ public class DashboardFragment extends Fragment {
             expandableRelativeLayout.setListener(new ExpandableLayoutListener() {
                 @Override
                 public void onAnimationStart() {
+
                     if (!expandableRelativeLayout.isExpanded())
                     {
                         alertButton.setBackgroundResource(R.drawable.dashboard_alert_button_clicked);
                         animateArrow(90f, 270f);
+
+                        // needed for shadows
+                        ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams) alertButton.getLayoutParams();
+                        params.setMargins(0,26,0,0);
+                        alertButton.setLayoutParams(params);
                     } else
                     {
                         animateArrow(270f,90f);
@@ -156,6 +163,11 @@ public class DashboardFragment extends Fragment {
                     if (!expandableRelativeLayout.isExpanded())
                     {
                         alertButton.setBackgroundResource(R.drawable.dashboard_alert_button_unclicked);
+
+                        // needed for shadows
+                        ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams) alertButton.getLayoutParams();
+                        params.setMargins(0,26,0,26);
+                        alertButton.setLayoutParams(params);
                     }
                 }
 

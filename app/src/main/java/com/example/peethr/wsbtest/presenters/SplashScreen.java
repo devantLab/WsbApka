@@ -46,7 +46,7 @@ public class SplashScreen extends AppCompatActivity {
                     darkSky.darkSkyConnection(
                                     "https://api.darksky.net/forecast/9fc1bdd31c9dec7120cde99ff7e37614/54.3889,18.5843",
                                     manager);
-
+                    g.setIfWeatherUpdated(true);
                     try {
                         sleep(500);
                     } catch (InterruptedException e) {

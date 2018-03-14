@@ -12,10 +12,12 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/shadow"
+        android:elevation="8dp"
         app:cardBackgroundColor="@color/cardview_light_background"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="10dp">
+        app:cardCornerRadius="10dp">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
@@ -26,13 +28,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
+                android:layout_marginLeft="16dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:text="Protokultura - Klub Sztuki Alternatywnej"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/eventTerm"
-                android:layout_marginLeft="16dp" />
+                app:layout_constraintTop_toBottomOf="@+id/eventTerm" />
 
             <ImageView
                 android:id="@+id/eventImage"
@@ -52,6 +54,7 @@
                 android:id="@+id/eventTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="12dp"
                 android:fontFamily="sans-serif"
@@ -59,19 +62,18 @@
                 android:textColor="#3C3959"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/eventImage"
-                android:layout_marginLeft="16dp" />
+                app:layout_constraintTop_toBottomOf="@+id/eventImage" />
 
             <TextView
                 android:id="@+id/eventTerm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:text="30 marca w godzinach 20:00 -23:30"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/eventTitle"
-                android:layout_marginLeft="16dp" />
+                app:layout_constraintTop_toBottomOf="@+id/eventTitle" />
 
             <ImageView
                 android:id="@+id/imageView2"
@@ -79,11 +81,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="26dp"
                 android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
                 android:alpha="0.5"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:srcCompat="@drawable/event_heart"
-                android:layout_marginRight="16dp" />
+                app:srcCompat="@drawable/event_heart" />
 
         </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.CardView>
