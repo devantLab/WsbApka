@@ -42,23 +42,18 @@ public class SplashScreen extends AppCompatActivity {
                 ConnectivityManager manager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
                 do {
-                    try{
-                        for(int i = 0; i <= 100; i++){
-                            progressBar.setProgress(i);
-
-                            sleep(10);
-
-
-                            HttpConnection darkSky = new HttpConnection();
-                            darkSky.darkSkyConnection(
+                    HttpConnection darkSky = new HttpConnection();
+                    darkSky.darkSkyConnection(
                                     "https://api.darksky.net/forecast/9fc1bdd31c9dec7120cde99ff7e37614/54.3889,18.5843",
                                     manager);
 
-                        }
-
-                    }catch(InterruptedException e){
+                    try {
+                        sleep(500);
+                    } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
+
+
                 } while (!g.getIfWeatherUpdated());
 
                 startMyService();
