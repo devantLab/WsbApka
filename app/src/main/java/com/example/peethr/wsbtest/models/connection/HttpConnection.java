@@ -41,7 +41,8 @@ public class HttpConnection {
 
                 @Override
                 public void onFailure(Call call, IOException e) {
-
+                    Globals g = Globals.getInstance();
+                    g.setIfWeatherUpdated(true);
                 }
                 @Override
                 public void onResponse(Call call, Response response) throws IOException {
