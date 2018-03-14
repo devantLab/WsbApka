@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ProgressBar;
 
+import com.example.peethr.wsbtest.models.alerts.NoInternetDialogFragment;
+import com.example.peethr.wsbtest.models.connection.CheckInternetConnection;
 import com.example.peethr.wsbtest.models.connection.HttpConnection;
 import com.example.peethr.wsbtest.models.weather.Globals;
 import com.example.peethr.wsbtest.services.AlertService;
@@ -17,21 +19,27 @@ public class SplashScreen extends AppCompatActivity {
     Globals g = Globals.getInstance();
     private ProgressBar progressBar;
 
+    private  NoInternetDialogFragment dialog = new NoInternetDialogFragment();
+    private CheckInternetConnection checkInternetConnection = new CheckInternetConnection();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
-        progressBar = findViewById(R.id.progressBar);
         ConnectivityManager manager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        HttpConnection darkSky = new HttpConnection();
-        darkSky.darkSkyConnection(
-                "https://api.darksky.net/forecast/9fc1bdd31c9dec7120cde99ff7e37614/54.3889,18.5843",
-                manager);
 
+        progressBar = findViewById(R.id.progressBar);
+
+        if (!checkInternetConnection.isNetworkAvailable(manager))
+        {
+            dialog.show(getFragmentManager(), "NoInternetConnection");
+        }
 
         Thread loadingDataThread = new Thread(){
             @Override
             public void run(){
+
+                ConnectivityManager manager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
                 do {
                     try{
@@ -39,16 +47,23 @@ public class SplashScreen extends AppCompatActivity {
                             progressBar.setProgress(i);
 
                             sleep(10);
-                        }
-                        startMyService();
-                        startActivity(new Intent(SplashScreen.this, MainActivity.class));
-                        finish();
 
+
+                            HttpConnection darkSky = new HttpConnection();
+                            darkSky.darkSkyConnection(
+                                    "https://api.darksky.net/forecast/9fc1bdd31c9dec7120cde99ff7e37614/54.3889,18.5843",
+                                    manager);
+
+                        }
 
                     }catch(InterruptedException e){
                         e.printStackTrace();
                     }
                 } while (!g.getIfWeatherUpdated());
+
+                startMyService();
+                startActivity(new Intent(SplashScreen.this, MainActivity.class));
+                finish();
 
             }
         };
