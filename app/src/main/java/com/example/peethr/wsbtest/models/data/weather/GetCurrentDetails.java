@@ -1,6 +1,4 @@
-package com.example.peethr.wsbtest.models.weather;
-
-import android.util.Log;
+package com.example.peethr.wsbtest.models.data.weather;
 
 import org.json.JSONException;
 import org.json.JSONObject;

@@ -13,7 +13,6 @@ import android.os.Bundle;
 
 import com.example.peethr.wsbtest.R;
 import com.example.peethr.wsbtest.fragments.FragmentInteractionListener;
-import com.example.peethr.wsbtest.fragments.events.EventItem;
 import com.example.peethr.wsbtest.fragments.factory.FragmentFacotry;
 
 public class MainActivity extends AppCompatActivity implements FragmentInteractionListener{
@@ -62,11 +61,6 @@ public class MainActivity extends AppCompatActivity implements FragmentInteracti
 
     @Override
     public void onFragmentInteraction(Uri uri) {
-
-    }
-
-    @Override
-    public void onListFragmentInteraction(EventItem item) {
 
     }
 

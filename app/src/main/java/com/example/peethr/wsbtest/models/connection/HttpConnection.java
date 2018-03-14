@@ -1,15 +1,11 @@
 package com.example.peethr.wsbtest.models.connection;
 
-import android.app.Dialog;
-import android.app.DialogFragment;
 import android.net.ConnectivityManager;
 import android.util.Log;
-import android.widget.Toast;
 
-import com.example.peethr.wsbtest.models.alerts.NoInternetDialogFragment;
-import com.example.peethr.wsbtest.models.weather.CurrentWeather;
-import com.example.peethr.wsbtest.models.weather.GetCurrentDetails;
-import com.example.peethr.wsbtest.models.weather.Globals;
+import com.example.peethr.wsbtest.models.data.weather.CurrentWeather;
+import com.example.peethr.wsbtest.models.data.weather.GetCurrentDetails;
+import com.example.peethr.wsbtest.models.data.weather.Globals;
 
 import org.json.JSONException;
 

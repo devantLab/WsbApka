@@ -10,7 +10,7 @@ import android.widget.ProgressBar;
 import com.example.peethr.wsbtest.models.alerts.NoInternetDialogFragment;
 import com.example.peethr.wsbtest.models.connection.CheckInternetConnection;
 import com.example.peethr.wsbtest.models.connection.HttpConnection;
-import com.example.peethr.wsbtest.models.weather.Globals;
+import com.example.peethr.wsbtest.models.data.weather.Globals;
 import com.example.peethr.wsbtest.services.AlertService;
 import com.example.peethr.wsbtest.R;
 
