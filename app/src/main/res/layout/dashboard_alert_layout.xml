@@ -8,30 +8,31 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp">
 
         <Button
             android:id="@+id/newAlertButton"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="118dp"
+            android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="9dp"
             android:background="@drawable/dashboard_alert_button_unclicked"
             android:elevation="16dp"
-            android:maxLines="1"
-            android:minWidth="1dp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline2"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/alertIcon"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginBottom="8dp"
+            android:layout_marginLeft="24dp"
             android:layout_marginStart="24dp"
             android:elevation="17dp"
             android:scaleX="0.7"
@@ -39,13 +40,13 @@
             app:layout_constraintBottom_toBottomOf="@+id/newAlertButton"
             app:layout_constraintStart_toStartOf="@+id/newAlertButton"
             app:layout_constraintTop_toTopOf="@+id/newAlertButton"
-            app:srcCompat="@drawable/ic_warning_white_36dp"
-            android:layout_marginLeft="24dp" />
+            app:srcCompat="@drawable/ic_warning_white_36dp" />
 
         <TextView
             android:id="@+id/alertTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:elevation="17dp"
@@ -54,13 +55,13 @@
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/alertIcon"
-            app:layout_constraintTop_toTopOf="@+id/newAlertButton"
-            android:layout_marginLeft="16dp" />
+            app:layout_constraintTop_toTopOf="@+id/newAlertButton" />
 
         <TextView
             android:id="@+id/alertMessage"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginTop="8dp"
@@ -68,6 +69,7 @@
             android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
             android:textColor="@android:color/white"
             android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/newAlertButton"
             app:layout_constraintEnd_toStartOf="@+id/arrowAlert"
             app:layout_constraintLeft_toLeftOf="@id/alertTitle"
             app:layout_constraintRight_toLeftOf="@id/arrowAlert"
@@ -80,6 +82,7 @@
             android:layout_height="0dp"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
             android:elevation="17dp"
             android:rotation="90"
             android:scaleX="0.8"
@@ -87,15 +90,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/newAlertButton"
             app:layout_constraintEnd_toEndOf="@+id/newAlertButton"
             app:layout_constraintTop_toTopOf="@+id/newAlertButton"
-            app:srcCompat="@drawable/ic_navigate_next_white_36dp"
-            android:layout_marginRight="8dp" />
-
-        <android.support.constraint.Guideline
-            android:id="@+id/guideline2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_begin="118dp" />
+            app:srcCompat="@drawable/ic_navigate_next_white_36dp" />
 
 
     </android.support.constraint.ConstraintLayout>

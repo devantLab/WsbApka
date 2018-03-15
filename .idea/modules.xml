@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/WsbApka.iml" filepath="$PROJECT_DIR$/.idea/WsbApka.iml" />
       <module fileurl="file://$PROJECT_DIR$/WsbApka.iml" filepath="$PROJECT_DIR$/WsbApka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/WsbApka.iml" filepath="$PROJECT_DIR$/.idea/WsbApka.iml" />
       <module fileurl="file://C:\Users\Lenovo\StudioProjects\WsbApka2\.idea\WsbApka09.iml" filepath="C:\Users\Lenovo\StudioProjects\WsbApka2\.idea\WsbApka09.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/WsbApka2.iml" filepath="$PROJECT_DIR$/.idea/WsbApka2.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
