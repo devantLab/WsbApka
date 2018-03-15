@@ -1,5 +1,6 @@
 package com.example.peethr.wsbtest.presenters;
 
+import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -18,41 +19,35 @@ public class SplashScreen extends AppCompatActivity {
 
     Globals g = Globals.getInstance();
     private ProgressBar progressBar;
+    private FragmentManager fragmentManager;
 
-    private  NoInternetDialogFragment dialog = new NoInternetDialogFragment();
-    private CheckInternetConnection checkInternetConnection = new CheckInternetConnection();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
-        ConnectivityManager manager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-
         progressBar = findViewById(R.id.progressBar);
 
-        if (!checkInternetConnection.isNetworkAvailable(manager))
-        {
-            dialog.show(getFragmentManager(), "NoInternetConnection");
-        }
+        fragmentManager = getFragmentManager();
 
         Thread loadingDataThread = new Thread(){
             @Override
             public void run(){
 
+
                 ConnectivityManager manager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
+                HttpConnection darkSky = new HttpConnection();
+                darkSky.darkSkyConnection(
+                        "https://api.darksky.net/forecast/9fc1bdd31c9dec7120cde99ff7e37614/54.3889,18.5843",
+                        manager, fragmentManager);
+
                 do {
-                    HttpConnection darkSky = new HttpConnection();
-                    darkSky.darkSkyConnection(
-                                    "https://api.darksky.net/forecast/9fc1bdd31c9dec7120cde99ff7e37614/54.3889,18.5843",
-                                    manager);
-                    g.setIfWeatherUpdated(true);
                     try {
                         sleep(500);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-
 
                 } while (!g.getIfWeatherUpdated());
 

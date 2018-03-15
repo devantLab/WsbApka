@@ -1,8 +1,10 @@
 package com.example.peethr.wsbtest.models.connection;
 
+import android.app.FragmentManager;
 import android.net.ConnectivityManager;
 import android.util.Log;
 
+import com.example.peethr.wsbtest.models.alerts.NoInternetDialogFragment;
 import com.example.peethr.wsbtest.models.data.weather.CurrentWeather;
 import com.example.peethr.wsbtest.models.data.weather.GetCurrentDetails;
 import com.example.peethr.wsbtest.models.data.weather.Globals;
@@ -22,12 +24,11 @@ import static java.lang.Math.floor;
 
 public class HttpConnection {
 
-
     private CurrentWeather currentWeather;
     private CheckInternetConnection checkInternetConnection = new CheckInternetConnection();
 
     // Connect with darkSky weather API
-    public CurrentWeather darkSkyConnection(String forecastUrl, ConnectivityManager manager)
+    public CurrentWeather darkSkyConnection(String forecastUrl, ConnectivityManager manager, FragmentManager fragmentManager)
     {
         if(checkInternetConnection.isNetworkAvailable(manager)) {
 
@@ -74,7 +75,8 @@ public class HttpConnection {
                 }
             });
         } else {
-            // alertUserAboutConnectionProblem();
+            NoInternetDialogFragment dialog = new NoInternetDialogFragment();
+            dialog.show(fragmentManager, "NoInternetConnection");
         }
         return currentWeather;
     }
