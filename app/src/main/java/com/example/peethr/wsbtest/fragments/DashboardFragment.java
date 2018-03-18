@@ -2,7 +2,6 @@ package com.example.peethr.wsbtest.fragments;
 
 import android.animation.ObjectAnimator;
 import android.content.Context;
-import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -18,7 +17,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.peethr.wsbtest.R;
-import com.example.peethr.wsbtest.models.connection.CheckInternetConnection;
 import com.example.peethr.wsbtest.models.data.weather.Globals;
 import com.github.aakira.expandablelayout.ExpandableLayoutListener;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
@@ -33,7 +31,6 @@ public class DashboardFragment extends Fragment {
     private TextView degrees;
     private TextView weatherMessage;
     private ExpandableRelativeLayout expandableRelativeLayout;
-    private CheckInternetConnection checkInternetConnection = new CheckInternetConnection();
 
     private OnFragmentInteractionListener mListener;
 
@@ -68,7 +65,7 @@ public class DashboardFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
         findViews(view);
-        updateWeather(view);
+        updateWeather();
         expandableRelativeLayout.toggle();
         alertButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -215,23 +212,21 @@ public class DashboardFragment extends Fragment {
     }
 
     // Update view with variables loaded in splashScreen
-    private void updateWeather(View view) {
-
-
-        ConnectivityManager connectivityManager = (ConnectivityManager) getActivity()
-                .getSystemService(Context.CONNECTIVITY_SERVICE);
+    private void updateWeather() {
 
         Globals g = Globals.getInstance();
-        g.setIfWeatherUpdated(false);
-        if(checkInternetConnection.isNetworkAvailable(connectivityManager))
+        // if data loaded show it on weatherFragment
+        if (g.getIfWeatherUpdated())
         {
             int temp =(int) floor((g.getTemperature()-32)*5/9);
             degrees.setText(String.valueOf(temp)+ "°");
             weatherMessage.setText(g.getSummary());
-        } else
+        }
+        // if data not loaded
+        else
         {
             degrees.setText(":(");
-            weatherMessage.setText("Brak połączenia");
+            weatherMessage.setText("No internet connection");
         }
 
     }
