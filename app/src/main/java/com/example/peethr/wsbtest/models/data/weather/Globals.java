@@ -7,6 +7,25 @@ public class Globals{
     private int temperature;
     private String summary;
     private boolean ifWeatherUpdated = false;
+    private boolean continueWithoutWeatherData = false;
+
+    public boolean getTryConnectingToDarkSky() {
+        return tryConnectingToDarkSky;
+    }
+
+    public void setTryConnectingToDarkSky(boolean tryConnectingToDarkSky) {
+        this.tryConnectingToDarkSky = tryConnectingToDarkSky;
+    }
+
+    private boolean tryConnectingToDarkSky = true;
+
+    public boolean getContinueWithoutWeatherData() {
+        return continueWithoutWeatherData;
+    }
+
+    public void setContinueWithoutWeatherData(boolean continueWithoutWeatherData) {
+        this.continueWithoutWeatherData = continueWithoutWeatherData;
+    }
 
     public static void setInstance(Globals instance) {
         Globals.instance = instance;

@@ -215,8 +215,19 @@ public class DashboardFragment extends Fragment {
     private void updateWeather() {
 
         Globals g = Globals.getInstance();
-        int temp =(int) floor((g.getTemperature()-32)*5/9);
-        degrees.setText(String.valueOf(temp)+ "°");
-        weatherMessage.setText(g.getSummary());
+        // if data loaded show it on weatherFragment
+        if (g.getIfWeatherUpdated())
+        {
+            int temp =(int) floor((g.getTemperature()-32)*5/9);
+            degrees.setText(String.valueOf(temp)+ "°");
+            weatherMessage.setText(g.getSummary());
+        }
+        // if data not loaded
+        else
+        {
+            degrees.setText(":(");
+            weatherMessage.setText("No internet connection");
+        }
+
     }
 }
