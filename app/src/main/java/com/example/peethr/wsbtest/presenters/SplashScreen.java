@@ -30,13 +30,8 @@ public class SplashScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        manageSharedPreferences = new ManageSharedPreferences(this);
-
-        // check if its first run of app - if yes tutorial
-        if (!manageSharedPreferences.checkLanguage())
-        {
-            Toast.makeText(this, "Brak wybranego języka, włącz tutorial", Toast.LENGTH_LONG).show();
-        }
+        // set language or start tutorial on first run
+        checkLanguage();
 
 
         // needed to check if there is internet and to show alert about no internet connection
@@ -76,6 +71,17 @@ public class SplashScreen extends AppCompatActivity {
         };
         loadingDataThread.start();
     }
+
+    private void checkLanguage() {
+        manageSharedPreferences = new ManageSharedPreferences(this);
+
+        // check if its first run of app - if yes tutorial
+        if (!manageSharedPreferences.checkLanguage())
+        {
+            Toast.makeText(this, "Brak wybranego języka, włącz tutorial", Toast.LENGTH_LONG).show();
+        }
+    }
+
     private void startMyService() {
         Intent serviceIntent = new Intent(this, AlertService.class);
         startService(serviceIntent);
