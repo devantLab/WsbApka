@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.example.peethr.wsbtest.models.alerts.NoInternetDialogFragment;
 import com.example.peethr.wsbtest.models.connection.CheckInternetConnection;
 import com.example.peethr.wsbtest.models.connection.HttpConnection;
+import com.example.peethr.wsbtest.models.data.preferences.ManageSharedPreferences;
 import com.example.peethr.wsbtest.models.data.weather.Globals;
 import com.example.peethr.wsbtest.services.AlertService;
 import com.example.peethr.wsbtest.R;
@@ -22,10 +23,21 @@ public class SplashScreen extends AppCompatActivity {
     Globals g = Globals.getInstance();
     private ProgressBar progressBar;
 
+    private ManageSharedPreferences manageSharedPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+
+        manageSharedPreferences = new ManageSharedPreferences(this);
+
+        // check if its first run of app - if yes tutorial
+        if (!manageSharedPreferences.checkLanguage())
+        {
+            Toast.makeText(this, "Brak wybranego języka, włącz tutorial", Toast.LENGTH_LONG).show();
+        }
+
 
         // needed to check if there is internet and to show alert about no internet connection
         final ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -56,7 +68,7 @@ public class SplashScreen extends AppCompatActivity {
                     // check if weather was updated or user want to continue without data
                 } while (!g.getIfWeatherUpdated() && !g.getContinueWithoutWeatherData());
 
-                startMyService();
+                //startMyService();
                 startActivity(new Intent(SplashScreen.this, MainActivity.class));
                 finish();
 
