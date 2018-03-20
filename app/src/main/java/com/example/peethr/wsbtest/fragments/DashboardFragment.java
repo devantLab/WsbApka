@@ -263,9 +263,19 @@ public class DashboardFragment extends Fragment {
         GetEventData getEventData = new GetEventData();
         events = getEventData.getDataFromInternet();
 
-        // Show newest event on EventButton
-        eventTitle.setText(events.get(0).getEventTitle());
-        eventMessage.setText(events.get(0).getEventPlace());
+        // Show newest event on EventButton if there are any
+        if (!events.isEmpty())
+        {
+            eventTitle.setText(events.get(0).getEventTitle());
+            eventMessage.setText(events.get(0).getEventPlace());
+        }
+        // Show info when no events
+        else
+        {
+            eventTitle.setText("Brak wydarzeń");
+            eventMessage.setText("Brak nadchodzących wydarzeń");
+        }
+
     }
 
 }
