@@ -63,7 +63,7 @@ public class SplashScreen extends AppCompatActivity {
                     // check if weather was updated or user want to continue without data
                 } while (!g.getIfWeatherUpdated() && !g.getContinueWithoutWeatherData());
 
-                //startMyService();
+                startMyService();
                 startActivity(new Intent(SplashScreen.this, MainActivity.class));
                 finish();
 

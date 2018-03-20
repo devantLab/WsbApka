@@ -8,9 +8,9 @@ public enum NotificationType {
     /**
      * Types of possible notification
      */
-    ALERTS_ID(0),
-    EVENTS_ID(1),
-    SPECIAL_ID(2);
+    ALERTS_ID(3450),
+    EVENTS_ID(3451),
+    SPECIAL_ID(3452);
     private final int value;
 
     NotificationType(int value) {
