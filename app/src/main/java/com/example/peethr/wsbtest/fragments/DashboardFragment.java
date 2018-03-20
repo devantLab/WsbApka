@@ -17,6 +17,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.peethr.wsbtest.R;
+import com.example.peethr.wsbtest.models.connection.GetEventData;
+import com.example.peethr.wsbtest.models.data.events.Event;
 import com.example.peethr.wsbtest.models.data.weather.Globals;
 import com.github.aakira.expandablelayout.ExpandableLayoutListener;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
@@ -26,11 +28,20 @@ import static java.lang.Math.floor;
 
 public class DashboardFragment extends Fragment {
 
+    // Alert Fragment Views
     private ImageView arrowAlert;
     private Button alertButton;
+    private ExpandableRelativeLayout expandableRelativeLayout;
+
+    // WeatherFragment Views
     private TextView degrees;
     private TextView weatherMessage;
-    private ExpandableRelativeLayout expandableRelativeLayout;
+
+    // EventFragment Views
+    private TextView eventTitle;
+    private TextView eventMessage;
+    private Event[] events;
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -65,6 +76,7 @@ public class DashboardFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
         findViews(view);
+        updateEvent();
         updateWeather();
         expandableRelativeLayout.toggle();
         alertButton.setOnClickListener(new View.OnClickListener() {
@@ -81,6 +93,7 @@ public class DashboardFragment extends Fragment {
 
         return view;
     }
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -204,11 +217,19 @@ public class DashboardFragment extends Fragment {
     }
     private void findViews(View view){
 
+        // AlertFragment
         alertButton = view.findViewById(R.id.newAlertButton);
+        expandableRelativeLayout = view.findViewById(R.id.expandableLayout1);
+        arrowAlert = view.findViewById(R.id.arrowAlert);
+
+        // WeatherFragment
         degrees = view.findViewById(R.id.degrees);
         weatherMessage = view.findViewById(R.id.weatherMessage);
-        arrowAlert = view.findViewById(R.id.arrowAlert);
-        expandableRelativeLayout = view.findViewById(R.id.expandableLayout1);
+
+        // EventFragment
+        eventTitle = view.findViewById(R.id.eventTitle);
+        eventMessage = view.findViewById(R.id.eventMessage);
+
     }
 
     // Update view with variables loaded in splashScreen
@@ -230,4 +251,16 @@ public class DashboardFragment extends Fragment {
         }
 
     }
+
+    // Update eventButton with last event info
+    private void updateEvent() {
+        // Get Events from database
+        GetEventData getEventData = new GetEventData();
+        events = getEventData.getDataFromInternet();
+
+        // Show newest event on EventButton
+        eventTitle.setText(events[0].getEventTitle());
+        eventMessage.setText(events[0].getEventPlace());
+    }
+
 }

@@ -13,7 +13,7 @@ public class GetEventData {
 
     public Event[] getDataFromInternet()
     {
-        event[0] = new Event("Koncert Żabsona", "Uczelnia", R.drawable.zabson);
+        event[0] = new Event("Koncert Żabsona", "Zapraszamy wszystkich zainteresowanych na koncert Żabsona!", R.drawable.zabson);
         event[1] = new Event("Teator", "Tetra", R.drawable.ic_event_white_36dp);
         event[2] = new Event("fds", "fdsfsdf", R.drawable.zabson);
         event[3] = new Event("rewrwe", "fdsfsd", R.drawable.event_heart);
