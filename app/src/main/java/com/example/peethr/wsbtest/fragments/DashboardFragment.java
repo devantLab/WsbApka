@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.peethr.wsbtest.R;
@@ -22,6 +23,10 @@ import com.example.peethr.wsbtest.models.data.events.Event;
 import com.example.peethr.wsbtest.models.data.weather.Globals;
 import com.github.aakira.expandablelayout.ExpandableLayoutListener;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
+
+import java.util.LinkedList;
+import java.util.Set;
+import java.util.TreeSet;
 
 import static java.lang.Math.floor;
 
@@ -40,7 +45,7 @@ public class DashboardFragment extends Fragment {
     // EventFragment Views
     private TextView eventTitle;
     private TextView eventMessage;
-    private Event[] events;
+    private LinkedList<Event> events = new LinkedList<>();
 
 
     private OnFragmentInteractionListener mListener;
@@ -259,8 +264,8 @@ public class DashboardFragment extends Fragment {
         events = getEventData.getDataFromInternet();
 
         // Show newest event on EventButton
-        eventTitle.setText(events[0].getEventTitle());
-        eventMessage.setText(events[0].getEventPlace());
+        eventTitle.setText(events.get(0).getEventTitle());
+        eventMessage.setText(events.get(0).getEventPlace());
     }
 
 }

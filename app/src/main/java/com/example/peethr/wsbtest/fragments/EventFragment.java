@@ -17,6 +17,9 @@ import com.example.peethr.wsbtest.models.connection.GetEventData;
 import com.example.peethr.wsbtest.models.data.events.Event;
 import com.example.peethr.wsbtest.presenters.SplashScreen;
 
+import java.util.LinkedList;
+import java.util.TreeSet;
+
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
@@ -31,7 +34,7 @@ public class EventFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    private Event[] event = new Event[5];
+    private LinkedList<Event> events = new LinkedList<>();
 
     private RecyclerView recyclerView;
 
@@ -81,9 +84,9 @@ public class EventFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerView);
 
         GetEventData getEventData = new GetEventData();
-        event = getEventData.getDataFromInternet();
+        events = getEventData.getDataFromInternet();
 
-        EventAdapter adapter = new EventAdapter(event);
+        EventAdapter adapter = new EventAdapter(events);
         recyclerView.setAdapter(adapter);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(view.getContext());
