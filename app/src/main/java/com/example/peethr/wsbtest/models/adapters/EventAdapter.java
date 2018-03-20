@@ -11,15 +11,18 @@ import android.widget.TextView;
 import com.example.peethr.wsbtest.R;
 import com.example.peethr.wsbtest.models.data.events.Event;
 
+import java.util.LinkedList;
+import java.util.TreeSet;
+
 /**
  * Created by goracy on 14.03.18.
  */
 
 public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHolder>{
 
-    private Event[] event;
+    private LinkedList<Event> event = new LinkedList();
 
-    public EventAdapter(Event[] event) {
+    public EventAdapter(LinkedList<Event> event) {
         this.event = event;
     }
 
@@ -35,12 +38,12 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
 
     @Override
     public void onBindViewHolder(@NonNull EventViewHolder holder, int position) {
-        holder.bindEvent(event[position]);
+        holder.bindEvent(event.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return event.length;
+        return event.size();
     }
 
     public class EventViewHolder extends RecyclerView.ViewHolder {
