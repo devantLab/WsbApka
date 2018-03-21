@@ -73,11 +73,11 @@ public class AlertService extends Service {
            //create(String title, String text, String ticker, int smallIcon, Bitmap largeIcon)
 
            notificationCreator.create(
-                   "deVant",
-                   "Działa",
+                   "WSBApp",
+                   "Nie dostarczono dokumentów :(",
+                   "Przypominamy o dostarczeniu polskiego adresu do Działu zagranicznego A316 (Uczelnia -> Plan uczelni), do 30 kwietnia",
                    "Info",
                    android.R.drawable.ic_dialog_info,
-                   BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_cloud_queue_white_36dp),
                    NotificationType.ALERTS_ID);
 
         }

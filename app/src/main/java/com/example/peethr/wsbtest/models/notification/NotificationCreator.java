@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
@@ -25,49 +26,52 @@ import static android.content.Context.NOTIFICATION_SERVICE;
 public class NotificationCreator extends ContextWrapper{
     private Intent intent;
     private PendingIntent pIntent;
-    private NotificationAlertManager notificationAlertManager;
     private Notification alert;
     private Context context;
-    private static final String CHANNEL_ID = "pl.devant.app";
-    private static final String CHANNEL_NAME = "devantChannel";
-    private static final String CHANNEL_DESCRIPTION = "devantChannel Description";
     public NotificationCreator(Context context, Class activityClass){
         super(context);
 
         this.context = context;
         intent = new Intent(context, activityClass);
         pIntent = PendingIntent.getActivity(context, 0, intent, 0);
-        NotificationManager notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            // Create the NotificationChannel, but only on API 26+ because
-            // the NotificationChannel class is new and not in the support library
-            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, CHANNEL_NAME, NotificationManagerCompat.IMPORTANCE_DEFAULT);
-            channel.setDescription(CHANNEL_DESCRIPTION);
-            channel.enableLights(true);
-            channel.enableVibration(true);
-            channel.setLightColor(Color.RED);
-            channel.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
-            // Register the channel with the system
 
-            notificationManager.createNotificationChannel(channel);
-        }
+        createChannel();
 
     }
-    public void create(String title, String text, String ticker, int smallIcon, Bitmap largeIcon, NotificationType type){
+    public void create(String title, String text, String bigText, String ticker, int smallIcon, NotificationType type){
 
-            alert = new NotificationCompat.Builder(context, CHANNEL_ID)
+            alert = new NotificationCompat.Builder(context, NotificationProperties.CHANNEL_ID)
                             .setContentTitle(title)
                             .setContentText(text)
                             .setTicker(ticker)
                             .setSmallIcon(smallIcon)
-                            .setLargeIcon(largeIcon)
-                            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                            .setLargeIcon(BitmapFactory.decodeResource(context.getResources(), NotificationProperties.LOGO))
+                            .setPriority(NotificationProperties.PRIORITY)
                             .setAutoCancel(true)
                             .setContentIntent(pIntent)
+                            .setStyle(new NotificationCompat.BigTextStyle()
+                            .bigText(bigText))
+                            .setColor(NotificationProperties.COLOR)
+                            .setColorized(true)
                             .build();
+            new NotificationAlertManager(context, alert, type);
 
-        notificationAlertManager = new NotificationAlertManager(context, alert, type);
+    }
+    private void createChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            // Create the NotificationChannel, but only on API 26+ because
+            // the NotificationChannel class is new and not in the support library
+            NotificationChannel channel = new NotificationChannel(NotificationProperties.CHANNEL_ID, NotificationProperties.CHANNEL_NAME, NotificationProperties.IMPORTANCE);
+            channel.setDescription(NotificationProperties.CHANNEL_DESCRIPTION);
+            channel.enableLights(NotificationProperties.LIGHTS);
+            channel.enableVibration(NotificationProperties.VIBRATION);
+            channel.setLightColor(NotificationProperties.LIGHT_COLOR);
+            channel.setLockscreenVisibility(NotificationProperties.LOCKSCREEN_VISIBILITY);
+            // Register the channel with the system
 
+            notificationManager.createNotificationChannel(channel);
+        }
     }
 
 }

@@ -2,16 +2,15 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://C:\Users\studentwsb\StudioProjects\WsbApka\.idea\WsbApka.iml" filepath="C:\Users\studentwsb\StudioProjects\WsbApka\.idea\WsbApka.iml" />
-      <module fileurl="file://C:\Users\studentwsb\StudioProjects\WsbApka\WsbApka.iml" filepath="C:\Users\studentwsb\StudioProjects\WsbApka\WsbApka.iml" />
       <module fileurl="file://$PROJECT_DIR$/WsbApka.iml" filepath="$PROJECT_DIR$/WsbApka.iml" />
+      <module fileurl="file://C:\Users\studentwsb\StudioProjects\WsbApka\WsbApka.iml" filepath="C:\Users\studentwsb\StudioProjects\WsbApka\WsbApka.iml" />
+      <module fileurl="file://C:\Users\studentwsb\StudioProjects\WsbApka\.idea\WsbApka.iml" filepath="C:\Users\studentwsb\StudioProjects\WsbApka\.idea\WsbApka.iml" />
       <module fileurl="file://C:\Users\Lenovo\StudioProjects\WsbApka2\.idea\WsbApka09.iml" filepath="C:\Users\Lenovo\StudioProjects\WsbApka2\.idea\WsbApka09.iml" />
       <module fileurl="file://C:\Users\studentwsb\StudioProjects\WsbApka\.idea\WsbApka2.iml" filepath="C:\Users\studentwsb\StudioProjects\WsbApka\.idea\WsbApka2.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/WsbApka22.iml" filepath="$PROJECT_DIR$/.idea/WsbApka22.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\Users\studentwsb\StudioProjects\WsbApka\app\app.iml" filepath="C:\Users\studentwsb\StudioProjects\WsbApka\app\app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://C:\Users\Lenovo\StudioProjects\WsbApka2\app\app.iml" filepath="C:\Users\Lenovo\StudioProjects\WsbApka2\app\app.iml" />
+      <module fileurl="file://C:\Users\studentwsb\StudioProjects\WsbApka\app\app.iml" filepath="C:\Users\studentwsb\StudioProjects\WsbApka\app\app.iml" />
     </modules>
   </component>
 </project>
