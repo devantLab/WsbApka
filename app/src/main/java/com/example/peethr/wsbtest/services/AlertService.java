@@ -34,7 +34,6 @@ public class AlertService extends Service {
         super.onCreate();
         writeToLogs("Called onCreate() method.");
         timer = new Timer();
-        toast = Toast.makeText(this, "", Toast.LENGTH_SHORT);
 
     }
 
@@ -43,9 +42,8 @@ public class AlertService extends Service {
         writeToLogs("Called onStartCommand() methond");
         clearTimerSchedule();
         initTask();
-        timer.scheduleAtFixedRate(timerTask, 0, 360000);
-        
-        showToast("Your service has been started");
+        timer.scheduleAtFixedRate(timerTask, 0, 3600000);
+
         return super.onStartCommand(intent, flags, startId);
     }
 
@@ -53,7 +51,6 @@ public class AlertService extends Service {
     public void onDestroy() {
         writeToLogs("Called onDestroy() method");
         clearTimerSchedule();
-        showToast("Your service has been stopped");
         super.onDestroy();
     }
     @Nullable
@@ -61,11 +58,10 @@ public class AlertService extends Service {
     public IBinder onBind(Intent intent) {
         return null;
     }
-    private Toast toast;
+
     private Timer timer;
     private TimerTask timerTask;
     private Context context = this;
-    private Globals weather = Globals.getInstance();
     private class MyTimerTask extends TimerTask {
         @Override
         public void run() {
@@ -83,10 +79,6 @@ public class AlertService extends Service {
         }
     }
 
-    private void showToast(String text) {
-        toast.setText(text);
-        toast.show();
-    }
     private void clearTimerSchedule() {
         if(timerTask != null) {
             timerTask.cancel();
