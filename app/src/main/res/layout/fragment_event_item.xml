@@ -38,6 +38,7 @@
 
             <ImageView
                 android:id="@+id/eventImage"
+                android:transitionName="eventSharedImage"
                 android:layout_width="wrap_content"
                 android:layout_height="205dp"
                 android:layout_alignParentLeft="true"

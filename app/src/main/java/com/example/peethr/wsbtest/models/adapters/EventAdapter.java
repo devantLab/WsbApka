@@ -1,15 +1,26 @@
 package com.example.peethr.wsbtest.models.adapters;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.peethr.wsbtest.R;
+import com.example.peethr.wsbtest.fragments.EventFragment;
 import com.example.peethr.wsbtest.models.data.events.Event;
+import com.example.peethr.wsbtest.presenters.EventDescription;
 
 import java.util.LinkedList;
 import java.util.TreeSet;
@@ -21,6 +32,7 @@ import java.util.TreeSet;
 public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHolder>{
 
     private LinkedList<Event> event = new LinkedList();
+    private Context context;
 
     public EventAdapter(LinkedList<Event> event) {
         this.event = event;
@@ -33,7 +45,10 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
                 .inflate(R.layout.fragment_event_item, parent, false);
         EventViewHolder viewHolder = new EventViewHolder(view);
 
+        context = parent.getContext();
+
         return viewHolder;
+
     }
 
     @Override
@@ -46,7 +61,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
         return event.size();
     }
 
-    public class EventViewHolder extends RecyclerView.ViewHolder {
+    public class EventViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         private TextView eventTitle;
         private TextView eventPlace;
@@ -58,6 +73,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
             eventTitle = itemView.findViewById(R.id.eventTitle);
             eventPlace = itemView.findViewById(R.id.eventPlace);
             eventImage = itemView.findViewById(R.id.eventImage);
+            itemView.setOnClickListener(this);
         }
 
         private void bindEvent(Event event)
@@ -65,6 +81,18 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
             eventTitle.setText(event.getEventTitle());
             eventPlace.setText(event.getEventPlace());
             eventImage.setImageResource(event.getEventImage());
+        }
+
+        @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(context, EventDescription.class);
+            intent.putExtra("clickedEvent", event.get(this.getAdapterPosition()));
+
+            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) context, eventImage,
+                    "eventSharedImage");
+
+            context.startActivity(intent, options.toBundle());
         }
     }
 }
