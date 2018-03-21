@@ -3,13 +3,16 @@ package com.example.peethr.wsbtest.services;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.peethr.wsbtest.R;
 import com.example.peethr.wsbtest.models.notification.NotificationCreator;
 import com.example.peethr.wsbtest.models.data.weather.Globals;
+import com.example.peethr.wsbtest.models.notification.NotificationType;
 import com.example.peethr.wsbtest.presenters.MainActivity;
 
 
@@ -31,7 +34,6 @@ public class AlertService extends Service {
         super.onCreate();
         writeToLogs("Called onCreate() method.");
         timer = new Timer();
-        toast = Toast.makeText(this, "", Toast.LENGTH_SHORT);
 
     }
 
@@ -40,8 +42,8 @@ public class AlertService extends Service {
         writeToLogs("Called onStartCommand() methond");
         clearTimerSchedule();
         initTask();
-        timer.scheduleAtFixedRate(timerTask, 1000, 360000);
-        showToast("Your service has been started");
+        timer.scheduleAtFixedRate(timerTask, 0, 3600000);
+
         return super.onStartCommand(intent, flags, startId);
     }
 
@@ -49,7 +51,6 @@ public class AlertService extends Service {
     public void onDestroy() {
         writeToLogs("Called onDestroy() method");
         clearTimerSchedule();
-        showToast("Your service has been stopped");
         super.onDestroy();
     }
     @Nullable
@@ -57,32 +58,27 @@ public class AlertService extends Service {
     public IBinder onBind(Intent intent) {
         return null;
     }
-    private Toast toast;
+
     private Timer timer;
     private TimerTask timerTask;
     private Context context = this;
-    private Globals weather = Globals.getInstance();
     private class MyTimerTask extends TimerTask {
         @Override
         public void run() {
            NotificationCreator notificationCreator = new NotificationCreator(context, MainActivity.class);
            //create(String title, String text, String ticker, int smallIcon, Bitmap largeIcon)
-            int temp = (weather.getTemperature() - 32) * 5/9;
-//           notificationCreator.create(
-//                   "Pogoda",
-//                   "In Gdańsk  is "+ temp + "° and " + ,
-//                   "Info",
-//                   android.R.drawable.ic_dialog_info,
-//                   BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_cloud_queue_white_36dp),
-//                   NotificationType.ALERTS_ID);
+
+           notificationCreator.create(
+                   "WSBApp",
+                   "Nie dostarczono dokumentów :(",
+                   "Przypominamy o dostarczeniu polskiego adresu do Działu zagranicznego A316 (Uczelnia -> Plan uczelni), do 30 kwietnia",
+                   "Info",
+                   android.R.drawable.ic_dialog_info,
+                   NotificationType.ALERTS_ID);
 
         }
     }
 
-    private void showToast(String text) {
-        toast.setText(text);
-        toast.show();
-    }
     private void clearTimerSchedule() {
         if(timerTask != null) {
             timerTask.cancel();

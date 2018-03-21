@@ -2,6 +2,8 @@ package com.example.peethr.wsbtest.models.notification;
 
 import android.app.Notification;
 import android.app.NotificationManager;
+import android.content.Context;
+import android.support.v4.app.NotificationManagerCompat;
 
 
 /**
@@ -12,19 +14,19 @@ import android.app.NotificationManager;
 
 public class NotificationAlertManager {
 
-    private NotificationManager notificationManager;
+    private NotificationManagerCompat notificationManager;
 
     /**
      *
-     * @param systemService - Service context
+     * @param context - Service context
      * @param notification - built notification sent to the service
      * @param type - type of ( NotificationType :     ALERTS_ID(0), EVENTS_ID(1), SPECIAL_ID(2))
      *
      *
      * If a new notification with the same ID appears, the old one is deleted ( no  the same notification type SPAM)
      */
-    public NotificationAlertManager(Object systemService, Notification notification, NotificationType type){
-        notificationManager = (NotificationManager) systemService;
+    public NotificationAlertManager(Context context, Notification notification, NotificationType type){
+        notificationManager = NotificationManagerCompat.from(context);
 
         notificationManager.notify(type.ordinal(), notification);
     }
