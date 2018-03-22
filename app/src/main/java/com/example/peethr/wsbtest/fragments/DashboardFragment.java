@@ -2,12 +2,17 @@ package com.example.peethr.wsbtest.fragments;
 
 import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,9 +23,14 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.peethr.wsbtest.R;
+import com.example.peethr.wsbtest.fragments.factory.AbstractFacotry;
+import com.example.peethr.wsbtest.fragments.factory.FragmentFacotry;
 import com.example.peethr.wsbtest.models.connection.GetEventData;
 import com.example.peethr.wsbtest.models.data.events.Event;
 import com.example.peethr.wsbtest.models.data.weather.Globals;
+import com.example.peethr.wsbtest.presenters.EventDescription;
+import com.example.peethr.wsbtest.presenters.HoursActivity;
+import com.example.peethr.wsbtest.presenters.MainActivity;
 import com.github.aakira.expandablelayout.ExpandableLayoutListener;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 
@@ -31,7 +41,7 @@ import java.util.TreeSet;
 import static java.lang.Math.floor;
 
 
-public class DashboardFragment extends Fragment {
+public class DashboardFragment extends Fragment implements View.OnClickListener {
 
     // Alert Fragment Views
     private ImageView arrowAlert;
@@ -47,8 +57,13 @@ public class DashboardFragment extends Fragment {
     private TextView eventMessage;
     private LinkedList<Event> events = new LinkedList<>();
 
+    private Button eventButton;
+    private Button tipButton;
 
     private OnFragmentInteractionListener mListener;
+
+    Globals g = Globals.getInstance();
+
 
     public DashboardFragment() {
         // Required empty public constructor
@@ -235,7 +250,38 @@ public class DashboardFragment extends Fragment {
         eventTitle = view.findViewById(R.id.eventTitle);
         eventMessage = view.findViewById(R.id.eventMessage);
 
+        eventButton = view.findViewById(R.id.eventButton);
+        eventButton.setOnClickListener(this);
+
+        tipButton = view.findViewById(R.id.tipButton);
+        tipButton.setOnClickListener(this);
+
+
     }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.eventButton:
+                onClickEventButton(v);
+                break;
+            case R.id.tipButton:
+                onClickTipButton(v);
+                break;
+        }
+    }
+
+    private void onClickEventButton(View v){
+        g.setShowNewstEvent(true);
+        ((MainActivity)getActivity()).selectFragment(2);
+    }
+
+    private void onClickTipButton(View v){
+        Intent intent = new Intent(getContext(), HoursActivity.class);
+        startActivity(intent);
+    }
+
+
 
     // Update view with variables loaded in splashScreen
     private void updateWeather() {
