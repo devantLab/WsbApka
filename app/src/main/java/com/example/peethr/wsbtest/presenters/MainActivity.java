@@ -10,12 +10,15 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import com.example.peethr.wsbtest.R;
 import com.example.peethr.wsbtest.fragments.FragmentInteractionListener;
 import com.example.peethr.wsbtest.fragments.factory.FragmentFacotry;
 
 public class MainActivity extends AppCompatActivity implements FragmentInteractionListener{
+
 
     private FragmentFacotry fragmentFacotry;
     /**
@@ -27,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements FragmentInteracti
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
-
+    private Button eventButton;
     /**
      * The {@link ViewPager} that will host the section contents.
      */
@@ -59,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements FragmentInteracti
     }
 
 
-    @Override
+
     public void onFragmentInteraction(Uri uri) {
 
     }
@@ -87,5 +90,9 @@ public class MainActivity extends AppCompatActivity implements FragmentInteracti
             // Show 4 total pages.
             return 4;
         }
+    }
+
+    public void selectFragment(int position){
+        mViewPager.setCurrentItem(position, true);
     }
 }

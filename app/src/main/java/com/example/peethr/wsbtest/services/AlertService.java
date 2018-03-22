@@ -73,7 +73,7 @@ public class AlertService extends Service {
                    "Nie dostarczono dokumentów :(",
                    "Przypominamy o dostarczeniu polskiego adresu do Działu zagranicznego A316 (Uczelnia -> Plan uczelni), do 30 kwietnia",
                    "Info",
-                   android.R.drawable.ic_dialog_info,
+                   R.drawable.ic_info_outline_white_36dp,
                    NotificationType.ALERTS_ID);
 
         }

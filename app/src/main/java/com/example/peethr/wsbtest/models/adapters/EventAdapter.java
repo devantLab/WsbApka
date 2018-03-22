@@ -86,6 +86,11 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
         @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
         @Override
         public void onClick(View v) {
+            startEventDescription();
+        }
+
+        @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+        public void startEventDescription() {
             Intent intent = new Intent(context, EventDescription.class);
             intent.putExtra("clickedEvent", event.get(this.getAdapterPosition()));
 

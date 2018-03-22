@@ -8,6 +8,15 @@ public class Globals{
     private String summary;
     private boolean ifWeatherUpdated = false;
     private boolean continueWithoutWeatherData = false;
+    private boolean showNewstEvent = false;
+
+    public boolean getShowNewstEvent() {
+        return showNewstEvent;
+    }
+
+    public void setShowNewstEvent(boolean showNewstEvent) {
+        this.showNewstEvent = showNewstEvent;
+    }
 
     public boolean getTryConnectingToDarkSky() {
         return tryConnectingToDarkSky;

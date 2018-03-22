@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,6 +16,8 @@ import com.example.peethr.wsbtest.R;
 import com.example.peethr.wsbtest.models.adapters.EventAdapter;
 import com.example.peethr.wsbtest.models.connection.GetEventData;
 import com.example.peethr.wsbtest.models.data.events.Event;
+import com.example.peethr.wsbtest.models.data.weather.Globals;
+import com.example.peethr.wsbtest.presenters.EventDescription;
 import com.example.peethr.wsbtest.presenters.SplashScreen;
 
 import java.util.LinkedList;
@@ -29,6 +32,9 @@ import java.util.TreeSet;
  * create an instance of this fragment.
  */
 public class EventFragment extends Fragment {
+
+    Globals g = Globals.getInstance();
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -91,6 +97,14 @@ public class EventFragment extends Fragment {
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(view.getContext());
         recyclerView.setLayoutManager(layoutManager);
+
+        if (g.getShowNewstEvent())
+        {
+            Intent intent = new Intent(getContext(), EventDescription.class);
+            intent.putExtra("clickedEvent", events.get(0));
+            startActivity(intent);
+        }
+
 
         return view;
     }

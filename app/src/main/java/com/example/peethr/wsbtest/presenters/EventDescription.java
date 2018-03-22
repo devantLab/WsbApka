@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import com.example.peethr.wsbtest.R;
 import com.example.peethr.wsbtest.models.data.events.Event;
+import com.example.peethr.wsbtest.models.data.weather.Globals;
 
 public class EventDescription extends AppCompatActivity {
 
@@ -28,6 +29,8 @@ public class EventDescription extends AppCompatActivity {
     private TextView eventDescriptionDescription;
     private ImageView eventDescriptionImage;
     private Button eventPageButton;
+
+    Globals g = Globals.getInstance();
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
@@ -78,5 +81,11 @@ public class EventDescription extends AppCompatActivity {
         eventDescriptionTitle.setText(event.getEventTitle());
         eventDescriptionImage.setImageResource(event.getEventImage());
         eventDescriptionDescription.setText(event.getEventDescription());
+    }
+
+    @Override
+    protected void onPause() {
+        g.setShowNewstEvent(false);
+        super.onPause();
     }
 }
