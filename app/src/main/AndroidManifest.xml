@@ -28,6 +28,8 @@
         <service android:name=".services.AlertService" />
 
         <activity android:name=".presenters.EventDescription" />
+        <activity android:name=".presenters.MapActivity" />
+        <activity android:name=".presenters.HoursActivity"></activity>
     </application>
 
 </manifest>
