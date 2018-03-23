@@ -20,6 +20,7 @@ import android.widget.TextView;
 import com.example.peethr.wsbtest.R;
 import com.example.peethr.wsbtest.models.data.events.Event;
 import com.example.peethr.wsbtest.models.data.weather.Globals;
+import com.squareup.picasso.Picasso;
 
 public class EventDescription extends AppCompatActivity {
 
@@ -79,7 +80,9 @@ public class EventDescription extends AppCompatActivity {
 
     private void updateData() {
         eventDescriptionTitle.setText(event.getEventTitle());
-        eventDescriptionImage.setImageResource(event.getEventImage());
+        Picasso.get()
+                .load(event.getEventImage())
+                .into(eventDescriptionImage);
         eventDescriptionDescription.setText(event.getEventDescription());
     }
 

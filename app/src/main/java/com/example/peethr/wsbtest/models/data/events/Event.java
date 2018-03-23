@@ -12,11 +12,9 @@ public class Event implements Parcelable{
     private String eventTitle;
     private String eventPlace;
     private String eventDescription;
+    private String eventImage;
 
-
-    private int eventImage;
-
-    public Event(String eventTitle, String eventPlace, int eventImage, String eventDescription) {
+    public Event(String eventTitle, String eventPlace, String eventImage, String eventDescription) {
         this.eventTitle = eventTitle;
         this.eventPlace = eventPlace;
         this.eventImage = eventImage;
@@ -31,7 +29,7 @@ public class Event implements Parcelable{
         return eventPlace;
     }
 
-    public int getEventImage() {
+    public String getEventImage() {
         return eventImage;
     }
 
@@ -48,7 +46,7 @@ public class Event implements Parcelable{
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(eventTitle);
         dest.writeString(eventPlace);
-        dest.writeInt(eventImage);
+        dest.writeString(eventImage);
         dest.writeString(eventDescription);
     }
 
@@ -56,7 +54,7 @@ public class Event implements Parcelable{
     {
         eventTitle = in.readString();
         eventPlace = in.readString();
-        eventImage = in.readInt();
+        eventImage = in.readString();
         eventDescription = in.readString();
     }
 

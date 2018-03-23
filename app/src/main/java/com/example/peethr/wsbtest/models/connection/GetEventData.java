@@ -21,13 +21,13 @@ public class GetEventData {
 
 
         event.add(new Event("Koncert Żabsona", "Zapraszamy wszystkich zainteresowanych na koncert Żabsona!",
-                R.drawable.zabson, lorem));
-        event.add(new Event("Teator", "Tetra", R.drawable.ic_event_white_36dp, lorem));
-        event.add(new Event("fds", "fdsfsdf", R.drawable.zabson, lorem));
-        event.add(new Event("rewrwe", "fdsfsd", R.drawable.event_heart, lorem));
-        event.add(new Event("Koncert", "Uczelnia", R.drawable.wsb, lorem));
-        event.add(new Event("Koncert", "Uczelnia", R.drawable.wsb, lorem));
-        event.add(new Event("Koncert", "Uczelnia", R.drawable.wsb, lorem));
+                "https://www.planwallpaper.com/static/images/canberra_hero_image_JiMVvYU.jpg", lorem));
+        event.add(new Event("Teator", "Tetra", "https://www.planwallpaper.com/static/images/9-credit-1.jpg", lorem));
+        event.add(new Event("fds", "fdsfsdf", "https://www.planwallpaper.com/static/images/6F0CE738-6419-4CF4-8E8878246C2D2569.jpg", lorem));
+        event.add(new Event("rewrwe", "fdsfsd", "https://www.planwallpaper.com/static/images/offset_WaterHouseMarineImages_62652-2-660x440.jpg", lorem));
+        event.add(new Event("Koncert", "Uczelnia", "https://www.planwallpaper.com/static/images/6775415-beautiful-images.jpg", lorem));
+        event.add(new Event("Koncert", "Uczelnia", "https://www.planwallpaper.com/static/images/Child-Girl-with-Sunflowers-Images.jpg", lorem));
+        event.add(new Event("Koncert", "Uczelnia", "https://www.planwallpaper.com/static/images/Jennifer-in-Paradi_3204219n.jpg", lorem));
 
         return event;
     }

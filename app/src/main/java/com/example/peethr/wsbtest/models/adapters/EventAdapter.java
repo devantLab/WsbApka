@@ -21,6 +21,7 @@ import com.example.peethr.wsbtest.R;
 import com.example.peethr.wsbtest.fragments.EventFragment;
 import com.example.peethr.wsbtest.models.data.events.Event;
 import com.example.peethr.wsbtest.presenters.EventDescription;
+import com.squareup.picasso.Picasso;
 
 import java.util.LinkedList;
 import java.util.TreeSet;
@@ -80,7 +81,9 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
         {
             eventTitle.setText(event.getEventTitle());
             eventPlace.setText(event.getEventPlace());
-            eventImage.setImageResource(event.getEventImage());
+            Picasso.get()
+                    .load(event.getEventImage())
+                    .into(eventImage);
         }
 
         @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
