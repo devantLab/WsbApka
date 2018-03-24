@@ -92,6 +92,11 @@ public class MainActivity extends AppCompatActivity implements FragmentInteracti
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+    }
+
     public void selectFragment(int position){
         mViewPager.setCurrentItem(position, true);
     }
