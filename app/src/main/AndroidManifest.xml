@@ -29,7 +29,8 @@
 
         <activity android:name=".presenters.EventDescription" />
         <activity android:name=".presenters.MapActivity" />
-        <activity android:name=".presenters.HoursActivity"></activity>
+        <activity android:name=".presenters.HoursActivity" />
+        <activity android:name=".presenters.SelectLanguage"></activity>
     </application>
 
 </manifest>
