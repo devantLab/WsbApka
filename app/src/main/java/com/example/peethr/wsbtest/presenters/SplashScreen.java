@@ -39,6 +39,12 @@ public class SplashScreen extends AppCompatActivity {
         // set language or start tutorial on first run
         if (checkLanguage()) {
 
+
+            Toast.makeText(SplashScreen.this,
+                    "Wybrany język: " + manageSharedPreferences.getLanguage(),
+                    Toast.LENGTH_LONG)
+                    .show();
+
             // async loading weather data
             Thread loadingDataThread = new Thread(){
                 @Override
@@ -76,8 +82,6 @@ public class SplashScreen extends AppCompatActivity {
             startActivity(intent);
         }
 
-
-
     }
 
     private boolean checkLanguage() {
@@ -91,5 +95,6 @@ public class SplashScreen extends AppCompatActivity {
     private void startMyService() {
         Intent serviceIntent = new Intent(this, AlertService.class);
         startService(serviceIntent);
+
     }
 }

@@ -1,5 +1,8 @@
 package com.example.peethr.wsbtest.presenters;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -10,6 +13,7 @@ import android.widget.TextView;
 import android.widget.ViewSwitcher;
 
 import com.example.peethr.wsbtest.R;
+import com.example.peethr.wsbtest.models.data.preferences.ManageSharedPreferences;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -26,6 +30,9 @@ public class SelectLanguage extends AppCompatActivity {
 
     private String welcome[] = {"Hello", "Witaj", "Здравствуйте"};
     private int currentIndex = 0;
+
+    private ManageSharedPreferences manageSharedPreferences;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +82,11 @@ public class SelectLanguage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                Intent intent = new Intent(SelectLanguage.this, SplashScreen.class);
+                startActivity(intent);
+
+                finish();
+
             }
         });
 
@@ -86,6 +98,21 @@ public class SelectLanguage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 languageTextSwitcher.setText("Polski");
+
+                selectLanguageButton.setText("Dalej");
+
+                // Animate button
+                ObjectAnimator nextButtonTranslationY = ObjectAnimator.ofFloat(
+                        selectLanguageButton,
+                        "translationY",
+                        200, 0);
+
+                AnimatorSet animateButton = new AnimatorSet();
+                animateButton.playTogether(nextButtonTranslationY);
+                animateButton.start();
+
+                // set in-app language
+                manageSharedPreferences.setLanguage("pl");
             }
         });
 
@@ -94,6 +121,20 @@ public class SelectLanguage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 languageTextSwitcher.setText("русский");
+
+                selectLanguageButton.setText("далее");
+
+                ObjectAnimator nextButtonTranslationY = ObjectAnimator.ofFloat(
+                        selectLanguageButton,
+                        "translationY",
+                        200, 0);
+
+                AnimatorSet animateButton = new AnimatorSet();
+                animateButton.playTogether(nextButtonTranslationY);
+                animateButton.start();
+
+                // set in-app language
+                manageSharedPreferences.setLanguage("ru");
             }
         });
 
@@ -102,11 +143,35 @@ public class SelectLanguage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 languageTextSwitcher.setText("English");
+
+                selectLanguageButton.setText("Next");
+
+                ObjectAnimator nextButtonTranslationY = ObjectAnimator.ofFloat(
+                        selectLanguageButton,
+                        "translationY",
+                        200, 0);
+
+                AnimatorSet animateButton = new AnimatorSet();
+                animateButton.playTogether(nextButtonTranslationY);
+                animateButton.start();
+
+                // set in-app language
+                manageSharedPreferences.setLanguage("en");
             }
         });
     }
 
+    // kill app when back pressed, prevent from sending to splash without language selected
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+        finish();
+    }
+
     private void findViews() {
+
+        manageSharedPreferences = new ManageSharedPreferences(this);
+
         selectLanguageButton = findViewById(R.id.selectLanguageButton);
         buttonFlagPolish = findViewById(R.id.buttonFlagPolish);
         buttonFlagRussia = findViewById(R.id.buttonFlagRussia);
