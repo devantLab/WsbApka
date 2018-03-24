@@ -102,14 +102,7 @@ public class SelectLanguage extends AppCompatActivity {
                 selectLanguageButton.setText("Dalej");
 
                 // Animate button
-                ObjectAnimator nextButtonTranslationY = ObjectAnimator.ofFloat(
-                        selectLanguageButton,
-                        "translationY",
-                        200, 0);
-
-                AnimatorSet animateButton = new AnimatorSet();
-                animateButton.playTogether(nextButtonTranslationY);
-                animateButton.start();
+                animateButton(buttonFlagUk, buttonFlagRussia, buttonFlagPolish);
 
                 // set in-app language
                 manageSharedPreferences.setLanguage("pl");
@@ -124,14 +117,7 @@ public class SelectLanguage extends AppCompatActivity {
 
                 selectLanguageButton.setText("далее");
 
-                ObjectAnimator nextButtonTranslationY = ObjectAnimator.ofFloat(
-                        selectLanguageButton,
-                        "translationY",
-                        200, 0);
-
-                AnimatorSet animateButton = new AnimatorSet();
-                animateButton.playTogether(nextButtonTranslationY);
-                animateButton.start();
+                animateButton(buttonFlagUk, buttonFlagPolish, buttonFlagRussia);
 
                 // set in-app language
                 manageSharedPreferences.setLanguage("ru");
@@ -146,19 +132,34 @@ public class SelectLanguage extends AppCompatActivity {
 
                 selectLanguageButton.setText("Next");
 
-                ObjectAnimator nextButtonTranslationY = ObjectAnimator.ofFloat(
-                        selectLanguageButton,
-                        "translationY",
-                        200, 0);
-
-                AnimatorSet animateButton = new AnimatorSet();
-                animateButton.playTogether(nextButtonTranslationY);
-                animateButton.start();
+                animateButton(buttonFlagPolish, buttonFlagRussia, buttonFlagUk);
 
                 // set in-app language
                 manageSharedPreferences.setLanguage("en");
             }
         });
+    }
+
+    private void animateButton(Button small1, Button small2, Button big) {
+
+        ObjectAnimator nextButtonTranslationY = ObjectAnimator.ofFloat(
+                selectLanguageButton,
+                "translationY",
+                200, 0);
+
+        ObjectAnimator russianFlagScaleX = ObjectAnimator.ofFloat(small1, "scaleX", 0.95f);
+        ObjectAnimator polishFlagScaleX = ObjectAnimator.ofFloat(small2, "scaleX", 0.95f);
+        ObjectAnimator ukFlagScaleX = ObjectAnimator.ofFloat(big, "scaleX", 1.3f);
+
+        ObjectAnimator russianFlagScaleY = ObjectAnimator.ofFloat(small1, "scaleY", 0.95f);
+        ObjectAnimator polishFlagScaleY = ObjectAnimator.ofFloat(small2, "scaleY", 0.95f);
+        ObjectAnimator ukFlagScaleY = ObjectAnimator.ofFloat(big, "scaleY", 1.3f);
+
+        AnimatorSet animateButton = new AnimatorSet();
+        animateButton.playTogether(nextButtonTranslationY,
+                russianFlagScaleX, polishFlagScaleX, ukFlagScaleX,
+                russianFlagScaleY, polishFlagScaleY, ukFlagScaleY);
+        animateButton.start();
     }
 
     // kill app when back pressed, prevent from sending to splash without language selected
