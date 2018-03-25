@@ -165,6 +165,7 @@ public class SelectLanguage extends AppCompatActivity {
     // kill app when back pressed, prevent from sending to splash without language selected
     @Override
     public void onBackPressed() {
+        manageSharedPreferences.setLanguage("default");
         moveTaskToBack(true);
         finish();
     }
