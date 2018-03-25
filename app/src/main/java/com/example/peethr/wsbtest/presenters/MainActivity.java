@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements FragmentInteracti
 
         // When reopening app it will download data
         g.setContinueWithoutWeatherData(false);
+        g.setIfWeatherUpdated(false);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -102,10 +103,6 @@ public class MainActivity extends AppCompatActivity implements FragmentInteracti
         moveTaskToBack(true);
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
 
     public void selectFragment(int position){
         mViewPager.setCurrentItem(position, true);
