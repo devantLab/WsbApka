@@ -2,17 +2,12 @@ package com.example.peethr.wsbtest.presenters;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.annotation.TargetApi;
 import android.content.Intent;
 import android.os.Build;
-import android.os.Parcelable;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.transition.Fade;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
-import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -33,7 +28,7 @@ public class EventDescription extends AppCompatActivity {
 
     Globals g = Globals.getInstance();
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +44,6 @@ public class EventDescription extends AppCompatActivity {
 
         updateData();
         animateIn();
-
 
     }
 

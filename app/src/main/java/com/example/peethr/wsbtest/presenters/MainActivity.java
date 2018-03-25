@@ -16,9 +16,11 @@ import android.widget.Button;
 import com.example.peethr.wsbtest.R;
 import com.example.peethr.wsbtest.fragments.FragmentInteractionListener;
 import com.example.peethr.wsbtest.fragments.factory.FragmentFacotry;
+import com.example.peethr.wsbtest.models.data.weather.Globals;
 
 public class MainActivity extends AppCompatActivity implements FragmentInteractionListener{
 
+    Globals g = Globals.getInstance();
 
     private FragmentFacotry fragmentFacotry;
     /**
@@ -41,7 +43,10 @@ public class MainActivity extends AppCompatActivity implements FragmentInteracti
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        // When reopening app it will download data
+        g.setContinueWithoutWeatherData(false);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         // Create the adapter that will return a fragment for each of the three
@@ -95,6 +100,11 @@ public class MainActivity extends AppCompatActivity implements FragmentInteracti
     @Override
     public void onBackPressed() {
         moveTaskToBack(true);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
     }
 
     public void selectFragment(int position){
