@@ -3,6 +3,8 @@ package com.example.peethr.wsbtest.presenters;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -163,10 +165,12 @@ public class SelectLanguage extends AppCompatActivity {
     }
 
     // kill app when back pressed, prevent from sending to splash without language selected
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void onBackPressed() {
+        manageSharedPreferences.setLanguage("default");
         moveTaskToBack(true);
-        finish();
+        this.finishAffinity();
     }
 
     private void findViews() {
