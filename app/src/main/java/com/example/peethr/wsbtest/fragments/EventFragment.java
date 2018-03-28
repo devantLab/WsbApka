@@ -2,15 +2,17 @@ package com.example.peethr.wsbtest.fragments;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.peethr.wsbtest.R;
 import com.example.peethr.wsbtest.models.adapters.EventAdapter;
@@ -18,10 +20,9 @@ import com.example.peethr.wsbtest.models.connection.GetEventData;
 import com.example.peethr.wsbtest.models.data.events.Event;
 import com.example.peethr.wsbtest.models.data.weather.Globals;
 import com.example.peethr.wsbtest.presenters.EventDescription;
-import com.example.peethr.wsbtest.presenters.SplashScreen;
 
 import java.util.LinkedList;
-import java.util.TreeSet;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -43,6 +44,7 @@ public class EventFragment extends Fragment {
     private LinkedList<Event> events = new LinkedList<>();
 
     private RecyclerView recyclerView;
+    private SwipeRefreshLayout eventSwipeRefresh;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -85,18 +87,12 @@ public class EventFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_event, container, false);
+        final View view = inflater.inflate(R.layout.fragment_event, container, false);
 
         recyclerView = view.findViewById(R.id.recyclerView);
+        eventSwipeRefresh = view.findViewById(R.id.eventSwipeRefresh);
 
-        GetEventData getEventData = new GetEventData();
-        events = getEventData.getDataFromInternet();
-
-        EventAdapter adapter = new EventAdapter(events);
-        recyclerView.setAdapter(adapter);
-
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(view.getContext());
-        recyclerView.setLayoutManager(layoutManager);
+        getEventsData(view);
 
         if (g.getShowNewstEvent())
         {
@@ -105,9 +101,35 @@ public class EventFragment extends Fragment {
             startActivity(intent);
         }
 
+        // Swipe to refresh configuration
+        refreshEvents(view);
 
         return view;
     }
+
+    private void getEventsData(View view) {
+        GetEventData getEventData = new GetEventData();
+        events = getEventData.getDataFromInternet();
+
+        EventAdapter adapter = new EventAdapter(events);
+        recyclerView.setAdapter(adapter);
+
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(view.getContext());
+        recyclerView.setLayoutManager(layoutManager);
+    }
+
+    private void refreshEvents(final View view) {
+        eventSwipeRefresh.setColorSchemeColors(Color.BLUE, Color.GRAY, Color.CYAN);
+        eventSwipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getEventsData(view);
+                Toast.makeText(view.getContext(), "Odswieżono wydarzenia", Toast.LENGTH_SHORT).show();
+                eventSwipeRefresh.setRefreshing(false);
+            }
+        });
+    }
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
