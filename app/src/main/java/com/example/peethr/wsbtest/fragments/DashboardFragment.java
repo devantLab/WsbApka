@@ -126,45 +126,6 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
         return view;
     }
 
-    private void updateWeatherOnButtonClick(final ConnectivityManager connectivityManager, final FragmentManager fragmentManager) {
-        // Update weather on button click
-        weatherButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Thread loadingDataThread = new Thread(){
-                    @Override
-                    public void run(){
-
-                        do {
-
-                                HttpConnection darkSky = new HttpConnection();
-                                darkSky.darkSkyConnection(
-                                        "https://api.darksky.net/forecast/9fc1bdd31c9dec7120cde99ff7e37614/54.3889,18.5843",
-                                        connectivityManager, fragmentManager);
-
-                            try {
-                                sleep(2000);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                            // check if weather was updated or user want to continue without data
-                        } while (!g.getIfWeatherUpdated());
-
-                        getActivity().runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                updateWeather();
-                                Toast.makeText(getActivity(), "Weather updated", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-
-                    }
-                };
-                loadingDataThread.start();
-            }
-        });
-    }
-
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -336,6 +297,45 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 
 
 
+    // Update weather on button click
+    private void updateWeatherOnButtonClick(final ConnectivityManager connectivityManager, final FragmentManager fragmentManager) {
+        weatherButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Thread loadingDataThread = new Thread(){
+                    @Override
+                    public void run(){
+
+                        do {
+
+                            HttpConnection darkSky = new HttpConnection();
+                            darkSky.darkSkyConnection(
+                                    "https://api.darksky.net/forecast/9fc1bdd31c9dec7120cde99ff7e37614/54.3889,18.5843",
+                                    connectivityManager, fragmentManager);
+
+                            try {
+                                sleep(2000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            // check if weather was updated or user want to continue without data
+                        } while (!g.getIfWeatherUpdated());
+
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                updateWeather();
+                                Toast.makeText(getActivity(), "Weather updated", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+                    }
+                };
+                loadingDataThread.start();
+            }
+        });
+    }
+
     // Update view with variables loaded in splashScreen
     private void updateWeather() {
 
@@ -377,4 +377,10 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 
     }
 
+    // when data is loaded on swipe newest event will show
+    @Override
+    public void onResume() {
+        updateEvent();
+        super.onResume();
+    }
 }

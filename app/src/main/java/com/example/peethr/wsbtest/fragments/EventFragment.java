@@ -109,7 +109,7 @@ public class EventFragment extends Fragment {
     }
 
     private void checkIfRedirect() {
-        if (g.getShowNewstEvent())
+        if (g.getShowNewstEvent() && !events.isEmpty())
         {
             Intent intent = new Intent(getContext(), EventDescription.class);
             intent.putExtra("clickedEvent", events.get(0));
