@@ -79,7 +79,8 @@ public class HttpConnection {
                     }
                 }
             });
-        } else {
+            // prevent from showing dialog about connection problem when updating weather on button click in dashboard
+        } else if (g.getContinueWithoutWeatherData() == false){
             dialog.show(fragmentManager, "NoInternetConnection");
         }
         return currentWeather;

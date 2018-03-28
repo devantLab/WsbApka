@@ -1,8 +1,10 @@
 package com.example.peethr.wsbtest.fragments;
 
 import android.animation.ObjectAnimator;
+import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -21,16 +23,19 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.peethr.wsbtest.R;
 import com.example.peethr.wsbtest.fragments.factory.AbstractFacotry;
 import com.example.peethr.wsbtest.fragments.factory.FragmentFacotry;
 import com.example.peethr.wsbtest.models.connection.GetEventData;
+import com.example.peethr.wsbtest.models.connection.HttpConnection;
 import com.example.peethr.wsbtest.models.data.events.Event;
 import com.example.peethr.wsbtest.models.data.weather.Globals;
 import com.example.peethr.wsbtest.presenters.EventDescription;
 import com.example.peethr.wsbtest.presenters.HoursActivity;
 import com.example.peethr.wsbtest.presenters.MainActivity;
+import com.example.peethr.wsbtest.presenters.SplashScreen;
 import com.github.aakira.expandablelayout.ExpandableLayoutListener;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 
@@ -59,6 +64,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 
     private Button eventButton;
     private Button tipButton;
+    private Button weatherButton;
 
     private OnFragmentInteractionListener mListener;
 
@@ -95,6 +101,9 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 
         View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
+        final ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        final FragmentManager fragmentManager = getActivity().getFragmentManager();
+
         findViews(view);
         updateEvent();
         updateWeather();
@@ -109,9 +118,51 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
             }
         });
 
+        // Update weather  on button click
+        updateWeatherOnButtonClick(connectivityManager, fragmentManager);
+
         // Inflate the layout for this fragment
 
         return view;
+    }
+
+    private void updateWeatherOnButtonClick(final ConnectivityManager connectivityManager, final FragmentManager fragmentManager) {
+        // Update weather on button click
+        weatherButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Thread loadingDataThread = new Thread(){
+                    @Override
+                    public void run(){
+
+                        do {
+
+                                HttpConnection darkSky = new HttpConnection();
+                                darkSky.darkSkyConnection(
+                                        "https://api.darksky.net/forecast/9fc1bdd31c9dec7120cde99ff7e37614/54.3889,18.5843",
+                                        connectivityManager, fragmentManager);
+
+                            try {
+                                sleep(2000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            // check if weather was updated or user want to continue without data
+                        } while (!g.getIfWeatherUpdated());
+
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                updateWeather();
+                                Toast.makeText(getActivity(), "Weather updated", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+                    }
+                };
+                loadingDataThread.start();
+            }
+        });
     }
 
 
@@ -244,6 +295,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
         arrowAlert = view.findViewById(R.id.arrowAlert);
 
         // WeatherFragment
+        weatherButton = view.findViewById(R.id.weatherButton);
         degrees = view.findViewById(R.id.degrees);
         weatherMessage = view.findViewById(R.id.weatherMessage);
 
@@ -299,7 +351,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
         else
         {
             degrees.setText(":(");
-            weatherMessage.setText("No internet connection");
+            weatherMessage.setText("No internet connection, tap to try again");
         }
 
     }
