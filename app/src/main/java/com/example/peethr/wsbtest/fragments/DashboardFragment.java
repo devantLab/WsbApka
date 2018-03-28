@@ -295,45 +295,51 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
         startActivity(intent);
     }
 
-
-
     // Update weather on button click
     private void updateWeatherOnButtonClick(final ConnectivityManager connectivityManager, final FragmentManager fragmentManager) {
-        weatherButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Thread loadingDataThread = new Thread(){
-                    @Override
-                    public void run(){
 
-                        do {
+            weatherButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
-                            HttpConnection darkSky = new HttpConnection();
-                            darkSky.darkSkyConnection(
-                                    "https://api.darksky.net/forecast/9fc1bdd31c9dec7120cde99ff7e37614/54.3889,18.5843",
-                                    connectivityManager, fragmentManager);
-
-                            try {
-                                sleep(2000);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                            // check if weather was updated or user want to continue without data
-                        } while (!g.getIfWeatherUpdated());
-
-                        getActivity().runOnUiThread(new Runnable() {
+                    // prevent from updating already updated data
+                    if (g.getIfWeatherUpdated() == false)
+                    {
+                        Thread loadingDataThread = new Thread(){
                             @Override
-                            public void run() {
-                                updateWeather();
-                                Toast.makeText(getActivity(), "Weather updated", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                            public void run(){
 
+                                do {
+
+                                    HttpConnection darkSky = new HttpConnection();
+                                    darkSky.darkSkyConnection(
+                                            "https://api.darksky.net/forecast/9fc1bdd31c9dec7120cde99ff7e37614/54.3889,18.5843",
+                                            connectivityManager, fragmentManager);
+
+                                    try {
+                                        sleep(2000);
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+                                    // check if weather was updated or user want to continue without data
+                                } while (!g.getIfWeatherUpdated());
+
+                                getActivity().runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        updateWeather();
+                                        Toast.makeText(getActivity(), "Pogoda zaktualizowana!", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+
+                            }
+                        };
+                        loadingDataThread.start();
+                    } else {
+                        Toast.makeText(getActivity(), "Aktualna pogoda!", Toast.LENGTH_SHORT).show();
                     }
-                };
-                loadingDataThread.start();
-            }
-        });
+                }
+            });
     }
 
     // Update view with variables loaded in splashScreen
@@ -353,7 +359,6 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
             degrees.setText(":(");
             weatherMessage.setText("No internet connection, tap to try again");
         }
-
     }
 
     // Update eventButton with last event info
@@ -374,7 +379,6 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
             eventTitle.setText("Brak wydarzeń");
             eventMessage.setText("Brak nadchodzących wydarzeń");
         }
-
     }
 
     // when data is loaded on swipe newest event will show
