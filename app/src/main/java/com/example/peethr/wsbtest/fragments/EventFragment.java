@@ -35,8 +35,6 @@ import java.util.LinkedList;
  */
 public class EventFragment extends Fragment {
 
-    private String lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam molestie sapien eleifend libero aliquet molestie. Morbi et mi malesuada, posuere lectus in, pulvinar nisi. Donec a aliquet est. Morbi quis eros sed diam aliquam dictum ac non elit. Donec at nisi sed purus varius rutrum nec eget enim. Pellentesque ac ligula non lacus iaculis suscipit. ";
-
     Globals g = Globals.getInstance();
 
     private TextView emptyRecyclerTextView;
