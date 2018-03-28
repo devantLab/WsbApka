@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.peethr.wsbtest.R;
@@ -34,7 +35,11 @@ import java.util.LinkedList;
  */
 public class EventFragment extends Fragment {
 
+    private String lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam molestie sapien eleifend libero aliquet molestie. Morbi et mi malesuada, posuere lectus in, pulvinar nisi. Donec a aliquet est. Morbi quis eros sed diam aliquam dictum ac non elit. Donec at nisi sed purus varius rutrum nec eget enim. Pellentesque ac ligula non lacus iaculis suscipit. ";
+
     Globals g = Globals.getInstance();
+
+    private TextView emptyRecyclerTextView;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -91,6 +96,7 @@ public class EventFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.recyclerView);
         eventSwipeRefresh = view.findViewById(R.id.eventSwipeRefresh);
+        emptyRecyclerTextView = view.findViewById(R.id.emptyRecyclerTextView);
 
         // get events data and put them in recycler
         getEventsData(view);
@@ -118,15 +124,26 @@ public class EventFragment extends Fragment {
         events = getEventData.getDataFromInternet();
 
         EventAdapter adapter = new EventAdapter(events);
-        recyclerView.setAdapter(adapter);
 
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(view.getContext());
-        recyclerView.setLayoutManager(layoutManager);
+        if (adapter.getItemCount() == 0)
+        {
+            emptyRecyclerTextView.setVisibility(View.VISIBLE);
+
+        } else {
+
+            emptyRecyclerTextView.setVisibility(View.GONE);
+
+            recyclerView.setAdapter(adapter);
+
+            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(view.getContext());
+            recyclerView.setLayoutManager(layoutManager);
+        }
     }
 
     private void refreshEvents(final View view) {
         eventSwipeRefresh.setColorSchemeColors(Color.BLUE, Color.GRAY, Color.CYAN);
         eventSwipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+
             @Override
             public void onRefresh() {
                 getEventsData(view);
