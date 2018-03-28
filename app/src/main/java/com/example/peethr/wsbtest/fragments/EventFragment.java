@@ -92,19 +92,25 @@ public class EventFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerView);
         eventSwipeRefresh = view.findViewById(R.id.eventSwipeRefresh);
 
+        // get events data and put them in recycler
         getEventsData(view);
 
+        // check if user is redirected from dashboard's event button onclick
+        checkIfRedirect();
+
+        // Swipe to refresh configuration
+        refreshEvents(view);
+
+        return view;
+    }
+
+    private void checkIfRedirect() {
         if (g.getShowNewstEvent())
         {
             Intent intent = new Intent(getContext(), EventDescription.class);
             intent.putExtra("clickedEvent", events.get(0));
             startActivity(intent);
         }
-
-        // Swipe to refresh configuration
-        refreshEvents(view);
-
-        return view;
     }
 
     private void getEventsData(View view) {
