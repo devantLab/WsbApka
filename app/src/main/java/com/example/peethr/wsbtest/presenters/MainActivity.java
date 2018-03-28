@@ -43,10 +43,6 @@ public class MainActivity extends AppCompatActivity implements FragmentInteracti
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // When reopening app it will download data
-        g.setContinueWithoutWeatherData(false);
-        g.setIfWeatherUpdated(false);
-
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);

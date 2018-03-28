@@ -14,6 +14,7 @@
         android:layout_height="165dp"
         android:background="@drawable/top_menu_logo"
         android:theme="@style/AppTheme"
+        android:visibility="visible"
         tools:layout_editor_absoluteY="25dp">
 
         <android.support.constraint.ConstraintLayout
@@ -50,7 +51,7 @@
         <android.support.design.widget.TabLayout
             android:id="@+id/tabs"
             android:layout_width="match_parent"
-            android:layout_height="62dp"
+            android:layout_height="wrap_content"
             android:animationCache="false"
             app:tabBackground="@drawable/tab_color_selector"
             app:tabIndicatorColor="@color/cardview_light_background"
