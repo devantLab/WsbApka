@@ -14,18 +14,17 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
-        app:srcCompat="@drawable/ic_info_outline_white_36dp"
-        android:elevation="12dp"/>
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:elevation="10dp"
+        app:srcCompat="@drawable/logo_wsb_poziom" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:text="Nazwa Aplikacji"
-        android:textSize="20dp"
-        android:elevation="12dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+        android:textSize="24dp"
+        android:elevation="10dp"
+        android:textColor="#ffffff"/>
+
 </LinearLayout>
