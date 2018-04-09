@@ -7,9 +7,11 @@ public class ManageSharedPreferences {
 
     public static final String PREF_FILE = "com.example.peethr.wsbtest.preferences";
     public static final String KEY_LANGUAGE = "KEY_LANGUAGE";
+    public static final String KEY_SHOW_NOTIFICATION = "KEY_SHOW_NOTIFICATION";
 
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
+
 
     private Context context;
 
@@ -18,6 +20,18 @@ public class ManageSharedPreferences {
         sharedPreferences = context.getSharedPreferences(PREF_FILE, context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
     }
+
+    public void setShowNotification (boolean showNotification)
+    {
+        editor.putBoolean(KEY_SHOW_NOTIFICATION, showNotification);
+        editor.apply();
+    }
+
+    public boolean getShowNotification()
+    {
+        return sharedPreferences.getBoolean(KEY_SHOW_NOTIFICATION, true);
+    }
+
 
     public boolean checkLanguage()
     {

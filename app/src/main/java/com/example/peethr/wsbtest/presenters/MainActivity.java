@@ -57,6 +57,8 @@ public class MainActivity extends AppCompatActivity implements FragmentInteracti
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        manageSharedPreferences = new ManageSharedPreferences(getApplicationContext());
+
         toolbar = findViewById(R.id.toolbar);
 
         setSupportActionBar(toolbar);
@@ -90,15 +92,18 @@ public class MainActivity extends AppCompatActivity implements FragmentInteracti
         MenuItem item = menu.findItem(R.id.notifi_onoff);
         View actionToggleView = MenuItemCompat.getActionView(item);
         nSwitch = actionToggleView.findViewById(R.id.notifi_switch);
+        nSwitch.setChecked(manageSharedPreferences.getShowNotification());
 
 
         nSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked) {
+                    manageSharedPreferences.setShowNotification(true);
                     Toast.makeText(MainActivity.this, "Powiadomienia włączone", Toast.LENGTH_SHORT).show();
                 }
                 else{
+                    manageSharedPreferences.setShowNotification(false);
                     Toast.makeText(MainActivity.this, "Powiadomienia wyłączone", Toast.LENGTH_SHORT).show();
                 }
             }

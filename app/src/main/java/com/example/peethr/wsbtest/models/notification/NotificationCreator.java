@@ -39,6 +39,10 @@ public class NotificationCreator extends ContextWrapper{
             createChannel();
     }
     public void create(String title, String text, String bigText, String ticker, int smallIcon, NotificationType type){
+
+        manageSharedPreferences = new ManageSharedPreferences(context);
+
+        if(manageSharedPreferences.getShowNotification()) {
             alert = new NotificationCompat.Builder(context, NotificationProperties.CHANNEL_ID)
                     .setContentTitle(title)
                     .setContentText(text)
@@ -54,7 +58,7 @@ public class NotificationCreator extends ContextWrapper{
                     .setColorized(true)
                     .build();
             new NotificationAlertManager(context, alert, type);
-
+        }
     }
     private void createChannel() {
 
