@@ -1,0 +1,48 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:showIn="navigation_view">
+
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/notifi_onoff"
+            android:icon="@drawable/ic_notifications"
+            app:actionLayout="@layout/toggle_layout"
+            android:title="Powiadomienia"
+            android:checkable="false"/>
+
+        <item
+            android:id="@+id/language"
+            android:icon="@drawable/ic_language"
+            android:title="Zmiana języka" />
+
+        <item
+            android:id="@+id/send_opinion"
+            android:icon="@drawable/ic_send"
+            android:title="Prześlij opinię" />
+        <item
+            android:id="@+id/nav_manage"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Tools"
+            android:checkable="false"/>
+        <item android:title=" "
+            android:checkable="false"/>
+        <item android:title=" "
+            android:checkable="false"/>
+        <item android:title=" "
+            android:checkable="false"/>
+    </group>
+
+
+
+    <item android:title="Kontakt">
+        <menu>
+
+            <item
+                android:id="@+id/devant_contact"
+                android:icon="@drawable/ic_create"
+                android:title="deVAnt.pl" />
+        </menu>
+    </item>
+</menu>

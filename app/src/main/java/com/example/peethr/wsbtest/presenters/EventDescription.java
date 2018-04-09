@@ -8,6 +8,8 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -26,6 +28,8 @@ public class EventDescription extends AppCompatActivity {
     private ImageView eventDescriptionImage;
     private Button eventPageButton;
 
+    private Toolbar toolbar;
+
     Globals g = Globals.getInstance();
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -33,6 +37,13 @@ public class EventDescription extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_description);
+
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        toolbar.getBackground().setAlpha(0);
+
 
         eventDescriptionTitle = findViewById(R.id.eventDescriptionTitle);
         eventDescriptionImage = findViewById(R.id.eventDescriptionImage);
@@ -44,6 +55,8 @@ public class EventDescription extends AppCompatActivity {
 
         updateData();
         animateIn();
+
+
 
     }
 
@@ -84,5 +97,11 @@ public class EventDescription extends AppCompatActivity {
     protected void onPause() {
         g.setShowNewstEvent(false);
         super.onPause();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        onBackPressed();
+        return super.onOptionsItemSelected(item);
     }
 }

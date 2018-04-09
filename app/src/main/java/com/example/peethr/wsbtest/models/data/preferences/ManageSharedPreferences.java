@@ -7,6 +7,7 @@ public class ManageSharedPreferences {
 
     public static final String PREF_FILE = "com.example.peethr.wsbtest.preferences";
     public static final String KEY_LANGUAGE = "KEY_LANGUAGE";
+
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
 
@@ -18,10 +19,8 @@ public class ManageSharedPreferences {
         editor = sharedPreferences.edit();
     }
 
-
     public boolean checkLanguage()
     {
-
         if(sharedPreferences.getString(KEY_LANGUAGE, "default").equals("default"))
         {
             return false;
