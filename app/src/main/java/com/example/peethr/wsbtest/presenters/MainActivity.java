@@ -1,5 +1,7 @@
 package com.example.peethr.wsbtest.presenters;
 
+import android.app.Dialog;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -8,18 +10,26 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-
+import android.view.View;
+import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.Toast;
+import com.example.peethr.wsbtest.models.data.preferences.ManageSharedPreferences;
 import com.example.peethr.wsbtest.R;
 import com.example.peethr.wsbtest.fragments.FragmentInteractionListener;
 import com.example.peethr.wsbtest.fragments.factory.FragmentFacotry;
 import com.example.peethr.wsbtest.models.data.weather.Globals;
+
 
 public class MainActivity extends AppCompatActivity implements FragmentInteractionListener, NavigationView.OnNavigationItemSelectedListener {
 
@@ -35,6 +45,12 @@ public class MainActivity extends AppCompatActivity implements FragmentInteracti
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle toggleButton;
 
+    private ManageSharedPreferences manageSharedPreferences;
+    private View dView;
+    private Button rusBtn;
+    private Button polBtn;
+    private Button ukBtn;
+    private SwitchCompat nSwitch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements FragmentInteracti
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         drawerLayout = findViewById(R.id.drawer_layout);
         toggleButton = new ActionBarDrawerToggle(
@@ -68,10 +85,29 @@ public class MainActivity extends AppCompatActivity implements FragmentInteracti
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
 
+        nSwitch = findViewById(R.id.notifi_switch);
+        Menu menu = navigationView.getMenu();
+        MenuItem item = menu.findItem(R.id.notifi_onoff);
+        View actionToggleView = MenuItemCompat.getActionView(item);
+        nSwitch = actionToggleView.findViewById(R.id.notifi_switch);
+
+
+        nSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) {
+                    Toast.makeText(MainActivity.this, "Powiadomienia włączone", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(MainActivity.this, "Powiadomienia wyłączone", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
         fragmentFacotry = new FragmentFacotry();
+        manageSharedPreferences = new ManageSharedPreferences(MainActivity.this);
 
     }
-
 
 
     @Override
@@ -93,12 +129,12 @@ public class MainActivity extends AppCompatActivity implements FragmentInteracti
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton ButtonView, boolean isChecked) {
+
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -106,11 +142,73 @@ public class MainActivity extends AppCompatActivity implements FragmentInteracti
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        drawerLayout.closeDrawer(GravityCompat.START);
+
+        if (id == R.id.language)
+        {
+            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+            dView = getLayoutInflater().inflate(R.layout.language_dialog, null);
+            rusBtn = dView.findViewById(R.id.buttonFlagRussia);
+            ukBtn = dView.findViewById(R.id.buttonFlagUk);
+            polBtn = dView.findViewById(R.id.buttonFlagPolish);
+            builder.setView(dView);
+            final AlertDialog dialog = builder.create();
+            dialog.show();
+            rusBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    manageSharedPreferences.setLanguage("ru");
+                    Toast.makeText(MainActivity.this, "Zmieniono język", Toast.LENGTH_SHORT).show();
+                    dialog.dismiss();
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                }
+            });
+            ukBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    manageSharedPreferences.setLanguage("en");
+                    Toast.makeText(MainActivity.this, "Zmieniono język", Toast.LENGTH_SHORT).show();
+                    dialog.dismiss();
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                }
+            });
+            polBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    manageSharedPreferences.setLanguage("pl");
+                    Toast.makeText(MainActivity.this, "Zmieniono język", Toast.LENGTH_SHORT).show();
+                    dialog.dismiss();
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                }
+            });
+
+
+        }
+        else if (id == R.id.send_opinion)
+        {
+            Toast.makeText(this, "Oceniono", Toast.LENGTH_SHORT).show();
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
+        else if (id == R.id.devant_contact)
+        {
+            Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                    "mailto", "kontakt@devant.com", null));
+            emailIntent.putExtra(Intent.EXTRA_SUBJECT, "This is my subject text");
+            this.startActivity(Intent.createChooser(emailIntent, null));
+        }
         return true;
     }
 
+    @Override
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        return null;
+    }
+
     public void onFragmentInteraction(Uri uri) {
+
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
 
     }
 
@@ -137,4 +235,5 @@ public class MainActivity extends AppCompatActivity implements FragmentInteracti
     public void selectFragment(int position){
         mViewPager.setCurrentItem(position, true);
     }
+
 }

@@ -3,7 +3,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Switch
+    <android.support.v7.widget.SwitchCompat
         android:id="@+id/notifi_switch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
