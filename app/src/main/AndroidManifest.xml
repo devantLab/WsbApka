@@ -38,8 +38,9 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".presenters.SelectLanguage"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name=".presenters.PlacesActivity"></activity>
+            android:screenOrientation="portrait" />
+        <activity android:name=".presenters.PlacesActivity" />
+        <activity android:name=".presenters.PlaceDescription"></activity>
     </application>
 
 </manifest>

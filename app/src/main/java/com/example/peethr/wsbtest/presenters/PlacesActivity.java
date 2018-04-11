@@ -6,9 +6,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
 
 import com.example.peethr.wsbtest.R;
 import com.example.peethr.wsbtest.models.adapters.PlaceAdapter;
@@ -27,12 +30,20 @@ public class PlacesActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private SwipeRefreshLayout placeSwipeRefresh;
 
-
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_places);
+
+        String title = "Polecane miejsca";
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
+        getSupportActionBar().setTitle(title);
+        toolbar.setTitleTextColor(Color.WHITE);
 
         recyclerView = findViewById(R.id.placeRecyclerView);
         placeSwipeRefresh = findViewById(R.id.placeSwipeRefresh);
@@ -40,6 +51,12 @@ public class PlacesActivity extends AppCompatActivity {
 
         getPlacesData();
         refreshPlace();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        onBackPressed();
+        return super.onOptionsItemSelected(item);
     }
 
     private void getPlacesData(){

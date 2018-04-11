@@ -1,7 +1,12 @@
 package com.example.peethr.wsbtest.models.adapters;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,10 +16,10 @@ import android.widget.TextView;
 
 import com.example.peethr.wsbtest.R;
 import com.example.peethr.wsbtest.models.data.places.Place;
+import com.example.peethr.wsbtest.presenters.PlaceDescription;
 import com.squareup.picasso.Picasso;
 
 import java.util.LinkedList;
-
 
 /**
  * Created by goracy on 11.04.18.
@@ -77,8 +82,16 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
         }
 
         @Override
-        public void onClick(View v) {
+        public void onClick(View v) { startEventDescription(); }
 
+        @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+        public void startEventDescription() {
+            Intent intent = new Intent(context, PlaceDescription.class);
+            intent.putExtra("clickedPlace", place.get(this.getAdapterPosition()));
+
+            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) context, placeImage,
+                    "placeSharedImage");
+            context.startActivity(intent, options.toBundle());
         }
     }
 }
