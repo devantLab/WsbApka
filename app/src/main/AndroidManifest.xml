@@ -27,15 +27,19 @@
 
         <service android:name=".services.AlertService" />
 
-        <activity android:name=".presenters.EventDescription"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".presenters.MapActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".presenters.HoursActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".presenters.SelectLanguage"
-            android:screenOrientation="portrait">
-        </activity>
+        <activity
+            android:name=".presenters.EventDescription"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".presenters.MapActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".presenters.HoursActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".presenters.SelectLanguage"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".presenters.PlacesActivity"></activity>
     </application>
 
 </manifest>

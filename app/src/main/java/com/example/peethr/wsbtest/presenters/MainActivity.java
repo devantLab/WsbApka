@@ -125,12 +125,6 @@ public class MainActivity extends AppCompatActivity implements FragmentInteracti
         moveTaskToBack(true);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.drawer_menu, menu);
-        return true;
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -212,10 +206,10 @@ public class MainActivity extends AppCompatActivity implements FragmentInteracti
 
     }
 
-    @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
-
-    }
+//    @Override
+//    public void onPointerCaptureChanged(boolean hasCapture) {
+//
+//    }
 
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 

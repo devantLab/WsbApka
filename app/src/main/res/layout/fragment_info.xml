@@ -29,7 +29,7 @@
             android:layout_height="wrap_content" />
 
         <include
-            layout="@layout/info_funfacts_layout"
+            layout="@layout/info_recplaces_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
