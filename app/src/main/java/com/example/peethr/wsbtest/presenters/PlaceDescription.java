@@ -9,9 +9,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.peethr.wsbtest.R;
 import com.example.peethr.wsbtest.models.data.places.Place;
@@ -20,6 +22,9 @@ import com.squareup.picasso.Picasso;
 public class PlaceDescription extends AppCompatActivity {
 
     private Place place;
+
+    private float y1, y2;
+    static final int MIN_DISTANCE = 150;
 
     private Toolbar toolbar;
 
@@ -88,6 +93,26 @@ public class PlaceDescription extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event)
+    {
+        switch(event.getAction())
+        {
+            case MotionEvent.ACTION_DOWN:
+                y1 = event.getY();
+                break;
+            case MotionEvent.ACTION_UP:
+                y2 = event.getY();
+                float deltaY = y2 - y1;
+                if (Math.abs(deltaY) > MIN_DISTANCE)
+                {
+                    onBackPressed();
+                }
+                break;
+        }
+        return super.onTouchEvent(event);
     }
 
     @Override
