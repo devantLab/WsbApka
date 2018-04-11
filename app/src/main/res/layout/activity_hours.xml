@@ -6,6 +6,17 @@
     android:layout_height="match_parent"
     tools:context="com.example.peethr.wsbtest.presenters.HoursActivity">
 
+    <Button
+        android:id="@+id/resetLanguageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="72dp"
+        android:text="DEBUG : RESET LANGUAGE"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="0dp"
