@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.peethr.wsbtest.R;
+import com.example.peethr.wsbtest.presenters.CareerActivity;
 import com.example.peethr.wsbtest.presenters.HoursActivity;
 import com.example.peethr.wsbtest.presenters.MainActivity;
 import com.example.peethr.wsbtest.presenters.MapActivity;
@@ -29,7 +30,7 @@ public class UniversityFragment extends Fragment implements View.OnClickListener
     private Button alertUBtn;
     private Button hoursbtn;
     private Button mapBtn;
-
+    private Button careerBtn;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -54,6 +55,9 @@ public class UniversityFragment extends Fragment implements View.OnClickListener
         mapBtn = view.findViewById(R.id.mapButton);
         mapBtn.setOnClickListener(this);
 
+        careerBtn = view.findViewById(R.id.careerButton);
+        careerBtn.setOnClickListener(this);
+
         return view;
     }
 
@@ -71,6 +75,9 @@ public class UniversityFragment extends Fragment implements View.OnClickListener
             case R.id.mapButton:
                 onMapButtonClick(view);
                 break;
+            case R.id.careerButton:
+                onCareerButtonClick(view);
+                break;
         }
     }
 
@@ -86,6 +93,11 @@ public class UniversityFragment extends Fragment implements View.OnClickListener
     private void onMapButtonClick(View view)
     {
         Intent intent = new Intent(getContext(), MapActivity.class);
+        startActivity(intent);
+    }
+    private void onCareerButtonClick(View view)
+    {
+        Intent intent = new Intent(getContext(), CareerActivity.class);
         startActivity(intent);
     }
 

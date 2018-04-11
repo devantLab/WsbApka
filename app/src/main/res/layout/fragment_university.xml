@@ -23,12 +23,18 @@
             layout="@layout/university_map_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
+        <include
+            layout="@layout/university_career_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp" />
+
         <include
             layout="@layout/university_calendar_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"/>
-
 
     </LinearLayout>
 

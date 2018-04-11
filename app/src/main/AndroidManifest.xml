@@ -40,7 +40,9 @@
             android:name=".presenters.SelectLanguage"
             android:screenOrientation="portrait" />
         <activity android:name=".presenters.PlacesActivity" />
-        <activity android:name=".presenters.PlaceDescription"></activity>
+        <activity android:name=".presenters.PlaceDescription" />
+        <activity android:name=".presenters.CareerActivity" />
+        <activity android:name=".presenters.CareerEventDescription"></activity>
     </application>
 
 </manifest>

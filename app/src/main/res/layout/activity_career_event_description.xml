@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.peethr.wsbtest.presenters.CareerEventDescription">
+
+    <ImageView
+        android:id="@+id/careerEventDescriptionImage"
+        android:layout_width="0dp"
+        android:layout_height="220dp"
+        android:adjustViewBounds="true"
+        android:cropToPadding="false"
+        android:elevation="8dp"
+        android:scaleType="centerCrop"
+        android:transitionName="careerEventSharedImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/zabson" />
+
+    <TextView
+        android:id="@+id/careerEventDescriptionTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:alpha="0"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toBottomOf="@+id/careerEventDescriptionImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Żabson" />
+
+    <TextView
+        android:id="@+id/careerEventDescriptionDescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:alpha="0"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/careerEventDescriptionTitle"
+        tools:text="Lorem" />
+
+    <Button
+        android:id="@+id/careerEventPageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/dashboard_weather_button"
+        android:elevation="16dp"
+        android:padding="10dp"
+        android:text="Strona wydarzenia"
+        android:textColor="@android:color/background_light"
+        android:translationY="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="0dp"
+        android:minHeight="?attr/actionBarSize"
+        android:padding="0dp"
+        android:theme="@style/MyTheme"
+        app:popupTheme="@style/MyTheme"
+        android:elevation="20dp"
+        android:background="#00189b"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+</android.support.constraint.ConstraintLayout>
