@@ -4,7 +4,7 @@ apply plugin: 'kotlin-android'
 android {
     compileSdkVersion 27
     defaultConfig {
-        applicationId "com.example.peethr.wsbtest"
+        applicationId "com.example.peethr.wsbtest" 
         minSdkVersion 15
         targetSdkVersion 27
         versionCode 1
