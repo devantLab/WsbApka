@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +20,8 @@ import com.example.peethr.wsbtest.models.connection.GetCareerEventData;
 import com.example.peethr.wsbtest.models.connection.GetPlaceData;
 import com.example.peethr.wsbtest.models.data.events.CareerEvent;
 import com.example.peethr.wsbtest.models.data.places.Place;
+import com.r0adkll.slidr.Slidr;
+import com.r0adkll.slidr.model.SlidrInterface;
 
 import java.util.LinkedList;
 
@@ -33,6 +36,9 @@ public class CareerActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
 
+    private SlidrInterface slider;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +51,8 @@ public class CareerActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setTitle(title);
         toolbar.setTitleTextColor(Color.WHITE);
+
+        slider = Slidr.attach(this);
 
         recyclerView = findViewById(R.id.careerRecyclerView);
         careerSwipeRefresh = findViewById(R.id.careerSwipeRefresh);
@@ -91,4 +99,5 @@ public class CareerActivity extends AppCompatActivity {
             }
         });
     }
+
 }

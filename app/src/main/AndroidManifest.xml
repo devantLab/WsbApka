@@ -32,17 +32,21 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".presenters.MapActivity"
-            android:screenOrientation="portrait" />
+            android:theme="@style/AppTheme.SlidrActivityTheme"/>
         <activity
             android:name=".presenters.HoursActivity"
-            android:screenOrientation="portrait" />
+            android:theme="@style/AppTheme.SlidrActivityTheme"/>
         <activity
             android:name=".presenters.SelectLanguage"
             android:screenOrientation="portrait" />
-        <activity android:name=".presenters.PlacesActivity" />
-        <activity android:name=".presenters.PlaceDescription" />
-        <activity android:name=".presenters.CareerActivity" />
-        <activity android:name=".presenters.CareerEventDescription"></activity>
+        <activity android:name=".presenters.PlacesActivity"
+            android:theme="@style/AppTheme.SlidrActivityTheme" />
+        <activity android:name=".presenters.PlaceDescription"
+            android:screenOrientation="portrait" />
+        <activity android:name=".presenters.CareerActivity"
+            android:theme="@style/AppTheme.SlidrActivityTheme" />
+        <activity android:name=".presenters.CareerEventDescription"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

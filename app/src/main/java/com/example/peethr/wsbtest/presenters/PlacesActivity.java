@@ -1,5 +1,6 @@
 package com.example.peethr.wsbtest.presenters;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -7,8 +8,11 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.GestureDetector;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Filter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +22,8 @@ import com.example.peethr.wsbtest.models.adapters.PlaceAdapter;
 import com.example.peethr.wsbtest.models.connection.GetEventData;
 import com.example.peethr.wsbtest.models.connection.GetPlaceData;
 import com.example.peethr.wsbtest.models.data.places.Place;
+import com.r0adkll.slidr.Slidr;
+import com.r0adkll.slidr.model.SlidrInterface;
 
 import java.util.LinkedList;
 
@@ -32,6 +38,10 @@ public class PlacesActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
 
+    private SlidrInterface slidr;
+
+
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,9 +59,15 @@ public class PlacesActivity extends AppCompatActivity {
         placeSwipeRefresh = findViewById(R.id.placeSwipeRefresh);
         emptyRecyclerTextView = findViewById(R.id.placeEmptyRecyclerTextView);
 
+        slidr = Slidr.attach(this);
+
         getPlacesData();
         refreshPlace();
     }
+
+
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -90,4 +106,6 @@ public class PlacesActivity extends AppCompatActivity {
             }
         });
     }
+
+
 }
