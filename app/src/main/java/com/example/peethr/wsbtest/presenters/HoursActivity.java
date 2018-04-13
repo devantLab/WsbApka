@@ -5,12 +5,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 
 
 import com.example.peethr.wsbtest.R;
 import com.example.peethr.wsbtest.models.data.preferences.ManageSharedPreferences;
+import com.r0adkll.slidr.Slidr;
+import com.r0adkll.slidr.model.SlidrInterface;
 
 public class HoursActivity extends AppCompatActivity {
 
@@ -20,6 +23,9 @@ public class HoursActivity extends AppCompatActivity {
     private String title;
 
     private ManageSharedPreferences manageSharedPreferences;
+
+    private SlidrInterface slider;
+
 
 
     @Override
@@ -35,6 +41,8 @@ public class HoursActivity extends AppCompatActivity {
         toolbar.setTitleTextColor(Color.WHITE);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        slider = Slidr.attach(this);
+
         manageSharedPreferences = new ManageSharedPreferences(this);
 
         resetLanguageButton = findViewById(R.id.resetLanguageButton);
@@ -47,7 +55,6 @@ public class HoursActivity extends AppCompatActivity {
         });
 
     }
-
 
 
     @Override

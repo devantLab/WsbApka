@@ -1,7 +1,7 @@
 package com.example.peethr.wsbtest.models.connection;
 
 import com.example.peethr.wsbtest.models.data.events.CareerEvent;
-import com.example.peethr.wsbtest.models.data.events.Event;
+
 
 import java.util.LinkedList;
 
