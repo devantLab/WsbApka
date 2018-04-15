@@ -43,7 +43,7 @@ public class PlaceDescription extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        toolbar.getBackground().setAlpha(0);
+        toolbar.getBackground().setAlpha(1);
 
         placeDescriptionTitle = findViewById(R.id.placeDescriptionTitle);
         placeDescriptionDescription = findViewById(R.id.placeDescriptionDescription);
