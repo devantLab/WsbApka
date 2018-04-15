@@ -60,8 +60,6 @@ public class EventDescription extends AppCompatActivity {
         updateData();
         animateIn();
 
-
-
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)

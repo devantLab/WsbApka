@@ -6,18 +6,14 @@
     android:orientation="vertical"
     android:background="#ffffff">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
+    <include
+        layout="@layout/toolbar"
         android:layout_height="wrap_content"
-        android:layout_margin="0dp"
-        android:background="#00205b"
-        android:elevation="20dp"
-        android:minHeight="?attr/actionBarSize"
-        android:padding="0dp"
-        android:theme="@style/MyTheme"
-        app:layout_constraintVertical_bias="0.0"
-        app:popupTheme="@style/MyTheme" />
+        android:layout_width="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/careerSwipeRefresh"

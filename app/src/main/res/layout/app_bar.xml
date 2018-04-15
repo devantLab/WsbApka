@@ -20,21 +20,31 @@
             android:layout_height="86dp"
             android:layout_weight="1">
 
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/constraintLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="23dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:background="#12173A"
+                android:elevation="16dp"
+                android:alpha="0.7"/>
+
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:layout_marginBottom="8dp"
                 android:layout_weight="1"
+                android:theme="@style/MyTheme"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
                 app:layout_constraintVertical_bias="1.0"
                 app:layout_scrollFlags="scroll|enterAlways"
-                android:theme="@style/MyTheme"
-                app:popupTheme="@style/MyTheme"/>
+                app:popupTheme="@style/MyTheme" />
 
         </android.support.constraint.ConstraintLayout>
 
