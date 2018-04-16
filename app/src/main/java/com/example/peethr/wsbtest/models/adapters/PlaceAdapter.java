@@ -82,10 +82,10 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
         }
 
         @Override
-        public void onClick(View v) { startEventDescription(); }
+        public void onClick(View v) { startPlaceDescription(); }
 
         @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-        public void startEventDescription() {
+        public void startPlaceDescription() {
             Intent intent = new Intent(context, PlaceDescription.class);
             intent.putExtra("clickedPlace", place.get(this.getAdapterPosition()));
 

@@ -13,6 +13,7 @@ import android.widget.Button;
 import com.example.peethr.wsbtest.R;
 import com.example.peethr.wsbtest.presenters.MainActivity;
 import com.example.peethr.wsbtest.presenters.PlacesActivity;
+import com.example.peethr.wsbtest.presenters.RecentAppActivity;
 
 
 public class InfoFragment extends Fragment {
@@ -20,6 +21,7 @@ public class InfoFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
 
     private Button placesBtn;
+    private Button recappButton;
 
     public InfoFragment() {
         // Required empty public constructor
@@ -48,11 +50,20 @@ public class InfoFragment extends Fragment {
             }
         });
 
+        recappButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), RecentAppActivity.class);
+                startActivity(intent);
+            }
+        });
+
         return view;
     }
 
     public void findViews(View view){
         placesBtn = view.findViewById(R.id.placesButton);
+        recappButton = view.findViewById(R.id.recappButton);
     }
 
 
