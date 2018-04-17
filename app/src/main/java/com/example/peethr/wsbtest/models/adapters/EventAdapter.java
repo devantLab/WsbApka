@@ -21,6 +21,8 @@ import com.example.peethr.wsbtest.R;
 import com.example.peethr.wsbtest.fragments.EventFragment;
 import com.example.peethr.wsbtest.models.data.events.Event;
 import com.example.peethr.wsbtest.presenters.EventDescription;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import java.util.LinkedList;

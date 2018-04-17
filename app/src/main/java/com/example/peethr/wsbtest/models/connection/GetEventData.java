@@ -2,6 +2,12 @@ package com.example.peethr.wsbtest.models.connection;
 
 import com.example.peethr.wsbtest.R;
 import com.example.peethr.wsbtest.models.data.events.Event;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.LinkedList;
 import java.util.Set;
@@ -18,7 +24,6 @@ public class GetEventData {
 
     public LinkedList getDataFromInternet()
     {
-
 
         event.add(new Event("Koncert Żabsona", "Zapraszamy wszystkich zainteresowanych na koncert Żabsona!",
                 "https://www.planwallpaper.com/static/images/canberra_hero_image_JiMVvYU.jpg", lorem));
