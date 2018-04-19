@@ -9,7 +9,7 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
-        android:layout_height="165dp"
+        android:layout_height="126dp"
         android:background="@drawable/bg_android"
         android:theme="@style/AppTheme"
         android:visibility="visible"
@@ -17,19 +17,18 @@
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="86dp"
-            android:layout_weight="1">
+            android:layout_height="wrap_content">
 
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/constraintLayout2"
                 android:layout_width="match_parent"
                 android:layout_height="23dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                android:alpha="0.7"
                 android:background="#12173A"
                 android:elevation="16dp"
-                android:alpha="0.7"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -42,7 +41,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
-                app:layout_constraintVertical_bias="1.0"
+                app:layout_constraintVertical_bias="0.0"
                 app:layout_scrollFlags="scroll|enterAlways"
                 app:popupTheme="@style/MyTheme" />
 

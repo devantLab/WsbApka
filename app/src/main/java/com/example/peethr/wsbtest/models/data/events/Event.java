@@ -14,6 +14,8 @@ public class Event implements Parcelable{
     private String eventDescription;
     private String eventImage;
 
+    public Event(){}
+
     public Event(String eventTitle, String eventPlace, String eventImage, String eventDescription) {
         this.eventTitle = eventTitle;
         this.eventPlace = eventPlace;
@@ -36,6 +38,7 @@ public class Event implements Parcelable{
     public String getEventDescription() {
         return eventDescription;
     }
+
 
     @Override
     public int describeContents() {

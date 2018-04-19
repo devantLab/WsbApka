@@ -1,6 +1,5 @@
 package com.example.peethr.wsbtest.fragments;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
@@ -14,14 +13,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.peethr.wsbtest.R;
 import com.example.peethr.wsbtest.models.adapters.EventAdapter;
-import com.example.peethr.wsbtest.models.connection.GetEventData;
 import com.example.peethr.wsbtest.models.data.events.Event;
 import com.example.peethr.wsbtest.models.data.weather.Globals;
 import com.example.peethr.wsbtest.presenters.EventDescription;
-
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import java.util.LinkedList;
 
 
@@ -32,13 +33,13 @@ public class EventFragment extends Fragment {
 
     private TextView emptyRecyclerTextView;
 
-
-
     private LinkedList<Event> events = new LinkedList<>();
 
     private RecyclerView recyclerView;
     private SwipeRefreshLayout eventSwipeRefresh;
 
+    private DatabaseReference mRef;
+    private  EventAdapter eventAdapter;
 
     private OnFragmentInteractionListener mListener;
 
@@ -67,9 +68,15 @@ public class EventFragment extends Fragment {
         final View view = inflater.inflate(R.layout.fragment_event, container, false);
 
         recyclerView = view.findViewById(R.id.recyclerView);
+
         eventSwipeRefresh = view.findViewById(R.id.eventSwipeRefresh);
         emptyRecyclerTextView = view.findViewById(R.id.emptyRecyclerTextView);
 
+        eventAdapter = new EventAdapter(events);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(view.getContext());
+        recyclerView.setLayoutManager(layoutManager);
+
+        mRef = FirebaseDatabase.getInstance().getReference().child("Events");
         // get events data and put them in recycler
         getEventsData(view);
 
@@ -91,13 +98,43 @@ public class EventFragment extends Fragment {
         }
     }
 
-    private void getEventsData(View view) {
-        GetEventData getEventData = new GetEventData();
-        events = getEventData.getDataFromInternet();
+        private void getEventsData(View view) {
+        events.clear();
+        mRef.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
-        EventAdapter adapter = new EventAdapter(events);
+                Event event = new Event();
 
-        if (adapter.getItemCount() == 0)
+                event = dataSnapshot.getValue(Event.class);
+                events.add(event);
+                recyclerView.setAdapter(eventAdapter);
+
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+        if (eventAdapter.getItemCount() == 0)
         {
             emptyRecyclerTextView.setVisibility(View.VISIBLE);
 
@@ -105,12 +142,13 @@ public class EventFragment extends Fragment {
 
             emptyRecyclerTextView.setVisibility(View.GONE);
 
-            recyclerView.setAdapter(adapter);
+            recyclerView.setAdapter(eventAdapter);
 
-            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(view.getContext());
-            recyclerView.setLayoutManager(layoutManager);
+
         }
     }
+
+
 
     private void refreshEvents(final View view) {
         eventSwipeRefresh.setColorSchemeColors(Color.BLUE, Color.GRAY, Color.CYAN);

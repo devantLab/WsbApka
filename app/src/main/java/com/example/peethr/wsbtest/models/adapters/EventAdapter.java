@@ -23,6 +23,7 @@ import com.example.peethr.wsbtest.models.data.events.Event;
 import com.example.peethr.wsbtest.presenters.EventDescription;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.squareup.picasso.Picasso;
 
 import java.util.LinkedList;
@@ -36,6 +37,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
 
     private LinkedList<Event> event = new LinkedList();
     private Context context;
+
 
     public EventAdapter(LinkedList<Event> event) {
         this.event = event;
