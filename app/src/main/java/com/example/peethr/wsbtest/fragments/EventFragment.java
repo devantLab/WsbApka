@@ -23,6 +23,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+
 import java.util.LinkedList;
 
 
@@ -38,8 +40,8 @@ public class EventFragment extends Fragment {
     private RecyclerView recyclerView;
     private SwipeRefreshLayout eventSwipeRefresh;
 
-    private DatabaseReference mRef;
-    private  EventAdapter eventAdapter;
+    private Query mRef;
+    private EventAdapter eventAdapter;
 
     private OnFragmentInteractionListener mListener;
 
@@ -76,7 +78,7 @@ public class EventFragment extends Fragment {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(view.getContext());
         recyclerView.setLayoutManager(layoutManager);
 
-        mRef = FirebaseDatabase.getInstance().getReference().child("Events");
+        mRef = FirebaseDatabase.getInstance().getReference().child("Events").limitToLast(50);
         // get events data and put them in recycler
         getEventsData(view);
 
@@ -98,7 +100,7 @@ public class EventFragment extends Fragment {
         }
     }
 
-        private void getEventsData(View view) {
+        private void getEventsData(final View view) {
         events.clear();
         mRef.addChildEventListener(new ChildEventListener() {
             @Override
@@ -114,12 +116,12 @@ public class EventFragment extends Fragment {
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
+                refreshEvents(view);
             }
 
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
-
+                refreshEvents(view);
             }
 
             @Override

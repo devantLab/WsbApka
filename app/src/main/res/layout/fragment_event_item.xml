@@ -12,6 +12,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
+        android:layout_margin="8dp"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/shadow"
@@ -24,20 +25,15 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/eventPlace"
+                android:id="@+id/eventCity"
                 android:layout_width="wrap_content"
-                android:layout_height="18dp"
-                android:layout_marginBottom="8dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:text="Protokultura - Klub Sztuki Alternatywnej"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/eventTerm"
-                app:layout_constraintVertical_bias="0.0" />
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:text="Miasto"
+                android:textColor="#000"
+                android:textSize="14sp"
+                app:layout_constraintStart_toEndOf="@+id/eventItemCalendar"
+                app:layout_constraintTop_toBottomOf="@+id/eventTitle" />
 
             <ImageView
                 android:id="@+id/eventImage"
@@ -57,44 +53,96 @@
 
             <TextView
                 android:id="@+id/eventTitle"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="14dp"
                 android:layout_marginTop="12dp"
                 android:fontFamily="sans-serif"
                 android:text="Żabson to ziomal | Gdańsk"
                 android:textColor="#3C3959"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
+                android:textSize="22sp"
+                app:layout_constraintStart_toEndOf="@+id/eventItemCalendar"
                 app:layout_constraintTop_toBottomOf="@+id/eventImage" />
 
             <TextView
-                android:id="@+id/eventTerm"
+                android:id="@+id/eventTimeStart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:text="30 marca w godzinach 20:00 -23:30"
+                android:layout_marginStart="15dp"
+                android:text="startCzas"
+                app:layout_constraintStart_toEndOf="@+id/eventItemCalendar"
+                app:layout_constraintTop_toBottomOf="@+id/eventCity" />
+
+            <TextView
+                android:id="@+id/eventTimeEnd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="2dp"
+                android:text="koniecCzas"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/eventTitle" />
+                app:layout_constraintStart_toEndOf="@+id/eventTimeStart"
+                app:layout_constraintTop_toBottomOf="@+id/eventStreet" />
 
-            <ImageView
-                android:id="@+id/imageView2"
+            <TextView
+                android:id="@+id/eventStreet"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="26dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:alpha="0.5"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginEnd="8dp"
+                android:text="ulica"
+                android:textColor="#000"
+                android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:srcCompat="@drawable/event_heart" />
+                app:layout_constraintHorizontal_bias="0.009"
+                app:layout_constraintStart_toEndOf="@+id/eventCity"
+                app:layout_constraintTop_toBottomOf="@+id/eventTitle" />
+
+            <LinearLayout
+                android:id="@+id/eventItemCalendar"
+                android:layout_width="46dp"
+                android:layout_height="56dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/shadow"
+                android:backgroundTint="#000"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/eventImage"
+                app:layout_constraintVertical_bias="0.842">
+
+                <TextView
+                    android:id="@+id/eventMonth"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#00205b"
+                    android:gravity="center"
+                    android:text="Apr"
+                    android:textColor="#fff"
+                    android:textSize="16dp" />
+
+                <TextView
+                    android:id="@+id/eventDay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/corners_radius"
+                    android:gravity="center"
+                    android:text="04"
+                    android:textColor="#000"
+                    android:textSize="26dp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/eventDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="TextView"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
 
         </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.CardView>

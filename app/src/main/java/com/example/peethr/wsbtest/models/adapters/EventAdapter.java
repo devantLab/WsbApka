@@ -69,14 +69,25 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
     public class EventViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         private TextView eventTitle;
-        private TextView eventPlace;
+        private TextView eventCity;
+        private TextView eventStreet;
+        private TextView eventDay;
+        private TextView eventMonth;
+        private TextView eventTimeStart;
+        private TextView eventTimeEnd;
         private ImageView eventImage;
+
 
         public EventViewHolder(View itemView) {
             super(itemView);
 
             eventTitle = itemView.findViewById(R.id.eventTitle);
-            eventPlace = itemView.findViewById(R.id.eventPlace);
+            eventCity = itemView.findViewById(R.id.eventCity);
+            eventStreet = itemView.findViewById(R.id.eventStreet);
+            eventDay = itemView.findViewById(R.id.eventDay);
+            eventMonth = itemView.findViewById(R.id.eventMonth);
+            eventTimeStart = itemView.findViewById(R.id.eventTimeStart);
+            eventTimeEnd = itemView.findViewById(R.id.eventTimeEnd);
             eventImage = itemView.findViewById(R.id.eventImage);
             itemView.setOnClickListener(this);
         }
@@ -84,11 +95,23 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
         private void bindEvent(Event event)
         {
             eventTitle.setText(event.getEventTitle());
-            eventPlace.setText(event.getEventPlace());
+            eventCity.setText(event.getEventCity()+",");
+            eventStreet.setText(event.getEventStreet());
+            eventDay.setText(event.getEventDay()+"");
+            eventMonth.setText(event.getEventMonth()+"");
+            if(event.getEventTimeEnd()!="0"){
+                eventTimeStart.setText(event.getEventTimeStart()+"-");
+                eventTimeEnd.setText(event.getEventTimeEnd());
+            }
+            else {
+                eventTimeStart.setText(event.getEventTimeStart());
+            }
             Picasso.get()
                     .load(event.getEventImage())
                     .into(eventImage);
         }
+
+
 
         @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
         @Override
