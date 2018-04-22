@@ -10,6 +10,7 @@ import android.support.annotation.RequiresApi;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.util.LogPrinter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +20,9 @@ import android.widget.Toast;
 
 import com.example.peethr.wsbtest.R;
 import com.example.peethr.wsbtest.fragments.EventFragment;
+import com.example.peethr.wsbtest.models.converters.MonthConverter;
 import com.example.peethr.wsbtest.models.data.events.Event;
+import com.example.peethr.wsbtest.models.data.preferences.ManageSharedPreferences;
 import com.example.peethr.wsbtest.presenters.EventDescription;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -37,7 +40,8 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
 
     private LinkedList<Event> event = new LinkedList();
     private Context context;
-
+    private ManageSharedPreferences manageSharedPreferences;
+    private String language;
 
     public EventAdapter(LinkedList<Event> event) {
         this.event = event;
@@ -51,7 +55,9 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
         EventViewHolder viewHolder = new EventViewHolder(view);
 
         context = parent.getContext();
-
+        manageSharedPreferences = new ManageSharedPreferences(context);
+        language = manageSharedPreferences.getLanguage();
+        Log.i("LANG", manageSharedPreferences.getLanguage()+"");
         return viewHolder;
 
     }
@@ -98,7 +104,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
             eventCity.setText(event.getEventCity()+",");
             eventStreet.setText(event.getEventStreet());
             eventDay.setText(event.getEventDay()+"");
-            eventMonth.setText(event.getEventMonth()+"");
+            eventMonth.setText(MonthConverter.nameOfMonth(event.getEventMonth(), manageSharedPreferences.getLanguage()));
             if(event.getEventTimeEnd()!="0"){
                 eventTimeStart.setText(event.getEventTimeStart()+"-");
                 eventTimeEnd.setText(event.getEventTimeEnd());

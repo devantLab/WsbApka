@@ -60,27 +60,34 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
     public class PlaceViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private TextView placeTitle;
-        private TextView placeDescription;
+        private TextView placeCity;
+        private TextView placeStreet;
+        private TextView placeCategory;
         private ImageView placeImage;
 
         public PlaceViewHolder(View itemView) {
             super(itemView);
 
             placeTitle = itemView.findViewById(R.id.placeTitle);
-            placeDescription = itemView.findViewById(R.id.placeDescription);
+            placeCity = itemView.findViewById(R.id.placeCity);
             placeImage = itemView.findViewById(R.id.placeImage);
+            placeStreet = itemView.findViewById(R.id.placeStreet);
+            placeCategory = itemView.findViewById(R.id.placeCategory);
             itemView.setOnClickListener(this);
         }
 
         private void bindPlace(Place place)
         {
             placeTitle.setText(place.getPlaceTitle());
-            placeDescription.setText(place.getPlaceDescription());
+            placeCity.setText(place.getPlaceCity()+",");
+            placeStreet.setText(place.getPlaceStreet());
+            placeCategory.setText(place.getPlaceCategory());
             Picasso.get()
                     .load(place.getPlaceImage())
                     .into(placeImage);
         }
 
+        @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
         @Override
         public void onClick(View v) { startPlaceDescription(); }
 

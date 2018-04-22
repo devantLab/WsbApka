@@ -2,6 +2,7 @@ package com.example.peethr.wsbtest.presenters;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -23,6 +24,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.example.peethr.wsbtest.models.data.preferences.ManageSharedPreferences;
 import com.example.peethr.wsbtest.R;
@@ -64,6 +66,7 @@ public class MainActivity extends AppCompatActivity implements FragmentInteracti
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
 
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -156,27 +159,30 @@ public class MainActivity extends AppCompatActivity implements FragmentInteracti
                 @Override
                 public void onClick(View v) {
                     manageSharedPreferences.setLanguage("ru");
-                    Toast.makeText(MainActivity.this, "Zmieniono język", Toast.LENGTH_SHORT).show();
                     dialog.dismiss();
                     drawerLayout.closeDrawer(GravityCompat.START);
+                    Intent intent = new Intent(MainActivity.this, SplashScreen.class);
+                    startActivity(intent);
                 }
             });
             ukBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     manageSharedPreferences.setLanguage("en");
-                    Toast.makeText(MainActivity.this, "Zmieniono język", Toast.LENGTH_SHORT).show();
                     dialog.dismiss();
                     drawerLayout.closeDrawer(GravityCompat.START);
+                    Intent intent = new Intent(MainActivity.this, SplashScreen.class);
+                    startActivity(intent);
                 }
             });
             polBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     manageSharedPreferences.setLanguage("pl");
-                    Toast.makeText(MainActivity.this, "Zmieniono język", Toast.LENGTH_SHORT).show();
                     dialog.dismiss();
                     drawerLayout.closeDrawer(GravityCompat.START);
+                    Intent intent = new Intent(MainActivity.this, SplashScreen.class);
+                    startActivity(intent);
                 }
             });
 

@@ -54,6 +54,10 @@
         <activity android:name=".presenters.RecentAppActivity"
             android:theme="@style/AppTheme.SlidrActivityTheme"/>
         <activity android:name=".presenters.RecentAppDescription"></activity>
+
+       <meta-data android:name="com.google.android.geo.API_KEY"
+           android:value="AIzaSyDFFUXCrZhU4h2-q_rCn1Yy34riDo9OC6c"/>
+
     </application>
 
 </manifest>

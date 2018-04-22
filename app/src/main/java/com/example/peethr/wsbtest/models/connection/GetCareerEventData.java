@@ -24,21 +24,21 @@ public class GetCareerEventData {
     public LinkedList getDataFromInternet()
     {
 
-
-        careerEvent.add(new CareerEvent("Praca!", "Lider w branży energetycznej, w związku z rozwojem firmy poszukuje kandydatów na stanowisko:",
-                "https://scontent-amt2-1.xx.fbcdn.net/v/t1.0-9/30581416_1749786491739743_2838991549958345180_n.jpg?_nc_cat=0&oh=1ad51ce7bd512b899e86cfa80e47d3aa&oe=5B641A28", lorem));
-        careerEvent.add(new CareerEvent("Praca!", "Lider w branży energetycznej, w związku z rozwojem firmy poszukuje kandydatów na stanowisko:",
-                "https://scontent-amt2-1.xx.fbcdn.net/v/t1.0-9/30581416_1749786491739743_2838991549958345180_n.jpg?_nc_cat=0&oh=1ad51ce7bd512b899e86cfa80e47d3aa&oe=5B641A28", lorem));
-        careerEvent.add(new CareerEvent("Praca!", "Lider w branży energetycznej, w związku z rozwojem firmy poszukuje kandydatów na stanowisko:",
-                "https://scontent-amt2-1.xx.fbcdn.net/v/t1.0-9/30581416_1749786491739743_2838991549958345180_n.jpg?_nc_cat=0&oh=1ad51ce7bd512b899e86cfa80e47d3aa&oe=5B641A28", lorem));
-        careerEvent.add(new CareerEvent("Praca!", "Lider w branży energetycznej, w związku z rozwojem firmy poszukuje kandydatów na stanowisko:",
-                "https://scontent-amt2-1.xx.fbcdn.net/v/t1.0-9/30581416_1749786491739743_2838991549958345180_n.jpg?_nc_cat=0&oh=1ad51ce7bd512b899e86cfa80e47d3aa&oe=5B641A28", lorem));
-        careerEvent.add(new CareerEvent("Praca!", "Lider w branży energetycznej, w związku z rozwojem firmy poszukuje kandydatów na stanowisko:",
-                "https://scontent-amt2-1.xx.fbcdn.net/v/t1.0-9/30581416_1749786491739743_2838991549958345180_n.jpg?_nc_cat=0&oh=1ad51ce7bd512b899e86cfa80e47d3aa&oe=5B641A28", lorem));
-        careerEvent.add(new CareerEvent("Praca!", "Lider w branży energetycznej, w związku z rozwojem firmy poszukuje kandydatów na stanowisko:",
-                "https://scontent-amt2-1.xx.fbcdn.net/v/t1.0-9/30581416_1749786491739743_2838991549958345180_n.jpg?_nc_cat=0&oh=1ad51ce7bd512b899e86cfa80e47d3aa&oe=5B641A28", lorem));
-        careerEvent.add(new CareerEvent("Praca!", "Lider w branży energetycznej, w związku z rozwojem firmy poszukuje kandydatów na stanowisko:",
-                "https://scontent-amt2-1.xx.fbcdn.net/v/t1.0-9/30581416_1749786491739743_2838991549958345180_n.jpg?_nc_cat=0&oh=1ad51ce7bd512b899e86cfa80e47d3aa&oe=5B641A28", lorem));
+//
+//        careerEvent.add(new CareerEvent("Praca!", "Lider w branży energetycznej, w związku z rozwojem firmy poszukuje kandydatów na stanowisko:",
+//                "https://scontent-amt2-1.xx.fbcdn.net/v/t1.0-9/30581416_1749786491739743_2838991549958345180_n.jpg?_nc_cat=0&oh=1ad51ce7bd512b899e86cfa80e47d3aa&oe=5B641A28", lorem));
+//        careerEvent.add(new CareerEvent("Praca!", "Lider w branży energetycznej, w związku z rozwojem firmy poszukuje kandydatów na stanowisko:",
+//                "https://scontent-amt2-1.xx.fbcdn.net/v/t1.0-9/30581416_1749786491739743_2838991549958345180_n.jpg?_nc_cat=0&oh=1ad51ce7bd512b899e86cfa80e47d3aa&oe=5B641A28", lorem));
+//        careerEvent.add(new CareerEvent("Praca!", "Lider w branży energetycznej, w związku z rozwojem firmy poszukuje kandydatów na stanowisko:",
+//                "https://scontent-amt2-1.xx.fbcdn.net/v/t1.0-9/30581416_1749786491739743_2838991549958345180_n.jpg?_nc_cat=0&oh=1ad51ce7bd512b899e86cfa80e47d3aa&oe=5B641A28", lorem));
+//        careerEvent.add(new CareerEvent("Praca!", "Lider w branży energetycznej, w związku z rozwojem firmy poszukuje kandydatów na stanowisko:",
+//                "https://scontent-amt2-1.xx.fbcdn.net/v/t1.0-9/30581416_1749786491739743_2838991549958345180_n.jpg?_nc_cat=0&oh=1ad51ce7bd512b899e86cfa80e47d3aa&oe=5B641A28", lorem));
+//        careerEvent.add(new CareerEvent("Praca!", "Lider w branży energetycznej, w związku z rozwojem firmy poszukuje kandydatów na stanowisko:",
+//                "https://scontent-amt2-1.xx.fbcdn.net/v/t1.0-9/30581416_1749786491739743_2838991549958345180_n.jpg?_nc_cat=0&oh=1ad51ce7bd512b899e86cfa80e47d3aa&oe=5B641A28", lorem));
+//        careerEvent.add(new CareerEvent("Praca!", "Lider w branży energetycznej, w związku z rozwojem firmy poszukuje kandydatów na stanowisko:",
+//                "https://scontent-amt2-1.xx.fbcdn.net/v/t1.0-9/30581416_1749786491739743_2838991549958345180_n.jpg?_nc_cat=0&oh=1ad51ce7bd512b899e86cfa80e47d3aa&oe=5B641A28", lorem));
+//        careerEvent.add(new CareerEvent("Praca!", "Lider w branży energetycznej, w związku z rozwojem firmy poszukuje kandydatów na stanowisko:",
+//                "https://scontent-amt2-1.xx.fbcdn.net/v/t1.0-9/30581416_1749786491739743_2838991549958345180_n.jpg?_nc_cat=0&oh=1ad51ce7bd512b899e86cfa80e47d3aa&oe=5B641A28", lorem));
 
         return careerEvent;
     }

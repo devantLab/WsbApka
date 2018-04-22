@@ -22,6 +22,11 @@ import com.example.peethr.wsbtest.models.adapters.PlaceAdapter;
 import com.example.peethr.wsbtest.models.connection.GetEventData;
 import com.example.peethr.wsbtest.models.connection.GetPlaceData;
 import com.example.peethr.wsbtest.models.data.places.Place;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.r0adkll.slidr.Slidr;
 import com.r0adkll.slidr.model.SlidrInterface;
 
@@ -35,6 +40,9 @@ public class PlacesActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private SwipeRefreshLayout placeSwipeRefresh;
+
+    private PlaceAdapter placeAdapter;
+    private Query mRef;
 
     private Toolbar toolbar;
 
@@ -58,16 +66,17 @@ public class PlacesActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.placeRecyclerView);
         placeSwipeRefresh = findViewById(R.id.placeSwipeRefresh);
         emptyRecyclerTextView = findViewById(R.id.placeEmptyRecyclerTextView);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(PlacesActivity.this);
+        recyclerView.setLayoutManager(layoutManager);
+
+        placeAdapter = new PlaceAdapter(places);
+        mRef = FirebaseDatabase.getInstance().getReference().child("Places");
 
         slidr = Slidr.attach(this);
 
         getPlacesData();
         refreshPlace();
     }
-
-
-
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -76,11 +85,41 @@ public class PlacesActivity extends AppCompatActivity {
     }
 
     private void getPlacesData(){
-        GetPlaceData getPlaceData = new GetPlaceData();
-        places = getPlaceData.getDataFromInternet();
 
-        PlaceAdapter adapter = new PlaceAdapter(places);
-        if (adapter.getItemCount() == 0)
+        places.clear();
+
+        mRef.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                Place place = new Place();
+                place = dataSnapshot.getValue(Place.class);
+                places.add(place);
+                recyclerView.setAdapter(placeAdapter);
+                refreshPlace();
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        if (placeAdapter.getItemCount() == 0)
         {
             emptyRecyclerTextView.setVisibility(View.VISIBLE);
 
@@ -88,10 +127,7 @@ public class PlacesActivity extends AppCompatActivity {
 
             emptyRecyclerTextView.setVisibility(View.GONE);
 
-            recyclerView.setAdapter(adapter);
-
-            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(PlacesActivity.this);
-            recyclerView.setLayoutManager(layoutManager);
+            recyclerView.setAdapter(placeAdapter);
         }
     }
     private void refreshPlace(){

@@ -101,7 +101,9 @@ public class EventFragment extends Fragment {
     }
 
         private void getEventsData(final View view) {
+
         events.clear();
+
         mRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -111,6 +113,7 @@ public class EventFragment extends Fragment {
                 event = dataSnapshot.getValue(Event.class);
                 events.add(event);
                 recyclerView.setAdapter(eventAdapter);
+                refreshEvents(view);
 
             }
 
@@ -139,17 +142,13 @@ public class EventFragment extends Fragment {
         if (eventAdapter.getItemCount() == 0)
         {
             emptyRecyclerTextView.setVisibility(View.VISIBLE);
-
         } else {
 
             emptyRecyclerTextView.setVisibility(View.GONE);
 
             recyclerView.setAdapter(eventAdapter);
-
-
         }
     }
-
 
 
     private void refreshEvents(final View view) {

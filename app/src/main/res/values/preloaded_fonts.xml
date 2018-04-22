@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="preloaded_fonts" translatable="false">
+        <item>@font/boogaloo</item>
+        <item>@font/kalam_bold</item>
+        <item>@font/nothing_you_could_do</item>
+        <item>@font/rock_salt</item>
+    </array>
+</resources>

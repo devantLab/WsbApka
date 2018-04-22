@@ -9,6 +9,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 /**
  * Created by goracy on 14.03.18.
@@ -16,7 +17,7 @@ import java.util.Date;
 
 public class Event implements Parcelable{
 
-    private int eventId;
+//    private int eventId;
     private String eventTitle;
     private String eventDescription;
     private String eventCity;
@@ -24,67 +25,56 @@ public class Event implements Parcelable{
     private String eventTimeStart;
     private String eventTimeEnd;
     private String eventLink;
-//    private double eventLatitude;
-//    private double eventLongitude;
+    private String eventLatitude;
+    private String eventLongitude;
     private String eventDate;
     private String eventClicks;
-    private boolean eventIsWSB;
+//    private boolean eventIsWSB;
     private String eventImage;
     private int eventDay;
     private int eventMonth;
 
+
     public Event(){}
 
-//    public Event(int eventId, String eventTitle, String eventDescription, String eventCity,
-//                 String eventStreet, String eventTimeStart, String eventTimeEnd, String eventLink,
-//                 String eventDate, String eventClicks,
-//                 boolean eventIsWSB, String eventImage) {
-//
-//        this.eventId = eventId;
-//        this.eventTitle = eventTitle;
-//        this.eventDescription = eventDescription;
-//        this.eventCity = eventCity;
-//        this.eventStreet = eventStreet;
-//        this.eventTimeStart = eventTimeStart;
-//        this.eventTimeEnd = eventTimeEnd;
-//        this.eventLink = eventLink;
-//        this.eventLatitude = eventLatitude;
-//        this.eventLongitude = eventLongitude;
-//        this.eventDate = eventDate;
-//        this.eventClicks = eventClicks;
-//        this.eventIsWSB = eventIsWSB;
-//        this.eventImage = eventImage;
-//    }
 
-    private int separateDay(String eventDate){
-        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
-        Date eDate = null;
+    private int separateDay(String eventDate) {
+        String eDate = eventDate;
+        String pattern = "dd-MM-yyyy";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        Date date = null;
         try {
-            eDate = format.parse(eventDate);
+            date = simpleDateFormat.parse(eDate);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        eventDay = eDate.getDay();
-        Log.i("Gówno", eventDay+"");
+        Calendar calendar = new GregorianCalendar();
+        calendar.setTime(date);
+        eventDay = calendar.get(calendar.DAY_OF_MONTH);
         return eventDay;
     }
 
-    private int separateMonth(String eventDate){
-        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
-        Date eDate = null;
+    private int separateMonth(String eventDate) {
+            String eDate = eventDate;
+            String pattern = "dd-MM-yyyy";
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        Date date = null;
         try {
-            eDate = format.parse(eventDate);
+            date = simpleDateFormat.parse(eDate);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        eventMonth = eDate.getMonth();
-        Log.i("Gówno", eventMonth+"");
-        return eventMonth;
+        Calendar calendar = new GregorianCalendar();
+            calendar.setTime(date);
+            eventMonth = calendar.get(calendar.MONTH);
+            return eventMonth;
     }
 
-    public int getEventId() {
-        return eventId;
-    }
+
+
+//    public int getEventId() {
+//        return eventId;
+//    }
 
     public int getEventDay() {
         return separateDay(eventDate);
@@ -122,13 +112,13 @@ public class Event implements Parcelable{
         return eventLink;
     }
 
-//    public double getEventLatitude() {
-//        return eventLatitude;
-//    }
-//
-//    public double getEventLongitude() {
-//        return eventLongitude;
-//    }
+    public String getEventLatitude() {
+        return eventLatitude;
+    }
+
+    public String getEventLongitude() {
+        return eventLongitude;
+    }
 
     public String getEventDate() {
         return eventDate;
@@ -138,9 +128,9 @@ public class Event implements Parcelable{
         return eventClicks;
     }
 
-    public boolean isEventIsWSB() {
-        return eventIsWSB;
-    }
+//    public boolean isEventIsWSB() {
+//        return eventIsWSB;
+//    }
 
     public String getEventImage() {
         return eventImage;
@@ -153,7 +143,7 @@ public class Event implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(eventId);
+//        dest.writeInt(eventId);
         dest.writeString(eventTitle);
         dest.writeString(eventDescription);
         dest.writeString(eventCity);
@@ -163,14 +153,14 @@ public class Event implements Parcelable{
         dest.writeString(eventLink);
         dest.writeString(eventTimeStart);
         dest.writeString(eventTimeEnd);
-//        dest.writeDouble(eventLatitude);
-//        dest.writeDouble(eventLongitude);
+        dest.writeString(eventLatitude);
+        dest.writeString(eventLongitude);
     }
 
 
     public Event(Parcel in)
     {
-        eventId = in.readInt();
+//        eventId = in.readInt();
         eventTitle = in.readString();
         eventDescription = in.readString();
         eventCity = in.readString();
@@ -180,8 +170,8 @@ public class Event implements Parcelable{
         eventLink = in.readString();
         eventTimeStart = in.readString();
         eventTimeEnd = in.readString();
-//        eventLatitude = in.readDouble();
-//        eventLongitude = in.readDouble();
+        eventLatitude = in.readString();
+        eventLongitude = in.readString();
     }
 
     public static final Creator<Event> CREATOR = new Creator<Event>() {

@@ -61,14 +61,14 @@ public class CareerEventAdapter extends RecyclerView.Adapter<CareerEventAdapter.
     public class CareerEventViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         private TextView careerEventTitle;
-        private TextView careerEventPlace;
+        private TextView careerEventType;
         private ImageView careerEventImage;
 
         public CareerEventViewHolder(View itemView) {
             super(itemView);
 
             careerEventTitle = itemView.findViewById(R.id.careerEventTitle);
-            careerEventPlace = itemView.findViewById(R.id.careerEventPlace);
+            careerEventType = itemView.findViewById(R.id.careerEventType);
             careerEventImage = itemView.findViewById(R.id.careerEventImage);
             itemView.setOnClickListener(this);
         }
@@ -76,7 +76,7 @@ public class CareerEventAdapter extends RecyclerView.Adapter<CareerEventAdapter.
         private void bindCareerEvent(CareerEvent careerEvent)
         {
             careerEventTitle.setText(careerEvent.getCareerEventTitle());
-            careerEventPlace.setText(careerEvent.getCareerEventPlace());
+            careerEventType.setText(careerEvent.getCareerEventType());
             Picasso.get()
                     .load(careerEvent.getCareerEventImage())
                     .into(careerEventImage);
