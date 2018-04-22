@@ -5,24 +5,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.TextView;
-
-
+import android.widget.Spinner;
+import android.widget.Toast;
 import com.example.peethr.wsbtest.R;
 import com.example.peethr.wsbtest.models.data.preferences.ManageSharedPreferences;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.r0adkll.slidr.Slidr;
 import com.r0adkll.slidr.model.SlidrInterface;
 
-public class HoursActivity extends AppCompatActivity {
+
+public class HoursActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private Button resetLanguageButton;
 
@@ -33,11 +28,8 @@ public class HoursActivity extends AppCompatActivity {
 
     private SlidrInterface slider;
 
-    private TextView tv;
-
-    private DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
-    private DatabaseReference conditionRef = rootRef.child("events").child("0").child("event_description");
-
+    private Spinner hoursSpinner;
+    private String[] departmentsName = {"Dziekanat","Dział zagraniczny","Biuro karier"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +44,9 @@ public class HoursActivity extends AppCompatActivity {
         toolbar.setTitleTextColor(Color.WHITE);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        hoursSpinner = findViewById(R.id.hoursSpinner);
+        hoursSpinner.setOnItemSelectedListener(this);
+
         slider = Slidr.attach(this);
 
         manageSharedPreferences = new ManageSharedPreferences(this);
@@ -65,27 +60,21 @@ public class HoursActivity extends AppCompatActivity {
             }
         });
 
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, departmentsName);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        tv = findViewById(R.id.tv);
+        hoursSpinner.setAdapter(adapter);
 
     }
 
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+    }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        conditionRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String text = dataSnapshot.getValue(String.class);
-                tv.setText(text);
-            }
+    public void onNothingSelected(AdapterView<?> parent) {
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
     }
 
     @Override
@@ -93,4 +82,6 @@ public class HoursActivity extends AppCompatActivity {
         onBackPressed();
         return super.onOptionsItemSelected(item);
     }
+
+
 }

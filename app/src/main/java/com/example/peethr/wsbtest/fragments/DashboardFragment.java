@@ -362,7 +362,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
         if (!events.isEmpty())
         {
             eventTitle.setText(events.get(0).getEventTitle());
-            eventMessage.setText(events.get(0).getEventPlace());
+            eventMessage.setText(events.get(0).getEventCity());
         }
         // Show info when no events
         else
