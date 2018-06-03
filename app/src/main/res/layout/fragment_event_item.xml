@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.widget.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/eventLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -33,7 +32,8 @@
                 android:textColor="#000"
                 android:textSize="14sp"
                 app:layout_constraintStart_toEndOf="@+id/eventItemCalendar"
-                app:layout_constraintTop_toBottomOf="@+id/eventTitle" />
+                app:layout_constraintTop_toBottomOf="@+id/eventTitle"
+                android:layout_marginLeft="15dp" />
 
             <ImageView
                 android:id="@+id/eventImage"
@@ -62,7 +62,8 @@
                 android:textColor="#3C3959"
                 android:textSize="22sp"
                 app:layout_constraintStart_toEndOf="@+id/eventItemCalendar"
-                app:layout_constraintTop_toBottomOf="@+id/eventImage" />
+                app:layout_constraintTop_toBottomOf="@+id/eventImage"
+                android:layout_marginLeft="14dp" />
 
             <TextView
                 android:id="@+id/eventTimeStart"
@@ -71,7 +72,8 @@
                 android:layout_marginStart="15dp"
                 android:text="startCzas"
                 app:layout_constraintStart_toEndOf="@+id/eventItemCalendar"
-                app:layout_constraintTop_toBottomOf="@+id/eventCity" />
+                app:layout_constraintTop_toBottomOf="@+id/eventCity"
+                android:layout_marginLeft="15dp" />
 
             <TextView
                 android:id="@+id/eventTimeEnd"
@@ -83,7 +85,9 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/eventTimeStart"
-                app:layout_constraintTop_toBottomOf="@+id/eventStreet" />
+                app:layout_constraintTop_toBottomOf="@+id/eventStreet"
+                android:layout_marginRight="8dp"
+                android:layout_marginLeft="2dp" />
 
             <TextView
                 android:id="@+id/eventStreet"
@@ -96,7 +100,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.009"
                 app:layout_constraintStart_toEndOf="@+id/eventCity"
-                app:layout_constraintTop_toBottomOf="@+id/eventTitle" />
+                app:layout_constraintTop_toBottomOf="@+id/eventTitle"
+                android:layout_marginRight="8dp" />
 
             <LinearLayout
                 android:id="@+id/eventItemCalendar"
@@ -111,7 +116,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/eventImage"
-                app:layout_constraintVertical_bias="0.842">
+                app:layout_constraintVertical_bias="0.842"
+                android:layout_marginLeft="12dp">
 
                 <TextView
                     android:id="@+id/eventMonth"

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.peethr.wsbtest">
+    package="pl.devant.wsbnotify">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".presenters.SplashScreen"
+            android:name="pl.devant.wsbnotify.presenters.SplashScreen"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,38 +22,38 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".presenters.MainActivity"
+            android:name="pl.devant.wsbnotify.presenters.MainActivity"
             android:screenOrientation="portrait" />
 
-        <service android:name=".services.AlertService" />
+        <service android:name="pl.devant.wsbnotify.services.AlertService" />
 
         <activity
-            android:name=".presenters.EventDescription"
+            android:name="pl.devant.wsbnotify.presenters.EventDescription"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".presenters.MapActivity"
+            android:name="pl.devant.wsbnotify.presenters.MapActivity"
             android:theme="@style/AppTheme.SlidrActivityTheme" />
         <activity
-            android:name=".presenters.HoursActivity"
+            android:name="pl.devant.wsbnotify.presenters.HoursActivity"
             android:theme="@style/AppTheme.SlidrActivityTheme" />
         <activity
-            android:name=".presenters.SelectLanguage"
+            android:name="pl.devant.wsbnotify.presenters.SelectLanguage"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".presenters.PlacesActivity"
+            android:name="pl.devant.wsbnotify.presenters.PlacesActivity"
             android:theme="@style/AppTheme.SlidrActivityTheme" />
         <activity
-            android:name=".presenters.PlaceDescription"
+            android:name="pl.devant.wsbnotify.presenters.PlaceDescription"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".presenters.CareerActivity"
+            android:name="pl.devant.wsbnotify.presenters.CareerActivity"
             android:theme="@style/AppTheme.SlidrActivityTheme" />
         <activity
-            android:name=".presenters.CareerEventDescription"
+            android:name="pl.devant.wsbnotify.presenters.CareerEventDescription"
             android:screenOrientation="portrait" />
-        <activity android:name=".presenters.RecentAppActivity"
+        <activity android:name="pl.devant.wsbnotify.presenters.RecentAppActivity"
             android:theme="@style/AppTheme.SlidrActivityTheme"/>
-        <activity android:name=".presenters.RecentAppDescription"></activity>
+        <activity android:name="pl.devant.wsbnotify.presenters.RecentAppDescription"></activity>
 
        <meta-data android:name="com.google.android.geo.API_KEY"
            android:value="AIzaSyDFFUXCrZhU4h2-q_rCn1Yy34riDo9OC6c"/>

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">WsbTest</string>
+    <string name="app_name">wsb Notify</string>
     <string name="temperature">Gdańsk</string>
     <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam molestie sapien eleifend libero aliquet molestie. Morbi et mi malesuada, posuere lectus in, pulvinar nisi. Donec a aliquet est. Morbi quis eros sed diam aliquam dictum ac non elit. Donec at nisi sed purus varius rutrum nec eget enim. Pellentesque ac ligula non lacus iaculis suscipit. </string>
 

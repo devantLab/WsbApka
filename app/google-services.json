@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:417621184154:android:9183a6e1696c602d",
         "android_client_info": {
-          "package_name": "com.example.peethr.wsbtest"
+          "package_name": "pl.devant.wsbnotify"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "417621184154-cc9b8flbqesha24vek1mdcdsdlpdevlc.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.peethr.wsbtest",
+            "package_name": "pl.devant.wsbnotify",
             "certificate_hash": "27c357a8c3127c843052618300c91e750b85db2e"
           }
         },
@@ -47,7 +47,7 @@
               "client_id": "417621184154-qqmab15pg995iplits2p5m2665fss72u.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "pl.devant.WSB"
+                "bundle_id": "pl.devant.wsbnotify"
               }
             }
           ]

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.widget.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/alertLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -86,7 +85,8 @@
             app:layout_constraintBottom_toBottomOf="@+id/tipButton"
             app:layout_constraintEnd_toEndOf="@+id/tipButton"
             app:layout_constraintTop_toTopOf="@+id/tipButton"
-            app:srcCompat="@drawable/ic_navigate_next_white_36dp" />
+            app:srcCompat="@drawable/ic_navigate_next_white_36dp"
+            android:layout_marginRight="8dp" />
 
 
     </android.support.constraint.ConstraintLayout>

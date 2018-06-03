@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#ffffff"
     android:orientation="vertical"
-    tools:context="com.example.peethr.wsbtest.presenters.MapActivity">
+    tools:context="presenters.MapActivity">
 
     <include
         layout="@layout/toolbar"

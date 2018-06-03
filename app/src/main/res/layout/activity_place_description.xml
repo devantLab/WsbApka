@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.peethr.wsbtest.presenters.PlaceDescription">
+    tools:context="presenters.PlaceDescription">
 
     <ImageView
         android:id="@+id/placeDescriptionImage"
@@ -64,7 +64,9 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="Żabson" />
+                tools:text="Żabson"
+                android:layout_marginRight="8dp"
+                android:layout_marginLeft="12dp" />
 
             <TextView
                 android:id="@+id/placeDescriptionDescription"
@@ -79,7 +81,9 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/imageView2"
                 app:layout_constraintTop_toBottomOf="@+id/placeDescriptionTitle"
-                tools:text="Description" />
+                tools:text="Description"
+                android:layout_marginRight="36dp"
+                android:layout_marginLeft="8dp" />
 
             <ImageView
                 android:id="@+id/imageView2"
@@ -89,7 +93,9 @@
                 android:layout_marginTop="12dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/placeDescriptionTitle"
-                app:srcCompat="@drawable/ic_info_black_48dp" />
+                app:srcCompat="@drawable/ic_info_black_48dp"
+                android:layout_marginLeft="16dp"
+                tools:ignore="VectorDrawableCompat" />
 
             <ImageView
                 android:id="@+id/imageView4"
@@ -99,7 +105,9 @@
                 android:layout_marginTop="16dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/placeDescriptionDescription"
-                app:srcCompat="@drawable/ic_location_on_black_48dp" />
+                app:srcCompat="@drawable/ic_location_on_black_48dp"
+                android:layout_marginLeft="16dp"
+                tools:ignore="VectorDrawableCompat" />
 
             <TextView
                 android:id="@+id/placeDescriptionPlace"

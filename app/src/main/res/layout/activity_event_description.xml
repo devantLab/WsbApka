@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.peethr.wsbtest.presenters.EventDescription">
+    tools:context="presenters.EventDescription">
 
     <ImageView
         android:id="@+id/eventDescriptionImage"
@@ -66,7 +66,10 @@
                 app:layout_constraintHorizontal_bias="0.501"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="Żabson" />
+                tools:text="Żabson"
+                android:layout_marginRight="8dp"
+                android:layout_marginLeft="12dp"
+                tools:ignore="NotSibling" />
 
             <TextView
                 android:id="@+id/eventDescriptionDescription"
@@ -80,7 +83,8 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/imageView5"
                 app:layout_constraintTop_toBottomOf="@+id/eventDescriptionTime"
-                tools:text="Lorem" />
+                tools:text="Lorem"
+                android:layout_marginLeft="8dp" />
 
             <Button
                 android:id="@+id/eventPageButton"
@@ -108,7 +112,9 @@
                 android:layout_marginTop="16dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView6"
-                app:srcCompat="@drawable/ic_info_black_48dp" />
+                app:srcCompat="@drawable/ic_info_black_48dp"
+                android:layout_marginLeft="16dp"
+                tools:ignore="VectorDrawableCompat" />
 
             <ImageView
                 android:id="@+id/imageView6"
@@ -118,7 +124,9 @@
                 android:layout_marginTop="16dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/eventDescriptionTitle"
-                app:srcCompat="@drawable/ic_access_time_black_48dp" />
+                app:srcCompat="@drawable/ic_access_time_black_48dp"
+                android:layout_marginLeft="16dp"
+                tools:ignore="VectorDrawableCompat" />
 
             <TextView
                 android:id="@+id/eventDescriptionTime"
@@ -129,7 +137,8 @@
                 android:text="TextView"
                 android:textSize="16sp"
                 app:layout_constraintStart_toEndOf="@+id/imageView6"
-                app:layout_constraintTop_toBottomOf="@+id/eventDescriptionTitle" />
+                app:layout_constraintTop_toBottomOf="@+id/eventDescriptionTitle"
+                android:layout_marginLeft="8dp" />
 
             <TextView
                 android:id="@+id/eventDescriptionDate"
@@ -140,7 +149,8 @@
                 android:text="TextView"
                 android:textSize="16sp"
                 app:layout_constraintStart_toEndOf="@+id/eventDescriptionTime"
-                app:layout_constraintTop_toBottomOf="@+id/eventDescriptionTitle" />
+                app:layout_constraintTop_toBottomOf="@+id/eventDescriptionTitle"
+                android:layout_marginLeft="8dp" />
 
             <TextView
                 android:id="@+id/textView5"
@@ -164,7 +174,9 @@
                 android:layout_marginTop="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/eventDescriptionDescription"
-                app:srcCompat="@drawable/ic_location_on_black_48dp" />
+                app:srcCompat="@drawable/ic_location_on_black_48dp"
+                android:layout_marginLeft="16dp"
+                tools:ignore="VectorDrawableCompat" />
 
             <com.google.android.gms.maps.MapView
                 android:id="@+id/mapView"

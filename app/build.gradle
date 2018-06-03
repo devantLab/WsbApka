@@ -4,7 +4,7 @@ apply plugin: 'kotlin-android'
 android {
     compileSdkVersion 27
     defaultConfig {
-        applicationId "com.example.peethr.wsbtest" 
+        applicationId "pl.devant.wsbnotify"
         minSdkVersion 15
         targetSdkVersion 27
         versionCode 1
@@ -38,11 +38,12 @@ dependencies {
     compile 'com.squareup.okhttp3:okhttp:3.10.0'
     implementation 'com.android.support:cardview-v7:27.1.0'
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    compile 'com.google.firebase:firebase-database:15.0.0'
-    compile 'com.google.firebase:firebase-core:15.0.0'
+    //noinspection GradleCompatible
+    compile 'com.google.firebase:firebase-database:16.0.1'
+    compile 'com.google.firebase:firebase-core:16.0.0'
+    implementation 'com.google.firebase:firebase-core:16.0.0'
 
-
-    implementation 'com.google.android.gms:play-services-maps:15.0.0'
+    implementation 'com.google.android.gms:play-services-maps:15.0.1'
 }
 repositories {
     mavenCentral()
