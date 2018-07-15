@@ -118,18 +118,26 @@
                         app:layout_constraintTop_toBottomOf="@+id/textView" />
                 </android.support.constraint.ConstraintLayout>
 
-                <FrameLayout
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/floor0Container"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="8dp"
-                    android:elevation="16dp">
+                    android:layout_height="match_parent">
 
                     <ImageView
                         android:id="@+id/imageView3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="400dp"
-                        app:srcCompat="@drawable/a_piwnica" />
-                </FrameLayout>
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:adjustViewBounds="true"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintLeft_toRightOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/a_parter" />
+                </android.support.constraint.ConstraintLayout>
+
             </LinearLayout>
 
         </ScrollView>
