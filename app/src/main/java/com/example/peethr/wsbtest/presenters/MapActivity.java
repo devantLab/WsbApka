@@ -1,29 +1,32 @@
 package com.example.peethr.wsbtest.presenters;
 
+
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.text.Layout;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.Spinner;
 
 
 import com.example.peethr.wsbtest.R;
-import com.example.peethr.wsbtest.models.data.preferences.ManageSharedPreferences;
 import com.r0adkll.slidr.Slidr;
 import com.r0adkll.slidr.model.SlidrInterface;
 
-import java.io.FileOutputStream;
-
 public class MapActivity extends AppCompatActivity  {
 
-    private ConstraintLayout floor0Container;
+    private Spinner spinner;
+
+    private ImageView a019;
+    private ImageView a017;
+
+    private ConstraintLayout buildingAFloor0Container;
 
     private Toolbar toolbar;
 
@@ -35,12 +38,18 @@ public class MapActivity extends AppCompatActivity  {
     private String title;
     private boolean floor0visibility = true;
 
+    private String[] levels = {"Piętro -1", "Piętro 0", "Piętro 1", "Piętro 2", "Piętro 3", "Piętro 4"};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
 
         findViews();
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_item , levels);
+
+        spinner.setAdapter(adapter);
 
         title = "Mapa uczelni";
         setSupportActionBar(toolbar);
@@ -51,10 +60,11 @@ public class MapActivity extends AppCompatActivity  {
 
         slider = Slidr.attach(this);
 
-        btn_b.setOnClickListener(new View.OnClickListener() {
+        btn_a.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                a017.setColorFilter(Color.RED, PorterDuff.Mode.ADD);
             }
         });
 
@@ -65,10 +75,11 @@ public class MapActivity extends AppCompatActivity  {
 
                 int isVisible = floor0visibility ? View.VISIBLE : View.INVISIBLE;
 
-                floor0Container.setVisibility(isVisible);
+                buildingAFloor0Container.setVisibility(isVisible);
 
             }
         });
+
 
     }
 
@@ -80,7 +91,12 @@ public class MapActivity extends AppCompatActivity  {
 
     public void findViews(){
 
-        floor0Container = findViewById(R.id.floor0Container);
+        spinner = findViewById(R.id.spinner);
+
+        a017 = findViewById(R.id.a017);
+        a019 = findViewById(R.id.a019);
+
+        buildingAFloor0Container = findViewById(R.id.buildingAFloor0Container);
 
         btn_a = findViewById(R.id.btn_a);
         btn_b = findViewById(R.id.btn_b);
