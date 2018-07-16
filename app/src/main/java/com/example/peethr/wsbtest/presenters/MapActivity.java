@@ -109,7 +109,7 @@ public class MapActivity extends AppCompatActivity  {
         searchRoomButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                searchedRoom = searchRoomForm.getText().toString();
+                searchedRoom = searchRoomForm.getText().toString().toUpperCase();
 
                 if (rooms.containsKey(searchedRoom)) {
                     showRoomInfo(rooms.get(searchedRoom));
