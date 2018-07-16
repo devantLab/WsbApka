@@ -77,7 +77,6 @@ public class MapActivity extends AppCompatActivity  {
         allRooms.createRooms();
         rooms = allRooms.getRooms();
 
-
         title = "Mapa uczelni";
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
@@ -111,6 +110,8 @@ public class MapActivity extends AppCompatActivity  {
             public void onClick(View v) {
                 searchedRoom = searchRoomForm.getText().toString().toUpperCase();
 
+                searchedRoom = normalization(searchedRoom);
+
                 if (rooms.containsKey(searchedRoom)) {
                     showRoomInfo(rooms.get(searchedRoom));
                 } else
@@ -120,10 +121,24 @@ public class MapActivity extends AppCompatActivity  {
 
     }
 
+    private String normalization(String searchedRoom) {
+
+        switch (searchedRoom)
+        {
+            case "A17" :
+                return "A017";
+            case "A19" :
+                return "A019";
+            default: return searchedRoom;
+        }
+    }
+
     private void showRoomInfo(RoomModel selectedRoom) {
         roomName.setText(selectedRoom.getBuilding() + selectedRoom.getRoomNumber());
         roomDescription.setText(selectedRoom.getRoomDescription());
         phoneNumbers.setText("Tel: " + selectedRoom.getPhoneNumbers().get(0).toString());
+
+        spinner.setSelection(selectedRoom.getFloor()+1);
 
     }
 

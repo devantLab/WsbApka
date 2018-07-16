@@ -12,7 +12,7 @@ public class Rooms {
 
         // A001
         rooms.put("A017", new RoomModel(
-                        -1,
+                        0,
                         "A",
                         "017",
                         "Dziekanat",
@@ -38,7 +38,7 @@ public class Rooms {
 
         // A002
         rooms.put("A019", new RoomModel(
-                        -1,
+                        0,
                         "A",
                         "019",
                         "Dział zagraniczny",
