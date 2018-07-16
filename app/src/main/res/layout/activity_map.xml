@@ -54,18 +54,18 @@
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/scrollView"
-            app:layout_constraintVertical_bias="1.0">
+            app:layout_constraintVertical_bias="0.0">
 
             <Spinner
                 android:id="@+id/spinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="16dp"
                 android:layout_marginLeft="64dp"
-                android:layout_marginRight="8dp"
+                android:layout_marginRight="16dp"
                 android:layout_marginStart="64dp"
                 android:layout_marginTop="16dp"
                 app:layout_constraintEnd_toStartOf="@+id/imageView3"
@@ -74,7 +74,7 @@
 
             <ImageView
                 android:id="@+id/imageView3"
-                android:layout_width="wrap_content"
+                android:layout_width="132dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:layout_marginEnd="8dp"
@@ -97,7 +97,7 @@
                 android:layout_marginRight="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
-                android:textSize="18sp"
+                android:textSize="22dp"
                 app:layout_constraintEnd_toEndOf="@+id/spinner"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/spinner" />
@@ -106,7 +106,8 @@
                 android:id="@+id/roomDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
+                android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="@+id/roomName"
                 app:layout_constraintStart_toStartOf="@+id/roomName"
                 app:layout_constraintTop_toBottomOf="@+id/roomName" />
@@ -115,10 +116,76 @@
                 android:id="@+id/phoneNumbers"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="@+id/sunday"
+                app:layout_constraintStart_toStartOf="@+id/sunday"
+                app:layout_constraintTop_toBottomOf="@+id/sunday"
+                tools:text="rrrr" />
+
+            <TextView
+                android:id="@+id/mondayHours"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toEndOf="@+id/roomDescription"
                 app:layout_constraintStart_toStartOf="@+id/roomDescription"
                 app:layout_constraintTop_toBottomOf="@+id/roomDescription" />
+
+            <TextView
+                android:id="@+id/tuesday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="@+id/mondayHours"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/mondayHours"
+                app:layout_constraintTop_toBottomOf="@+id/mondayHours" />
+
+            <TextView
+                android:id="@+id/wednesday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="@+id/tuesday"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/tuesday"
+                app:layout_constraintTop_toBottomOf="@+id/tuesday" />
+
+            <TextView
+                android:id="@+id/thursday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="@+id/wednesday"
+                app:layout_constraintStart_toStartOf="@+id/wednesday"
+                app:layout_constraintTop_toBottomOf="@+id/wednesday" />
+
+            <TextView
+                android:id="@+id/friday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="@+id/thursday"
+                app:layout_constraintStart_toStartOf="@+id/thursday"
+                app:layout_constraintTop_toBottomOf="@+id/thursday" />
+
+            <TextView
+                android:id="@+id/saturday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="@+id/friday"
+                app:layout_constraintStart_toStartOf="@+id/friday"
+                app:layout_constraintTop_toBottomOf="@+id/friday" />
+
+            <TextView
+                android:id="@+id/sunday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="@+id/saturday"
+                app:layout_constraintStart_toStartOf="@+id/saturday"
+                app:layout_constraintTop_toBottomOf="@+id/saturday" />
 
         </android.support.constraint.ConstraintLayout>
 

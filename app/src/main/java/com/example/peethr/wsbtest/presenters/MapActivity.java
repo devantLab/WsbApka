@@ -47,6 +47,13 @@ public class MapActivity extends AppCompatActivity  {
     private TextView roomName;
     private TextView roomDescription;
     private TextView phoneNumbers;
+    private TextView monday;
+    private TextView tuesday;
+    private TextView wednesday;
+    private TextView thursday;
+    private TextView friday;
+    private TextView saturday;
+    private TextView sunday;
 
 
     private SlidrInterface slider;
@@ -138,6 +145,63 @@ public class MapActivity extends AppCompatActivity  {
         roomDescription.setText(selectedRoom.getRoomDescription());
         phoneNumbers.setText("Tel: " + selectedRoom.getPhoneNumbers().get(0).toString());
 
+        boolean poniedzialek = selectedRoom.getOpeningHours().get("mondayOpening").equals("-1") ? false : true;
+
+        if(poniedzialek) {
+            monday.setText("Poniedziałek: " +
+                    selectedRoom.getOpeningHours().get("mondayOpening") + " - " +
+                    selectedRoom.getOpeningHours().get("mondayClosing"));
+        } else monday.setText("Poniedziałek: nieczynne");
+
+        boolean wtorek = selectedRoom.getOpeningHours().get("tuesdayOpening").equals("-1") ? false : true;
+
+        if(wtorek) {
+            tuesday.setText("Wtorek: " +
+                    selectedRoom.getOpeningHours().get("tuesdayOpening") + " - " +
+                    selectedRoom.getOpeningHours().get("tuesdayClosing"));
+        } else tuesday.setText("Wtorek: nieczynne");
+
+        boolean sroda = selectedRoom.getOpeningHours().get("wednesdayOpening").equals("-1") ? false : true;
+
+        if(sroda) {
+            wednesday.setText("Środa: " +
+                    selectedRoom.getOpeningHours().get("wednesdayOpening") + " - " +
+                    selectedRoom.getOpeningHours().get("wednesdayClosing"));
+        } else wednesday.setText("Środa: nieczynne");
+
+        boolean czwartek = selectedRoom.getOpeningHours().get("thursdayOpening").equals("-1") ? false : true;
+
+        if(czwartek) {
+            thursday.setText("Czwartek: " +
+                    selectedRoom.getOpeningHours().get("thursday   Opening") + " - " +
+                    selectedRoom.getOpeningHours().get("thursday   Closing"));
+        } else thursday.setText("Czwartek: nieczynne");
+
+        boolean piatek = selectedRoom.getOpeningHours().get("fridayOpening").equals("-1") ? false : true;
+
+        if(piatek) {
+            friday.setText("Piątek: " +
+                    selectedRoom.getOpeningHours().get("fridayOpening") + " - " +
+                    selectedRoom.getOpeningHours().get("fridayClosing"));
+        } else friday.setText("Piątek: nieczynne");
+
+        boolean sobota = selectedRoom.getOpeningHours().get("saturdayOpening").equals("-1") ? false : true;
+
+        if(sobota) {
+            saturday.setText("Sobota: " +
+                    selectedRoom.getOpeningHours().get("saturdayOpening") + " - " +
+                    selectedRoom.getOpeningHours().get("saturdayClosing"));
+        } else saturday.setText("Sobota: nieczynne");
+
+        boolean niedziela = selectedRoom.getOpeningHours().get("sundayOpening").equals("-1") ? false : true;
+
+        if(niedziela) {
+            sunday.setText("Niedziela: " +
+                    selectedRoom.getOpeningHours().get("sundayOpening") + " - " +
+                    selectedRoom.getOpeningHours().get("sundayClosing"));
+        } else sunday.setText("Niedziela: nieczynne");
+
+
         spinner.setSelection(selectedRoom.getFloor()+1);
 
     }
@@ -161,7 +225,13 @@ public class MapActivity extends AppCompatActivity  {
         roomName = findViewById(R.id.roomName);
         roomDescription = findViewById(R.id.roomDescription);
         phoneNumbers = findViewById(R.id.phoneNumbers);
-
+        monday = findViewById(R.id.mondayHours);
+        tuesday = findViewById(R.id.tuesday);
+        wednesday = findViewById(R.id.wednesday);
+        thursday = findViewById(R.id.thursday);
+        friday = findViewById(R.id.friday);
+        saturday = findViewById(R.id.saturday);
+        sunday = findViewById(R.id.sunday);
 
         toolbar = findViewById(R.id.toolbar);
 
