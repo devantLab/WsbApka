@@ -8,7 +8,7 @@ public class RoomModel {
 
     private int floor;
     private String building;
-    private int roomNumber;
+    private String roomNumber;
     private String roomDescription;
     private List<Integer> phoneNumbers;
     private Map<String, Integer> openingHours = new HashMap<>();
@@ -16,7 +16,7 @@ public class RoomModel {
     public RoomModel(
             int floor,
             String building,
-            int roomNumber,
+            String roomNumber,
             String roomDescription,
             List<Integer> phoneNumbers,
             int mondayOpening,
@@ -65,7 +65,7 @@ public class RoomModel {
         return building;
     }
 
-    public int getRoomNumber() {
+    public String getRoomNumber() {
         return roomNumber;
     }
 

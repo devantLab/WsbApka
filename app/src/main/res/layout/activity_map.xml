@@ -9,10 +9,10 @@
     tools:context="com.example.peethr.wsbtest.presenters.MapActivity">
 
     <include
-        layout="@layout/toolbar"
         android:id="@+id/mtoolbar"
-        android:layout_height="wrap_content"
+        layout="@layout/toolbar"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,7 +32,7 @@
         app:layout_constraintVertical_bias="0.933">
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/searchRoomForm"
             android:layout_width="268dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -43,8 +43,86 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:elevation="16dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/scrollView"
+            app:layout_constraintVertical_bias="1.0">
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="64dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="64dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toStartOf="@+id/imageView3"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                app:srcCompat="@drawable/a_parter" />
+
+            <TextView
+                android:id="@+id/roomName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="@+id/spinner"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spinner" />
+
+            <TextView
+                android:id="@+id/roomDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="@+id/roomName"
+                app:layout_constraintStart_toStartOf="@+id/roomName"
+                app:layout_constraintTop_toBottomOf="@+id/roomName" />
+
+            <TextView
+                android:id="@+id/phoneNumbers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="@+id/roomDescription"
+                app:layout_constraintStart_toStartOf="@+id/roomDescription"
+                app:layout_constraintTop_toBottomOf="@+id/roomDescription" />
+
+        </android.support.constraint.ConstraintLayout>
+
         <Button
-            android:id="@+id/button"
+            android:id="@+id/searchRoomButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -52,7 +130,7 @@
             android:text="OK"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.333"
-            app:layout_constraintStart_toEndOf="@+id/editText"
+            app:layout_constraintStart_toEndOf="@+id/searchRoomForm"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ScrollView
@@ -61,6 +139,7 @@
             android:layout_height="match_parent"
             android:layout_marginBottom="8dp"
             android:layout_marginTop="50dp"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -72,68 +151,9 @@
                 android:orientation="horizontal">
 
                 <android.support.constraint.ConstraintLayout
-                    android:layout_width="120dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="0dp"
-                    android:layout_marginTop="8dp"
-                    android:elevation="16dp"
-                    android:orientation="vertical">
-
-                    <Spinner
-                        android:id="@+id/spinner"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/textView2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="24dp"
-                        android:padding="8dp"
-                        android:text="ADB architecture is like client-server architecture with three components."
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/spinner" />
-                </android.support.constraint.ConstraintLayout>
-
-                <android.support.constraint.ConstraintLayout
                     android:id="@+id/buildingAFloor0Container"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
-
-                    <ImageView
-                        android:id="@+id/a019"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginStart="8dp"
-                        android:adjustViewBounds="true"
-                        android:scaleType="fitXY"
-                        app:layout_constraintEnd_toStartOf="@+id/guideline3"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:srcCompat="@drawable/a019"
-                        tools:layout_editor_absoluteY="8dp" />
-
-                    <ImageView
-                        android:id="@+id/a017"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:adjustViewBounds="true"
-                        android:scaleType="fitXY"
-                        app:layout_constraintEnd_toStartOf="@+id/guideline3"
-                        app:layout_constraintStart_toStartOf="@+id/a019"
-                        app:layout_constraintTop_toBottomOf="@+id/a019"
-                        app:srcCompat="@drawable/a017" />
 
                     <android.support.constraint.Guideline
                         android:id="@+id/guideline3"
@@ -141,18 +161,6 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         app:layout_constraintGuide_begin="84dp" />
-
-                    <ImageView
-                        android:id="@+id/imageView14"
-                        android:layout_width="40dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="7dp"
-                        android:adjustViewBounds="true"
-                        android:scaleType="fitXY"
-                        app:layout_constraintEnd_toStartOf="@+id/guideline4"
-                        app:layout_constraintStart_toStartOf="@+id/guideline3"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/corridor" />
 
                     <android.support.constraint.Guideline
                         android:id="@+id/guideline4"

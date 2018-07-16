@@ -11,20 +11,28 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.example.peethr.wsbtest.R;
+import com.example.peethr.wsbtest.models.data.rooms.RoomModel;
+import com.example.peethr.wsbtest.models.data.rooms.Rooms;
 import com.r0adkll.slidr.Slidr;
 import com.r0adkll.slidr.model.SlidrInterface;
 
+import org.w3c.dom.Text;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class MapActivity extends AppCompatActivity  {
 
+    // ui
     private Spinner spinner;
-
-    private ImageView a019;
-    private ImageView a017;
 
     private ConstraintLayout buildingAFloor0Container;
 
@@ -32,13 +40,28 @@ public class MapActivity extends AppCompatActivity  {
 
     private Button btn_a;
     private Button btn_b;
+    private Button searchRoomButton;
+
+    private EditText searchRoomForm;
+
+    private TextView roomName;
+    private TextView roomDescription;
+    private TextView phoneNumbers;
+
 
     private SlidrInterface slider;
 
+    // variables
     private String title;
+    private String searchedRoom;
+
     private boolean floor0visibility = true;
 
     private String[] levels = {"Piętro -1", "Piętro 0", "Piętro 1", "Piętro 2", "Piętro 3", "Piętro 4"};
+
+    private Rooms allRooms = new Rooms();
+
+    private Map<String, RoomModel> rooms = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +73,10 @@ public class MapActivity extends AppCompatActivity  {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_item , levels);
 
         spinner.setAdapter(adapter);
+
+        allRooms.createRooms();
+        rooms = allRooms.getRooms();
+
 
         title = "Mapa uczelni";
         setSupportActionBar(toolbar);
@@ -64,7 +91,6 @@ public class MapActivity extends AppCompatActivity  {
             @Override
             public void onClick(View v) {
 
-                a017.setColorFilter(Color.RED, PorterDuff.Mode.ADD);
             }
         });
 
@@ -80,6 +106,24 @@ public class MapActivity extends AppCompatActivity  {
             }
         });
 
+        searchRoomButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchedRoom = searchRoomForm.getText().toString();
+
+                if (rooms.containsKey(searchedRoom)) {
+                    showRoomInfo(rooms.get(searchedRoom));
+                } else
+                    Toast.makeText(MapActivity.this, "Nie znaleziono pomieszczenia", Toast.LENGTH_LONG).show();
+            }
+        });
+
+    }
+
+    private void showRoomInfo(RoomModel selectedRoom) {
+        roomName.setText(selectedRoom.getBuilding() + selectedRoom.getRoomNumber());
+        roomDescription.setText(selectedRoom.getRoomDescription());
+        phoneNumbers.setText("Tel: " + selectedRoom.getPhoneNumbers().get(0).toString());
 
     }
 
@@ -93,13 +137,19 @@ public class MapActivity extends AppCompatActivity  {
 
         spinner = findViewById(R.id.spinner);
 
-        a017 = findViewById(R.id.a017);
-        a019 = findViewById(R.id.a019);
-
         buildingAFloor0Container = findViewById(R.id.buildingAFloor0Container);
 
         btn_a = findViewById(R.id.btn_a);
         btn_b = findViewById(R.id.btn_b);
+        searchRoomButton = findViewById(R.id.searchRoomButton);
+
+        roomName = findViewById(R.id.roomName);
+        roomDescription = findViewById(R.id.roomDescription);
+        phoneNumbers = findViewById(R.id.phoneNumbers);
+
+
         toolbar = findViewById(R.id.toolbar);
+
+        searchRoomForm = findViewById(R.id.searchRoomForm);
     }
 }

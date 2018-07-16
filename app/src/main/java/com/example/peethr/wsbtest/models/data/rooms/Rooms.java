@@ -11,10 +11,10 @@ public class Rooms {
     public void createRooms() {
 
         // A001
-        rooms.put("A001", new RoomModel(
+        rooms.put("A017", new RoomModel(
                         -1,
                         "A",
-                        001,
+                        "017",
                         "Dziekanat",
                         Arrays.asList(
                                 533065013, 100200300
@@ -37,10 +37,10 @@ public class Rooms {
         );
 
         // A002
-        rooms.put("A002", new RoomModel(
+        rooms.put("A019", new RoomModel(
                         -1,
                         "A",
-                        001,
+                        "019",
                         "Dział zagraniczny",
                         Arrays.asList(
                                 4444444, 2424242
