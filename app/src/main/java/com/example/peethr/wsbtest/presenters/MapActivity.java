@@ -55,6 +55,7 @@ public class MapActivity extends AppCompatActivity  {
     private TextView saturday;
     private TextView sunday;
 
+    private ImageView showFloor;
 
     private SlidrInterface slider;
 
@@ -80,6 +81,7 @@ public class MapActivity extends AppCompatActivity  {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_item , levels);
 
         spinner.setAdapter(adapter);
+        spinner.setSelection(1);
 
         allRooms.createRooms();
         rooms = allRooms.getRooms();
@@ -96,18 +98,16 @@ public class MapActivity extends AppCompatActivity  {
         btn_a.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                selectRoom("showBuildingA");
+                spinner.setSelection(1);
             }
         });
 
         btn_b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                floor0visibility = !floor0visibility;
-
-                int isVisible = floor0visibility ? View.VISIBLE : View.INVISIBLE;
-
-                buildingAFloor0Container.setVisibility(isVisible);
+                selectRoom("showBuildingB");
+                spinner.setSelection(1);
             }
         });
 
@@ -172,6 +172,18 @@ public class MapActivity extends AppCompatActivity  {
 
     }
 
+    private void selectRoom(String targetRoom)
+    {
+        switch (targetRoom) {
+            case "showBuildingA" :
+                showFloor.setImageResource(R.drawable.a_piwnica);
+                break;
+            case "showBuildingB" :
+                showFloor.setImageResource(R.drawable.bparter);
+                break;
+        }
+    }
+
     private String getDayName(String day) {
         switch (day){
             case "monday" :
@@ -227,6 +239,8 @@ public class MapActivity extends AppCompatActivity  {
         sunday = findViewById(R.id.sunday);
 
         toolbar = findViewById(R.id.toolbar);
+
+        showFloor = findViewById(R.id.showFloor);
 
         searchRoomForm = findViewById(R.id.searchRoomForm);
     }
