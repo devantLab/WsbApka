@@ -181,8 +181,7 @@ public class MapActivity extends AppCompatActivity  {
             return "Wtorek";
 
                 case "wednesday" :
-            return "" +
-                    "Środa";
+            return "Środa";
 
               case "thursday" :
             return "Czwartek";
