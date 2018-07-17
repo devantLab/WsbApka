@@ -108,7 +108,6 @@ public class MapActivity extends AppCompatActivity  {
                 int isVisible = floor0visibility ? View.VISIBLE : View.INVISIBLE;
 
                 buildingAFloor0Container.setVisibility(isVisible);
-
             }
         });
 
@@ -145,65 +144,60 @@ public class MapActivity extends AppCompatActivity  {
         roomDescription.setText(selectedRoom.getRoomDescription());
         phoneNumbers.setText("Tel: " + selectedRoom.getPhoneNumbers().get(0).toString());
 
-        boolean poniedzialek = selectedRoom.getOpeningHours().get("mondayOpening").equals("-1") ? false : true;
-
-        if(poniedzialek) {
-            monday.setText("Poniedziałek: " +
-                    selectedRoom.getOpeningHours().get("mondayOpening") + " - " +
-                    selectedRoom.getOpeningHours().get("mondayClosing"));
-        } else monday.setText("Poniedziałek: nieczynne");
-
-        boolean wtorek = selectedRoom.getOpeningHours().get("tuesdayOpening").equals("-1") ? false : true;
-
-        if(wtorek) {
-            tuesday.setText("Wtorek: " +
-                    selectedRoom.getOpeningHours().get("tuesdayOpening") + " - " +
-                    selectedRoom.getOpeningHours().get("tuesdayClosing"));
-        } else tuesday.setText("Wtorek: nieczynne");
-
-        boolean sroda = selectedRoom.getOpeningHours().get("wednesdayOpening").equals("-1") ? false : true;
-
-        if(sroda) {
-            wednesday.setText("Środa: " +
-                    selectedRoom.getOpeningHours().get("wednesdayOpening") + " - " +
-                    selectedRoom.getOpeningHours().get("wednesdayClosing"));
-        } else wednesday.setText("Środa: nieczynne");
-
-        boolean czwartek = selectedRoom.getOpeningHours().get("thursdayOpening").equals("-1") ? false : true;
-
-        if(czwartek) {
-            thursday.setText("Czwartek: " +
-                    selectedRoom.getOpeningHours().get("thursday   Opening") + " - " +
-                    selectedRoom.getOpeningHours().get("thursday   Closing"));
-        } else thursday.setText("Czwartek: nieczynne");
-
-        boolean piatek = selectedRoom.getOpeningHours().get("fridayOpening").equals("-1") ? false : true;
-
-        if(piatek) {
-            friday.setText("Piątek: " +
-                    selectedRoom.getOpeningHours().get("fridayOpening") + " - " +
-                    selectedRoom.getOpeningHours().get("fridayClosing"));
-        } else friday.setText("Piątek: nieczynne");
-
-        boolean sobota = selectedRoom.getOpeningHours().get("saturdayOpening").equals("-1") ? false : true;
-
-        if(sobota) {
-            saturday.setText("Sobota: " +
-                    selectedRoom.getOpeningHours().get("saturdayOpening") + " - " +
-                    selectedRoom.getOpeningHours().get("saturdayClosing"));
-        } else saturday.setText("Sobota: nieczynne");
-
-        boolean niedziela = selectedRoom.getOpeningHours().get("sundayOpening").equals("-1") ? false : true;
-
-        if(niedziela) {
-            sunday.setText("Niedziela: " +
-                    selectedRoom.getOpeningHours().get("sundayOpening") + " - " +
-                    selectedRoom.getOpeningHours().get("sundayClosing"));
-        } else sunday.setText("Niedziela: nieczynne");
-
+            setUI(monday, selectedRoom, "monday");
+            setUI(tuesday, selectedRoom, "tuesday");
+            setUI(wednesday, selectedRoom, "wednesday");
+            setUI(thursday, selectedRoom, "thursday");
+            setUI(friday, selectedRoom, "friday");
+            setUI(saturday, selectedRoom, "saturday");
+            setUI(sunday, selectedRoom, "sunday");
 
         spinner.setSelection(selectedRoom.getFloor()+1);
 
+    }
+
+    private void setUI(TextView textView, RoomModel room, String day)
+    {
+        boolean ifOpen = room.getOpeningHours().get(day + "Opening").equals("-1") ? false : true;
+        String dayName = getDayName(day);
+
+        if (ifOpen) {
+            textView.setText(dayName + ": " +
+                    room.getOpeningHours().get(day + "Opening") +
+                    " - " +
+                    room.getOpeningHours().get(day + "Closing"));
+        } else {
+            textView.setText(dayName + ": nieczynne");
+        }
+
+    }
+
+    private String getDayName(String day) {
+        switch (day){
+            case "monday" :
+            return "Poniedziałek";
+
+              case "tuesday" :
+            return "Wtorek";
+
+                case "wednesday" :
+            return "" +
+                    "Środa";
+
+              case "thursday" :
+            return "Czwartek";
+
+                case "friday" :
+            return "Piątek";
+
+              case "saturday" :
+            return "Sobota";
+
+            case "sunday" :
+            return "Niedziela";
+
+        }
+        return day;
     }
 
     @Override
