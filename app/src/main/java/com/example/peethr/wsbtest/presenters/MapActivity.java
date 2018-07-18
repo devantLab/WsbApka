@@ -176,7 +176,7 @@ public class MapActivity extends AppCompatActivity  {
     {
         switch (targetRoom) {
             case "showBuildingA" :
-                showFloor.setImageResource(R.drawable.a_piwnica);
+                showFloor.setImageResource(R.drawable.aparter);
                 break;
             case "showBuildingB" :
                 showFloor.setImageResource(R.drawable.bparter);
