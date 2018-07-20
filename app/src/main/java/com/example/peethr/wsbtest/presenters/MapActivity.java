@@ -2,7 +2,6 @@ package com.example.peethr.wsbtest.presenters;
 
 
 import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,15 +18,17 @@ import android.widget.Toast;
 
 
 import com.example.peethr.wsbtest.R;
+import com.example.peethr.wsbtest.models.converters.GetImageId;
 import com.example.peethr.wsbtest.models.data.rooms.RoomModel;
 import com.example.peethr.wsbtest.models.data.rooms.Rooms;
 import com.r0adkll.slidr.Slidr;
 import com.r0adkll.slidr.model.SlidrInterface;
 
-import org.w3c.dom.Text;
-
 import java.util.HashMap;
 import java.util.Map;
+
+import static com.example.peethr.wsbtest.models.converters.DaysConverter.getDayName;
+import static com.example.peethr.wsbtest.models.converters.RoomNamesNormalization.normalization;
 
 public class MapActivity extends AppCompatActivity  {
 
@@ -63,8 +64,6 @@ public class MapActivity extends AppCompatActivity  {
     private String title;
     private String searchedRoom;
 
-    private boolean floor0visibility = true;
-
     private String[] levels = {"Piętro -1", "Piętro 0", "Piętro 1", "Piętro 2", "Piętro 3", "Piętro 4"};
 
     private Rooms allRooms = new Rooms();
@@ -98,7 +97,7 @@ public class MapActivity extends AppCompatActivity  {
         btn_a.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectRoom("showBuildingA");
+                selectBuilding("showBuildingA");
                 spinner.setSelection(1);
             }
         });
@@ -106,7 +105,9 @@ public class MapActivity extends AppCompatActivity  {
         btn_b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectRoom("showBuildingB");
+                selectBuilding("showBuildingB");
+
+
                 spinner.setSelection(1);
             }
         });
@@ -114,29 +115,16 @@ public class MapActivity extends AppCompatActivity  {
         searchRoomButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                searchedRoom = searchRoomForm.getText().toString().toUpperCase();
-
-                searchedRoom = normalization(searchedRoom);
+                searchedRoom = normalization(searchRoomForm.getText().toString().toUpperCase());
 
                 if (rooms.containsKey(searchedRoom)) {
                     showRoomInfo(rooms.get(searchedRoom));
+                    selectRoom(searchedRoom);
                 } else
                     Toast.makeText(MapActivity.this, "Nie znaleziono pomieszczenia", Toast.LENGTH_LONG).show();
             }
         });
 
-    }
-
-    private String normalization(String searchedRoom) {
-
-        switch (searchedRoom)
-        {
-            case "A17" :
-                return "A017";
-            case "A19" :
-                return "A019";
-            default: return searchedRoom;
-        }
     }
 
     private void showRoomInfo(RoomModel selectedRoom) {
@@ -172,9 +160,9 @@ public class MapActivity extends AppCompatActivity  {
 
     }
 
-    private void selectRoom(String targetRoom)
+    private void selectBuilding(String targetBuilding)
     {
-        switch (targetRoom) {
+        switch (targetBuilding) {
             case "showBuildingA" :
                 showFloor.setImageResource(R.drawable.aparter);
                 break;
@@ -184,32 +172,10 @@ public class MapActivity extends AppCompatActivity  {
         }
     }
 
-    private String getDayName(String day) {
-        switch (day){
-            case "monday" :
-            return "Poniedziałek";
-
-              case "tuesday" :
-            return "Wtorek";
-
-                case "wednesday" :
-            return "Środa";
-
-              case "thursday" :
-            return "Czwartek";
-
-                case "friday" :
-            return "Piątek";
-
-              case "saturday" :
-            return "Sobota";
-
-            case "sunday" :
-            return "Niedziela";
-
-        }
-        return day;
+    private void selectRoom(String searchedRoom) {
+        showFloor.setImageResource(GetImageId.getImageId(getApplicationContext(), "zz_" + searchedRoom.toLowerCase()));
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
