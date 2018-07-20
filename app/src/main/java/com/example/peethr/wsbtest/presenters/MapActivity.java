@@ -35,8 +35,6 @@ public class MapActivity extends AppCompatActivity  {
     // ui
     private Spinner spinner;
 
-    private ConstraintLayout buildingAFloor0Container;
-
     private Toolbar toolbar;
 
     private Button btn_a;
@@ -97,7 +95,7 @@ public class MapActivity extends AppCompatActivity  {
         btn_a.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectBuilding("showBuildingA");
+                selectRoom("aparter", 1);
                 spinner.setSelection(1);
             }
         });
@@ -105,9 +103,7 @@ public class MapActivity extends AppCompatActivity  {
         btn_b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectBuilding("showBuildingB");
-
-
+                selectRoom("bparter", 1);
                 spinner.setSelection(1);
             }
         });
@@ -119,7 +115,7 @@ public class MapActivity extends AppCompatActivity  {
 
                 if (rooms.containsKey(searchedRoom)) {
                     showRoomInfo(rooms.get(searchedRoom));
-                    selectRoom(searchedRoom);
+                    selectRoom(searchedRoom,  rooms.get(searchedRoom).getFloor());
                 } else
                     Toast.makeText(MapActivity.this, "Nie znaleziono pomieszczenia", Toast.LENGTH_LONG).show();
             }
@@ -160,20 +156,9 @@ public class MapActivity extends AppCompatActivity  {
 
     }
 
-    private void selectBuilding(String targetBuilding)
-    {
-        switch (targetBuilding) {
-            case "showBuildingA" :
-                showFloor.setImageResource(R.drawable.aparter);
-                break;
-            case "showBuildingB" :
-                showFloor.setImageResource(R.drawable.bparter);
-                break;
-        }
-    }
-
-    private void selectRoom(String searchedRoom) {
+    private void selectRoom(String searchedRoom, int floorLevel) {
         showFloor.setImageResource(GetImageId.getImageId(getApplicationContext(), "zz_" + searchedRoom.toLowerCase()));
+        spinner.setSelection(floorLevel + 1);
     }
 
 
@@ -186,8 +171,6 @@ public class MapActivity extends AppCompatActivity  {
     public void findViews(){
 
         spinner = findViewById(R.id.spinner);
-
-        buildingAFloor0Container = findViewById(R.id.buildingAFloor0Container);
 
         btn_a = findViewById(R.id.btn_a);
         btn_b = findViewById(R.id.btn_b);
