@@ -21,7 +21,6 @@ import com.example.peethr.wsbtest.R;
 public class SplashScreen extends AppCompatActivity {
 
     Globals g = Globals.getInstance();
-    private ProgressBar progressBar;
 
     private ManageSharedPreferences manageSharedPreferences;
 
@@ -34,7 +33,6 @@ public class SplashScreen extends AppCompatActivity {
         final ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         final FragmentManager fragmentManager = getFragmentManager();
 
-        progressBar = findViewById(R.id.progressBar);
 
         // set language or start tutorial on first run
         if (checkLanguage()) {
